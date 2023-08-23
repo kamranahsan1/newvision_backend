@@ -1,4 +1,4 @@
-const ApiFeatures = require("../utils/apiFeatures");
+const ApiFeatures = require("../utils/ApiFeatures");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Packages = require("../models/Packages");
 const Category = require("../models/Category");
