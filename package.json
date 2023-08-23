@@ -5,10 +5,11 @@
   "main": "backend/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "node ./backend/server.js",
+    "server": "nodemon ./backend/server.js",
     "client": "npm start --prefix client",
     "watch": "npm run server & npm run client",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run server"
+    "heroku-postbuild": "npm run server",
+    "start": "node ./backend/server.js"
   },
   "author": "",
   "license": "ISC",

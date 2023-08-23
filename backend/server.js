@@ -5,7 +5,7 @@ const insertData = require("./models/Data/Insert");
 const port = process.env.PORT || 5000;
 dotenv.config({ path: "backend/config/config.env" });
 connectDatabase();
-insertData();
+//insertData();
 
 const server = app.listen(port, () => {
   console.log(
