@@ -12,6 +12,7 @@ const startServer = async () => {
     const host = server.address().address;
     const port = server.address().port;
     console.log(`Server is working on http://${host}:${port}`);
+    console.log(server);
   });
 };
 
