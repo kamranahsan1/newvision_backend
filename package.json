@@ -8,8 +8,7 @@
     "server": "node ./backend/server.js",
     "client": "npm start --prefix client",
     "watch": "npm run server & npm run client",
-    "heroku-postbuild": "npm run server",
-    "start": "node ./backend/server.js"
+    "heroku-postbuild": "npm run server"
   },
   "author": "",
   "license": "ISC",
