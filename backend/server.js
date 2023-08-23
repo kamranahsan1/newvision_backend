@@ -8,8 +8,10 @@ dotenv.config({ path: "backend/config/config.env" });
 const startServer = async () => {
   await connectDatabase();
   await insertData();
-  app.listen(process.env.PORT, () => {
-    console.log(`Server is working on http://localhost:${process.env.PORT}`);
+  const server = app.listen(process.env.PORT, () => {
+    const host = server.address().address;
+    const port = server.address().port;
+    console.log(`Server is working on http://${host}:${port}`);
   });
 };
 
