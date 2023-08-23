@@ -8,7 +8,9 @@ connectDatabase();
 insertData();
 
 const server = app.listen(port, () => {
-  const host = server.address().address;
-  const port = server.address().port;
-  console.log(`Server is working on http://${host}:${port}`);
+  console.log(
+    `Server is working on http://${server.address().address}:${
+      server.address().port
+    }`
+  );
 });
