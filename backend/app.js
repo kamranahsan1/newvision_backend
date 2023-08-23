@@ -9,7 +9,7 @@ var option = {
   optionsSuccessStatus: 200,
 };
 app.use(cors(option));
-app.use(express.json());
+//app.use(express.json());
 app.use(`/api`, api);
 
 router.get("/", (req, res) => {
