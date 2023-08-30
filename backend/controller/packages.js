@@ -2,7 +2,9 @@ const ApiFeatures = require("../utils/ApiFeatures");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Packages = require("../models/Packages");
 const Category = require("../models/Category");
+const NodeCache = require("node-cache");
 
+const cache = new NodeCache();
 const getPackages = catchAsyncErrors(async (req, res, next) => {
   let { category } = req.query;
   category = category || "Uae Packages";
@@ -32,8 +34,15 @@ const getAllPackages = catchAsyncErrors(async (req, res, next) => {
 });
 
 const getCategories = catchAsyncErrors(async (req, res, next) => {
-  const categories = await Category.find();
-  res.status(200).json(categories);
+  const cacheKey = "categories";
+  const cachedCategories = cache.get(cacheKey);
+  if (cachedCategories) {
+    res.status(200).json(cachedCategories);
+  } else {
+    const categories = await Category.find();
+    cache.set(cacheKey, categories);
+    res.status(200).json(categories);
+  }
 });
 
 module.exports = {
