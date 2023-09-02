@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-const packageRoute = require("./packagesRoute");
 const countryRoute = require("./countryRoute");
 const visacategoryRoute = require("./visacategoryRoute");
 const Contact = require("./Contact");
 const tour = require("./Tour");
+const packageRoute = require("./packagesRoute");
 
 router.use(packageRoute);
 router.use(countryRoute);
