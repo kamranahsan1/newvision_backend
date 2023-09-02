@@ -5,9 +5,9 @@ const countryRoute = require("./countryRoute");
 const visacategoryRoute = require("./visacategoryRoute");
 const Contact = require("./Contact");
 const tour = require("./Tour");
-const packageRoute = require("./packagesRoute");
+//const packageRoute = require("./packagesRoute");
 
-router.use(packageRoute);
+//router.use(packageRoute);
 router.use(countryRoute);
 router.use(visacategoryRoute);
 router.use(tour);
