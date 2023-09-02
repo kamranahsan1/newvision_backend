@@ -1,5 +1,5 @@
 const express = require("express");
-const { getAllPackages, getCategories } = require("../controller/Packages.js");
+const { getAllPackages, getCategories } = require("../controller/Packages");
 const router = express.Router();
 
 router.route("/packages").get(getAllPackages);
