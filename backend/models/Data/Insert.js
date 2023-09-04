@@ -378,310 +378,279 @@ const CategoriesData = [
 const CountryData = [
   {
     name: "France",
-    mainImage:
-      "https://pixabay.com/get/g124ab615911c70dd1df60fa8fdc7b6a482211a16d04028a04ee867f04214af685a4b1eaa321cf94a654a081db99fec6729d05d3328df6c951a86afa314862a59_640.jpg",
+    mainImage: "france.jpg",
     description:
       "Explore romantic Paris, stroll along the Seine River, and savor exquisite pastries while marveling at the Eiffel Tower's elegance.",
   },
   {
     name: "Spain",
-    mainImage:
-      "https://pixabay.com/get/gc43f0494cd797c318a38d75e74dedbe4016eb25228d579c1ccbb891297e2e92a9a67b6abaf820877b1e1fa770b634a392345dd3ec0927d46fb9b7bf1f2567ca4_640.jpg",
+    mainImage: "spain.jpg",
     description:
       "Immerse yourself in Spain's vibrant culture, from flamenco rhythms in Andalusia to iconic architecture in Barcelona and relaxing on Mediterranean beaches.",
   },
   {
     name: "United States",
-    mainImage:
-      "https://pixabay.com/get/g6aa60d198569c9e4fd3a4f73faa7bbc8e6193890b2e79a29407c3c6b0de8bc9fba397ec685eecd1f3142a5f6b2f6e3bd5be17ff3283fdcc22e20bde53249eea0_640.jpg",
+    mainImage: "united_states.jpg",
     description:
       "From the bustling streets of New York to the stunning landscapes of the Grand Canyon, experience the diversity of America's culture and nature.",
   },
   {
     name: "Turkey",
-    mainImage:
-      "https://pixabay.com/get/g6c666742d10c7883cefaf0eb12ddda7476bd81f52c0e2b281e9c82f18587ddc956503b4141e245e2726a57fbd01c7e1604e615a28c562ddc75c6adf0b6b8529a_640.jpg",
+    mainImage: "turkey.jpg",
     description:
       "Delve into Turkey's rich history by visiting the ancient city of Istanbul, exploring the Blue Mosque, and indulging in flavorful Turkish cuisine",
   },
   {
     name: "Italy",
-    mainImage:
-      "https://pixabay.com/get/g303ef57f82e8491ed1bbd18930b1088ff09cfd562cda6067d1d559c104fcee90b89f31791ec4837a48e7360bb4a56817d25f6c3d9b036e72bbcc031d23f575ae_640.jpg",
+    mainImage: "italy.jpg",
     description:
       "Wander through historic Rome, be enchanted by Venice's canals, and indulge in Italy's culinary delights and world-renowned gelato.",
   },
   {
     name: "Mexico",
-    mainImage:
-      "https://pixabay.com/get/gedb955bb28e11120df621948ac7a8ef96071fcd4dacb7e0835899ff0cd501aa3ae2704d166625ebd9fb81e2ab1aa2a5ffa17ceabd431ecbdda11ba454d81e8ba_640.jpg",
+    mainImage: "mexico.jpg",
     description:
       "Discover the Mayan ruins in Chichen Itza, unwind on the beautiful beaches of Cancun, and savor the spicy flavors of authentic Mexican dishes.",
   },
   {
     name: "United Kingdom",
-    mainImage:
-      "https://pixabay.com/get/gcd4d62ef6a23419d8b5d8b5d0ff4bd8cebee40bf8687ab8848e37fa6fc19ec7dd2e6509bbeda893e4e5afef8358e4bbf_640.jpg",
+    mainImage: "united_kingdom.jpg",
     description:
       "Embrace British elegance in London, absorb the history of Edinburgh's castles, and enjoy a cup of tea in traditional English style.",
   },
   {
     name: "Germany",
-    mainImage: "",
+    mainImage: "germany.jpg",
     description:
       "Experience the lively atmosphere of Oktoberfest in Munich, explore the historic Berlin Wall, and immerse yourself in German culture.",
   },
   {
     name: "Greece",
-    mainImage: "",
+    mainImage: "greece.jpg",
     description:
       "Explore ancient ruins in Athens, bask in the beauty of Santorini's sunsets, and savor Greek delicacies by the azure Aegean Sea.",
   },
   {
     name: "Austria",
-    mainImage: "",
+    mainImage: "austria.jpg",
     description:
       "Take in the classical elegance of Vienna, enjoy Alpine landscapes in Salzburg, and treat yourself to a slice of Sachertorte.",
   },
   {
     name: "Egypt",
-    mainImage: "",
+    mainImage: "egypt.jpg",
     description:
       "Uncover the mysteries of the Pyramids in Cairo, cruise the timeless Nile River, and immerse yourself in the land of ancient pharaohs.",
   },
   {
     name: "Morocco",
-    mainImage: "",
+    mainImage: "morocco.jpg",
     description:
       "Get lost in the enchanting medinas of Marrakech, experience the Sahara Desert's tranquility, and savor the flavors of Moroccan spices.",
   },
   {
     name: "South Africa",
-    mainImage: "",
+    mainImage: "south_africa.jpg",
     description:
       "Embark on a safari adventure in Kruger National Park, explore the vibrant city of Cape Town, and witness the stunning beauty of Table Mountain.",
   },
   {
     name: "Tunisia",
-    mainImage: "",
+    mainImage: "tunisia.jpg",
     description:
       "Step into the past at the ancient ruins of Carthage, wander through the medina of Tunis, and relax on the Mediterranean's golden beaches.",
   },
   {
     name: "Algeria",
-    mainImage: "",
+    mainImage: "algeria.jpg",
     description:
       "Discover the Roman ruins of Timgad, explore the Saharan landscapes of the Tassili n'Ajjer, and experience the unique culture of North Africa.",
   },
   {
     name: "Zimbabwe",
-    mainImage: "",
+    mainImage: "zimbabwe.jpg",
     description:
       "Stand in awe of the majestic Victoria Falls, embark on a safari in Hwange National Park, and connect with the heart of Africa.",
   },
   {
-    name: "South Africa",
-    mainImage: "",
-    description:
-      "Embark on a safari adventure in Kruger National Park, explore the vibrant city of Cape Town, and witness the stunning beauty of Table Mountain.",
-  },
-  {
     name: "Ivory Coast",
-    mainImage: "",
+    mainImage: "ivory_coast.jpg",
     description:
       "Experience the vibrant culture of Abidjan, relax on the country's beautiful beaches, and explore the diverse landscapes of West Africa.",
   },
   {
     name: "Kenya",
-    mainImage: "",
+    mainImage: "kenya.jpg",
     description:
       "Witness the Great Migration in the Maasai Mara, learn about Maasai culture, and take in the beauty of Kenya's diverse wildlife.",
   },
   {
     name: "Botswana",
-    mainImage: "",
+    mainImage: "botswana.jpg",
     description:
       "Traverse the Okavango Delta's waterways, spot wildlife in Chobe National Park, and experience the untouched wilderness of Southern Africa.",
   },
   {
     name: "Mozambique",
-    mainImage: "",
+    mainImage: "mozambique.jpg",
     description:
       "Dive into the crystal-clear waters of the Bazaruto Archipelago, unwind on pristine beaches, and explore the coastal charm of Maputo.",
   },
   {
     name: "Argentina",
-    mainImage: "",
+    mainImage: "argentina.jpg",
     description:
       "Tango through the streets of Buenos Aires, hike in the Andes Mountains, and witness the stunning beauty of Patagonia's glaciers",
   },
   {
-    name: "South Africa",
-    mainImage: "",
-    description:
-      "Embark on a safari adventure in Kruger National Park, explore the vibrant city of Cape Town, and witness the stunning beauty of Table Mountain.",
-  },
-  {
     name: "Canada",
-    mainImage: "",
+    mainImage: "canada.jpg",
     description:
       "Embrace the vastness of the Rocky Mountains, explore cosmopolitan Toronto, and immerse yourself in Canada's natural wonders.",
   },
   {
     name: "Dominican Republic",
-    mainImage: "",
+    mainImage: "dominican_republic.jpg",
     description:
       "Lounge on the Caribbean's white sandy beaches, explore the historic streets of Santo Domingo, and enjoy tropical vibes.",
   },
   {
-    name: "South Africa",
-    mainImage: "",
-    description:
-      "Embark on a safari adventure in Kruger National Park, explore the vibrant city of Cape Town, and witness the stunning beauty of Table Mountain.",
-  },
-  {
     name: "Peru",
-    mainImage: "",
+    mainImage: "peru.jpg",
     description:
       "Trek to the awe-inspiring Machu Picchu, sail on Lake Titicaca's blue waters, and savor the flavors of Peruvian cuisine.",
   },
   {
     name: "Chile",
-    mainImage: "",
+    mainImage: "chile.jpg",
     description:
       "Embark on a safari adventure in Kruger National Park, explore the vibrant city of Cape Town, and witness the stunning beauty of Table Mountain.",
   },
   {
-    name: "Cuba",
-    mainImage: "",
-    description:
-      "Dance to the rhythms of Havana, admire the colorful streets of Trinidad, and enjoy the warmth of Cuban hospitality.",
-  },
-  {
     name: "Colombia",
-    mainImage: "",
+    mainImage: "colombia.jpg",
     description:
       "Wander through the charming streets of Cartagena, explore the lush coffee region, and experience Colombia's rich cultural heritage.",
   },
   {
     name: "Brazil",
-    mainImage: "",
+    mainImage: "brazil.jpg",
     description:
       "Celebrate Carnival in Rio de Janeiro, stand in awe of Iguazu Falls, and relax on the stunning beaches of Copacabana and Ipanema.",
   },
   {
-    name: "Saudi Arabia",
-    mainImage: "",
-    description:
-      "Witness the futuristic city of Riyadh, explore the ancient Nabatean city of Al-Ula, and experience Saudi hospitality and culture.",
-  },
-  {
     name: "United Arab Emirates",
-    mainImage: "",
+    mainImage: "united_arab_emirates.jpg",
     description:
       "Marvel at the architectural wonders of Dubai, relax on Abu Dhabi's pristine beaches, and experience luxury in the desert.",
   },
   {
     name: "Iran",
-    mainImage: "",
+    mainImage: "iran.jpg",
     description:
       "Discover the historical treasures of Isfahan, explore the ancient ruins of Persepolis, and experience the hospitality of Persian culture.",
   },
   {
     name: "Israel",
-    mainImage: "",
+    mainImage: "israel.jpg",
     description:
       "Walk through the historic streets of Jerusalem, float in the Dead Sea's salty waters, and explore the vibrant city of Tel Aviv.",
   },
   {
     name: "Jordan",
-    mainImage: "",
+    mainImage: "jordan.jpg",
     description:
       "Explore the rose-red city of Petra, float in the healing waters of the Dead Sea, and embark on a desert adventure in Wadi Rum.",
   },
   {
     name: "Bahrain",
-    mainImage: "",
+    mainImage: "bahrain.jpg",
     description:
       "Witness the modern skyline of Manama, explore the ancient Qal'at al-Bahrain, and experience the blend of tradition and progress.",
   },
   {
     name: "Oman",
-    mainImage: "",
+    mainImage: "oman.jpg",
     description:
       "Wander through the picturesque old town of Muscat, experience the beauty of Wahiba Sands, and discover the charm of Omani culture.",
   },
   {
     name: "Qatar",
-    mainImage: "",
+    mainImage: "qatar.jpg",
     description:
       "Admire the futuristic architecture of Doha, explore the traditional Souq Waqif, and experience the opulence of Qatar's modernity.",
   },
   {
     name: "Lebanon",
-    mainImage: "",
+    mainImage: "lebanon.jpg",
     description:
       "Immerse yourself in the vibrant streets of Beirut, explore ancient ruins in Baalbek, and indulge in Lebanese cuisine.",
   },
   {
     name: "India",
-    mainImage: "",
+    mainImage: "india.jpg",
     description:
       "Experience the spiritual vibes of Varanasi, marvel at the Taj Mahal's grandeur, and enjoy the diverse cultures and landscapes of India.",
   },
   {
     name: "South Korea",
-    mainImage: "",
+    mainImage: "south_korea.jpg",
     description:
       "Dive into the futuristic cityscape of Seoul, discover the historic beauty of Gyeongju, and enjoy traditional Korean cuisine.",
   },
   {
     name: "Indonesia",
-    mainImage: "",
+    mainImage: "indonesia.jpg",
     description:
       "Relax on Bali's paradise beaches, explore the cultural hub of Ubud, and dive into the underwater wonders of Raja Ampat.",
   },
   {
     name: "Vietnam",
-    mainImage: "",
+    mainImage: "vietnam.jpg",
     description:
       "Cruise through the stunning landscapes of Halong Bay, explore the ancient town of Hoi An, and savor the flavors of Vietnamese street food.",
   },
   {
     name: "Macau",
-    mainImage: "",
+    mainImage: "macau.jpg",
     description:
       "Experience the fusion of cultures in Macau's historic streets, try your luck at world-class casinos, and enjoy panoramic views.",
   },
   {
     name: "Hong Kong",
-    mainImage: "",
+    mainImage: "hong_kong.jpg",
     description:
       "Embrace the energetic vibe of Hong Kong's cityscape, explore bustling markets, and savor authentic Cantonese cuisine.",
   },
   {
     name: "Malaysia",
-    mainImage: "",
+    mainImage: "malaysia.jpg",
     description:
       "Wander through Kuala Lumpur's iconic Petronas Towers, relax on Langkawi's beaches, and experience the melting pot of cultures.",
   },
   {
     name: "Japan",
-    mainImage: "",
+    mainImage: "japan.jpg",
     description:
       "Immerse yourself in Tokyo's high-tech cityscape, explore traditional temples in Kyoto, and indulge in the elegance of Japanese culture.",
   },
   {
     name: "Thailand",
-    mainImage: "",
+    mainImage: "thailand.jpg",
     description:
       "Discover the vibrant nightlife of Bangkok, relax on the beautiful beaches of Phuket, and explore the ancient ruins of Ayutthaya.",
   },
   {
     name: "China",
-    mainImage: "",
+    mainImage: "china.jpg",
     description:
       "Walk along the Great Wall's iconic path, explore the vibrant city of Shanghai, and discover the historic treasures of Beijing0.",
+  },
+  {
+    name: "Pakistan",
+    mainImage: "pakistan.jpg",
+    description:
+      "Pakistan is a diverse and vibrant country located in South Asia. It offers a rich cultural heritage, stunning landscapes, and warm hospitality. From bustling cities like Karachi and Lahore to the breathtaking mountains of the Karakoram and Himalayas, Pakistan has something for everyone. Some must-visit attractions include the ancient city of Taxila, the beautiful Hunza Valley, the historic Lahore Fort, and the UNESCO World Heritage Site of Makli Necropolis. Don't forget to try the delicious Pakistani cuisine, known for its flavorful curries and kebabs.",
   },
 ];
 
@@ -773,6 +742,7 @@ const ToursData = [
     mainImage: "",
   },
 ];
+
 const VisaCategoryData = [
   {
     name: "EUROPE VISA",
@@ -854,10 +824,11 @@ const insertData = async () => {
 
       // visa data
       await VisaCategory.insertMany(VisaCategoryData);
-      console.log("Tour data inserted successfully");
+      console.log("VisaCategory data inserted successfully");
     }
   } catch (error) {
     console.log("Error inserting demo data:", error);
   }
 };
+
 module.exports = insertData;
