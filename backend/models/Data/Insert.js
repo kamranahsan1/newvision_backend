@@ -414,7 +414,7 @@ const CountryData = [
   },
   {
     name: "United Kingdom",
-    mainImage: "united_kingdom.jpg",
+    mainImage: "united_kindom.jpg",
     description:
       "Embrace British elegance in London, absorb the history of Edinburgh's castles, and enjoy a cup of tea in traditional English style.",
   },
