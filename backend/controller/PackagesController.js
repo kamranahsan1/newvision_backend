@@ -19,6 +19,7 @@ const getAllPackages = catchAsyncErrors(async (req, res, next) => {
     .search()
     .filter()
     .pagination(resultPerPage);
+  apiFeatures.query = apiFeatures.query.populate("category");
 
   const packages = await apiFeatures.query;
   const packagesCount = packages.length;
