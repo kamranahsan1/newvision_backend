@@ -30,7 +30,7 @@ const getTour = catchAsyncErrors(async (req, res, next) => {
   delete params["days"];
   console.log(params);
   params.country = id;
-  params.Day = { lte: days + 1 };
+  params.Day = { lte: days };
   const apiFeatures = new ApiFeatures(Tours.find(), params).search().filter();
   const tours = await apiFeatures.query;
   const toursCount = tours.length;

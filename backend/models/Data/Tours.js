@@ -147,7 +147,7 @@ const TourInsert = async () => {
       time: "AFTERNOON",
       description:
         "Indulge in a traditional German dinner at a local restaurant near Lake Mummelsee, where you can savor hearty dishes and regional specialties.",
-      mainImage: "Lake Mummelsee.jpg",
+      mainImage: "",
     },
   ];
 
@@ -2034,7 +2034,571 @@ const TourInsert = async () => {
     },
   ];
 
+  const ToursDataZimbabwe = [
+    {
+      country: "64f58abceab052732025294c",
+      Day: 1,
+      time: "MORNING",
+      name: "Lake Kariba",
+      description:
+        "Start your day with a visit to Lake Kariba, one of the largest man-made lakes in the world. Take a boat tour to explore the lake and admire the stunning scenery. Keep an eye out for wildlife such as elephants, hippos, and crocodiles.",
+      mainImage: "Lake Kariba.jpg",
+    },
+    {
+      country: "64f58abceab052732025294c",
+      Day: 1,
+      time: "AFTERNOON",
+      name: "Batoka Gorge",
+      description:
+        "Head to Batoka Gorge for an exhilarating white-water rafting experience. Navigate through the rapids and enjoy the adrenaline rush as you make your way down the Zambezi River.",
+      mainImage: "Batoka Gorge.jpg",
+    },
+    {
+      country: "64f58abceab052732025294c",
+      Day: 1,
+      time: "EVENING",
+      name: "Livingstone Museum",
+      description:
+        "Visit the Livingstone Museum to learn about the history and culture of the Victoria Falls region. Explore the exhibits and artifacts that showcase the local heritage.",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294c",
+      Day: 2,
+      time: "MORNING",
+      name: "Victoria Falls National Park",
+      description:
+        "Explore Victoria Falls National Park, home to the famous Victoria Falls (Mosi-oa-Tunya). Take a guided walking tour to witness the awe-inspiring power and beauty of the falls up close. Feel the mist on your face as you stand at the edge of the gorge.",
+      mainImage: "Victoria Falls National Park.jpg",
+    },
+    {
+      country: "64f58abceab052732025294c",
+      Day: 2,
+      time: "AFTERNOON",
+      name: "Mosi-oa-Tunya National Park",
+      description:
+        "Venture into Mosi-oa-Tunya National Park for a thrilling game drive. Spot a variety of wildlife, including elephants, giraffes, zebras, and more. Enjoy the natural beauty of the park as you drive through the savannah.",
+      mainImage: "Mosi-oa-Tunya National Park.jpg",
+    },
+    {
+      country: "64f58abceab052732025294c",
+      Day: 2,
+      time: "EVENING",
+      name: "Devil's Pool",
+      description:
+        "Experience the unique Devil's Pool, a natural rock pool located on the edge of Victoria Falls. Take a dip in the pool and enjoy the breathtaking views of the falls from a unique perspective.",
+      mainImage: "Devil's Pool.jpg",
+    },
+    {
+      country: "64f58abceab052732025294c",
+      Day: 3,
+      time: "MORNING",
+      name: "Hwange National Park",
+      description:
+        "Embark on a safari adventure in Hwange National Park, one of the largest game reserves in Zimbabwe. Take a guided game drive to spot the Big Five and other wildlife species that call the park home.",
+      mainImage: "Hwange National Park.jpg",
+    },
+    {
+      country: "64f58abceab052732025294c",
+      Day: 3,
+      time: "AFTERNOON",
+      name: "Hwange National Park",
+      description:
+        "Continue your safari experience in Hwange National Park, exploring different areas of the park and observing the diverse wildlife. Enjoy the tranquil beauty of the African bush.",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294c",
+      Day: 3,
+      time: "EVENING",
+      name: "Victoria Falls Bridge",
+      description:
+        "Visit the Victoria Falls Bridge to witness the spectacular sunset over the Zambezi River. Take in the panoramic views of the gorge and the surrounding landscape.",
+      mainImage: "Victoria Falls Bridge.jpg",
+    },
+    {
+      country: "64f58abceab052732025294c",
+      Day: 4,
+      time: "MORNING",
+      name: "Bulawayo",
+      description:
+        "Explore the city of Bulawayo, known for its colonial architecture and vibrant arts scene. Take a walking tour of the city to admire the historic buildings and visit local art galleries.",
+      mainImage: "Bulawayo.jpg",
+    },
+    {
+      country: "64f58abceab052732025294c",
+      Day: 4,
+      time: "AFTERNOON",
+      name: "Livingstone Island",
+      description:
+        "Take a boat ride to Livingstone Island, located in the middle of the Zambezi River. Take a guided tour of the island and enjoy a picnic lunch with breathtaking views of Victoria Falls.",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294c",
+      Day: 4,
+      time: "EVENING",
+      name: "Victoria Falls Crocodile Farm",
+      description:
+        "Visit the Victoria Falls Crocodile Farm to see and learn about these fascinating reptiles. Take a guided tour of the farm and watch crocodile feeding demonstrations.",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294c",
+      Day: 5,
+      time: "MORNING",
+      name: "Victoria Falls Private Game Reserve",
+      description:
+        "Embark on a safari in Victoria Falls Private Game Reserve, a pristine wilderness area. Take a guided game drive or walking safari to spot a wide range of wildlife, including elephants, lions, and buffalo.",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294c",
+      Day: 5,
+      time: "AFTERNOON",
+      name: "Leisurely Exploration of Victoria Falls",
+      description:
+        "Enjoy a leisurely day exploring the natural beauty of Victoria Falls. Take a scenic hike along the trails in the area, or relax and unwind by the river.",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294c",
+      Day: 5,
+      time: "EVENING",
+      name: "Sunset Cruise on the Zambezi River",
+      description:
+        "End your trip with a sunset cruise on the Zambezi River. Enjoy a drink and snack as you cruise along the river, admiring the beautiful scenery and wildlife.",
+      mainImage: "",
+    },
+  ];
+
+  const ToursDataIvoryCoast = [
+    {
+      country: "64f58abceab052732025294d",
+      Day: 1,
+      time: "MORNING",
+      name: "Banco National Park",
+      description:
+        "Start your day by exploring the vibrant city of Abidjan, the economic capital of Ivory Coast. Begin with a visit to the Banco National Park, a lush green oasis in the heart of the city. Take a walk through the park's trails, spot some wildlife, and enjoy the tranquility of nature.",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294d",
+      Day: 1,
+      time: "AFTERNOON",
+      name: "Marché de Treichville",
+      description:
+        "Explore the vibrant city of Abidjan further by visiting Marché de Treichville. Immerse yourself in the local culture as you stroll through the bustling market, where you can find a variety of goods, including traditional crafts, clothing, and fresh produce.",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294d",
+      Day: 1,
+      time: "EVENING",
+      name: "Nuit Ivoirienne",
+      description:
+        "For dinner, indulge in Ivorian cuisine at Le Nuit Ivoirienne, a restaurant that offers a wide range of traditional dishes. Sample some grilled fish with spicy sauce, fried plantains, and poulet braisé (grilled chicken). End your evening by taking a stroll along the Abidjan waterfront and enjoying the beautiful sunset.",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294d",
+      Day: 2,
+      time: "MORNING",
+      name: "National Costume Museum",
+      description:
+        "Embark on a day trip to the historic city of Grand-Bassam, a UNESCO World Heritage site. Explore the charming colonial architecture, visit the National Costume Museum, and learn about the country's rich cultural heritage. Don't miss a visit to the Lighthouse of Grand-Bassam for panoramic views of the city and the coastline.",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294d",
+      Day: 2,
+      time: "AFTERNOON",
+      name: "Assinie-Mafia Beach",
+      description:
+        "Enjoy a relaxing afternoon at Assinie-Mafia, a popular beach destination located about an hour's drive from Abidjan. Soak up the sun, swim in the clear waters of the Atlantic Ocean, and indulge in fresh seafood at one of the beachside restaurants. You can also try your hand at water sports like jet skiing or take a boat trip along the Comoé River.",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294d",
+      Day: 2,
+      time: "EVENING",
+      name: "La Villa Restaurant",
+      description:
+        "Head back to Abidjan and treat yourself to a delicious dinner at La Villa, a fine dining restaurant offering a fusion of Ivorian and French cuisine. Savor dishes like grilled lobster, coconut curry shrimp, and chocolate fondant for dessert.",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294d",
+      Day: 3,
+      time: "MORNING",
+      name: "Musée des Civilisations de Côte d'Ivoire",
+      description:
+        "Discover the cultural heritage of Ivory Coast at the Musée des Civilisations de Côte d'Ivoire. Explore the museum's extensive collection of traditional masks, sculptures, and artifacts that showcase the country's diverse ethnic groups. Gain insights into Ivorian history, folklore, and rituals.",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294d",
+      Day: 3,
+      time: "AFTERNOON",
+      name: "Basilica of Our Lady of Peace",
+      description:
+        "Take a trip to the picturesque town of Yamoussoukro, the political capital of Ivory Coast. Visit the stunning Basilica of Our Lady of Peace, one of the largest churches in the world. Admire the grand architecture and explore the beautifully manicured gardens surrounding the basilica.",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294d",
+      Day: 3,
+      time: "EVENING",
+      name: "Chez Paul Restaurant",
+      description:
+        "Enjoy a traditional Ivorian dinner at Chez Paul, a popular restaurant known for its authentic local cuisine. Try dishes like kedjenou (chicken stew), foutou (pounded yam), and aloco (fried plantains). End your day with a visit to the lively nightlife district of Cocody, where you can find bars, clubs, and live music venues.",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294d",
+      Day: 4,
+      time: "MORNING",
+      name: "Comoé National Park",
+      description:
+        "Embark on a wildlife safari at the Comoé National Park, a UNESCO World Heritage site and one of West Africa's largest protected areas. Explore the park's diverse ecosystems, spot elephants, antelopes, and monkeys, and marvel at the beauty of the savannah landscape.",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294d",
+      Day: 4,
+      time: "AFTERNOON",
+      name: "Musée National des Costumes",
+      description:
+        "Visit the vibrant neighborhood of Plateau in Abidjan, known for its modern skyscrapers, government buildings, and cultural institutions. Explore the Musée National des Costumes, where you can learn about traditional Ivorian clothing and textiles. Take a stroll along the Boulevard de la Corniche and enjoy the views of the city skyline.",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294d",
+      Day: 4,
+      time: "EVENING",
+      name: "Le Marly Restaurant",
+      description:
+        "Dine at Le Marly, a rooftop restaurant offering panoramic views of Abidjan. Indulge in French cuisine with an Ivorian twist, such as grilled lamb with attiéké, shrimp bisque, and crème brûlée. After dinner, head to the nearby Club Pravda for a night of dancing and entertainment.",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294d",
+      Day: 5,
+      time: "MORNING",
+      name: "Abobo Markets",
+      description:
+        "Explore the vibrant markets of Abobo, one of Abidjan's largest neighborhoods. Immerse yourself in the lively atmosphere, browse through a variety of goods, and interact with locals. Don't miss the opportunity to try some delicious Ivorian street food, like alloco (fried plantains) and grilled corn.",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294d",
+      Day: 5,
+      time: "AFTERNOON",
+      name: "Taï National Park",
+      description:
+        "Visit the stunning Taï National Park, a UNESCO World Heritage site and one of the last remaining primary rainforests in West Africa. Take a guided nature walk, spot rare wildlife species, and admire the majestic trees and lush vegetation.",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294d",
+      Day: 5,
+      time: "EVENING",
+      name: "Sunset Cruise on the Ébrié Lagoon",
+      description:
+        "Enjoy a traditional Ivorian dinner at Chez Awa, a popular restaurant known for its authentic Ivorian dishes. Try specialties like kedjenou, foutou, and grilled tilapia. End your day with a relaxing sunset cruise along the Ébrié Lagoon, where you can admire the city lights of Abidjan.",
+      mainImage: "",
+    },
+  ];
+
+  const ToursDataKenya = [
+    {
+      country: "64f58abceab052732025294e",
+      Day: 1,
+      time: "MORNING",
+      name: "Marangu",
+      description:
+        "Start your day in Marangu, a small village in Tanzania located at the base of Mount Kilimanjaro. Take a guided tour to explore the village and learn about the local culture and traditions. Visit the Marangu Cultural Heritage Museum to gain insight into the Chagga people who inhabit the area.	https://media.tacdn.com/media/attractions-content--1x-1/0b/df/11/58.jpg",
+      mainImage: "Marangu.jpg",
+    },
+    {
+      country: "64f58abceab052732025294e",
+      Day: 1,
+      time: "AFTERNOON",
+      name: "Mount Kilimanjaro",
+      description:
+        "Embark on a trek to Mount Kilimanjaro, the highest peak in Africa. Choose from various routes, such as the Marangu Route, which is known as the 'Coca-Cola' route due to its popularity. Enjoy the stunning views and the sense of accomplishment as you reach the summit.	https://media.tacdn.com/media/attractions-content--1x-1/0b/39/79/6c.jpg",
+      mainImage: "Mount Kilimanjaro.jpg",
+    },
+    {
+      country: "64f58abceab052732025294e",
+      Day: 1,
+      time: "EVENING",
+      name: "Kilimanjaro Wonders Hotel",
+      description:
+        "Return to Marangu and relax at one of the local restaurants, such as Kilimanjaro Wonders Hotel, where you can enjoy traditional Tanzanian cuisine.",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294e",
+      Day: 2,
+      time: "MORNING",
+      name: "Lake Manyara National Park",
+      description:
+        "Take a day trip to Lake Manyara National Park, located in northern Tanzania. Explore the park's diverse ecosystems, including a soda lake, dense woodlands, and open grassy areas. Look out for the famous tree-climbing lions and a variety of bird species.	https://media.tacdn.com/media/attractions-content--1x-1/0b/2d/13/e0.jpg",
+      mainImage: "Lake Manyara National Park.jpg",
+    },
+    {
+      country: "64f58abceab052732025294e",
+      Day: 2,
+      time: "AFTERNOON",
+      name: "Olduvai Gorge",
+      description:
+        "Visit the Olduvai Gorge, also known as the 'Cradle of Mankind,' where renowned paleontologists Louis and Mary Leakey made significant archaeological discoveries. Learn about human evolution and the ancient history of the region.	https://media.tacdn.com/media/attractions-content--1x-1/0b/39/90/e2.jpg",
+      mainImage: "Olduvai Gorge.jpg",
+    },
+    {
+      country: "64f58abceab052732025294e",
+      Day: 2,
+      time: "EVENING",
+      name: "Lake Manyara",
+      description:
+        "Head back to your accommodation and enjoy a traditional African dinner while overlooking the stunning landscapes of Lake Manyara.",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294e",
+      Day: 3,
+      time: "MORNING",
+      name: "Masai Mara National Reserve",
+      description:
+        "Embark on a safari adventure to Masai Mara National Reserve, one of Africa's most famous wildlife reserves. Marvel at the abundant wildlife, including lions, elephants, zebras, and wildebeests. Explore the vast savannahs and witness the Great Migration, one of the most incredible wildlife spectacles on the planet.	https://media.tacdn.com/media/attractions-content--1x-1/0b/27/6e/22.jpg",
+      mainImage: "Masai Mara National Reserve.jpg",
+    },
+    {
+      country: "64f58abceab052732025294e",
+      Day: 3,
+      time: "AFTERNOON",
+      name: "Mount Meru",
+      description:
+        "Visit Mount Meru, the second-highest mountain in Tanzania, located in Arusha National Park. Enjoy a guided hike through the lush rainforests and spot various wildlife species, including colobus monkeys and buffalos.	https://media.tacdn.com/media/attractions-content--1x-1/0b/2d/0d/71.jpg",
+      mainImage: "Mount Meru.jpg",
+    },
+    {
+      country: "64f58abceab052732025294e",
+      Day: 3,
+      time: "EVENING",
+      name: "Masai Mara Lodge",
+      description:
+        "Return to your lodge in Masai Mara and relax while enjoying a traditional Maasai dance performance and a delicious dinner.",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294e",
+      Day: 4,
+      time: "MORNING",
+      name: "Nairobi National Park",
+      description:
+        "Start your day with a visit to Nairobi National Park, located just outside the bustling city of Nairobi. Embark on a game drive and spot a variety of wildlife, including lions, giraffes, and rhinos, against the backdrop of the city skyline.	https://media.tacdn.com/media/attractions-content--1x-1/0b/27/a8/91.jpg",
+      mainImage: "Nairobi National Park.jpg",
+    },
+    {
+      country: "64f58abceab052732025294e",
+      Day: 4,
+      time: "AFTERNOON",
+      name: "Lake Nakuru National Park",
+      description:
+        "Travel to Lake Nakuru National Park, known for its abundant birdlife, including thousands of flamingos. Take a game drive through the park and spot other wildlife, such as buffalos, zebras, and Rothschild's giraffes.	https://media.tacdn.com/media/attractions-content--1x-1/0b/27/6b/f1.jpg",
+      mainImage: "Lake Nakuru National Park.jpg",
+    },
+    {
+      country: "64f58abceab052732025294e",
+      Day: 4,
+      time: "EVENING",
+      name: "Lake Nakuru Lodge",
+      description:
+        "Enjoy a relaxing evening at your lodge in Lake Nakuru and indulge in a delicious dinner while enjoying the peaceful surroundings.",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294e",
+      Day: 5,
+      time: "MORNING",
+      name: "Meserani Snake Park",
+      description:
+        "Visit the Meserani Snake Park, located near Arusha in Tanzania. Learn about the region's reptiles, including various snake species, crocodiles, and tortoises. Watch educational snake-handling demonstrations and get up close to these fascinating creatures.	https://media.tacdn.com/media/attractions-content--1x-1/0b/2d/0d/b2.jpg",
+      mainImage: "Meserani Snake Park.jpg",
+    },
+    {
+      country: "64f58abceab052732025294e",
+      Day: 5,
+      time: "AFTERNOON",
+      name: "Hell's Gate National Park",
+      description:
+        "Explore Hell's Gate National Park, a unique park located in Kenya's Rift Valley. Enjoy a bike ride through the park's breathtaking landscapes, hike through the imposing cliffs, and take a dip in the natural hot springs.	https://media.tacdn.com/media/attractions-content--1x-1/0b/27/ab/67.jpg",
+      mainImage: "Hell's Gate National Park.jpg",
+    },
+    {
+      country: "64f58abceab052732025294e",
+      Day: 5,
+      time: "EVENING",
+      name: "Aberdare National Park",
+      description:
+        "Head to Aberdare National Park, located in central Kenya. Enjoy a peaceful evening at one of the park's lodges, surrounded by lush forests and stunning views of the mountains.	https://media.tacdn.com/media/attractions-content--1x-1/0b/27/67/04.jpg",
+      mainImage: "Aberdare National Park.jpg",
+    },
+  ];
+
+  const ToursDataBotswana = [
+    {
+      country: "64f58abceab052732025294f",
+      Day: 1,
+      time: "MORNING",
+      name: "Hartbeespoort Dam",
+      description:
+        "Start your day with a visit to the beautiful Hartbeespoort Dam. Enjoy a tranquil boat ride on the dam while taking in the stunning views of the surrounding mountains.	https://media.tacdn.com/media/attractions-content--1x-1/0b/39/92/4b.jpg",
+      mainImage: "Hartbeespoort Dam.jpg",
+    },
+    {
+      country: "64f58abceab052732025294f",
+      Day: 1,
+      time: "AFTERNOON",
+      name: "Batoka Gorge",
+      description:
+        "Take a thrilling helicopter ride over the Batoka Gorge for a bird's-eye view of the spectacular Victoria Falls. Feel the rush of adrenaline as you soar through the gorge and witness the power of the mighty Zambezi River.	https://media.tacdn.com/media/attractions-content--1x-1/0b/2d/04/98.jpg",
+      mainImage: "Batoka Gorge.jpg",
+    },
+    {
+      country: "64f58abceab052732025294f",
+      Day: 1,
+      time: "EVENING",
+      name: "Harties Aerial Cableway & Hartbeespoort Dam",
+      description:
+        "Ride the Harties Aerial Cableway to the top of the Magaliesberg Mountains and enjoy a breathtaking sunset view of the Hartbeespoort Dam and surrounding areas.	https://media.tacdn.com/media/attractions-content--1x-1/0b/39/b0/7e.jpg",
+      mainImage: "Harties Aerial Cableway & Hartbeespoort Dam.jpg",
+    },
+    {
+      country: "64f58abceab052732025294f",
+      Day: 2,
+      time: "MORNING",
+      name: "Mandela House",
+      description:
+        "Visit the Mandela House in Soweto, the former home of Nelson Mandela. Explore the museum to learn about his life and legacy and gain insight into the history of apartheid in South Africa.	https://media.tacdn.com/media/attractions-content--1x-1/0b/27/6c/df.jpg",
+      mainImage: "Mandela House.jpg",
+    },
+    {
+      country: "64f58abceab052732025294f",
+      Day: 2,
+      time: "AFTERNOON",
+      name: "Victoria Falls National Park",
+      description:
+        "Explore the Victoria Falls National Park, where you can walk along the trails and witness the awe-inspiring beauty of the iconic Victoria Falls. Marvel at the sheer volume of water cascading down and feel the mist on your face.	https://media.tacdn.com/media/attractions-content--1x-1/0b/27/ad/2b.jpg",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294f",
+      Day: 2,
+      time: "EVENING",
+      name: "Apartheid Museum",
+      description:
+        "Immerse yourself in the history of apartheid at the Apartheid Museum in Johannesburg. The museum offers a comprehensive and thought-provoking exhibition that tells the story of South Africa's struggle for democracy.	https://media.tacdn.com/media/attractions-content--1x-1/0b/27/65/4c.jpg",
+      mainImage: "Apartheid Museum.jpg",
+    },
+    {
+      country: "64f58abceab052732025294f",
+      Day: 3,
+      time: "MORNING",
+      name: "Voortrekker Monument",
+      description:
+        "Take a guided tour of the Voortrekker Monument, a massive granite structure that commemorates the pioneer history of South Africa. Climb to the top of the monument for panoramic views of Pretoria.	https://media.tacdn.com/media/attractions-content--1x-1/0b/39/98/b1.jpg",
+      mainImage: "Voortrekker Monument.jpg",
+    },
+    {
+      country: "64f58abceab052732025294f",
+      Day: 3,
+      time: "AFTERNOON",
+      name: "Soweto",
+      description:
+        "Experience the vibrant culture of Soweto, a township near Johannesburg that played a significant role in the struggle against apartheid. Take a guided tour to visit historical sites, meet locals, and learn about the township's rich heritage	https://media.tacdn.com/media/attractions-content--1x-1/0b/27/65/86.jpg",
+      mainImage: "Soweto.jpg",
+    },
+    {
+      country: "64f58abceab052732025294f",
+      Day: 3,
+      time: "EVENING",
+      name: "Union Buildings",
+      description:
+        "Explore the Union Buildings, the official seat of the South African government and a national heritage site. Enjoy a leisurely stroll through the beautiful gardens and admire the grand architecture.	https://media.tacdn.com/media/attractions-content--1x-1/0b/39/99/3a.jpg",
+      mainImage: "Union Buildings.jpg",
+    },
+    {
+      country: "64f58abceab052732025294f",
+      Day: 4,
+      time: "MORNING",
+      name: "Mosi-oa-Tunya National Park",
+      description:
+        "Embark on a safari adventure at Mosi-oa-Tunya National Park, located along the banks of the Zambezi River. Spot a variety of wildlife, including elephants, giraffes, zebras, and antelopes, as you drive through the park	https://media.tacdn.com/media/attractions-content--1x-1/0b/27/ab/ed.jpg",
+      mainImage: "Mosi-oa-Tunya National Park.jpg",
+    },
+    {
+      country: "64f58abceab052732025294f",
+      Day: 4,
+      time: "AFTERNOON",
+      name: "Victoria Falls (Mosi-oa-Tunya)",
+      description:
+        "Get up close and personal with the magnificent Victoria Falls (Mosi-oa-Tunya) by taking a guided tour of the falls. Feel the mist on your face as you walk along the trails and admire the breathtaking views	https://media.tacdn.com/media/attractions-content--1x-1/0b/27/ab/e8.jpg",
+      mainImage: "Victoria Falls (Mosi-oa-Tunya).jpg",
+    },
+    {
+      country: "64f58abceab052732025294f",
+      Day: 4,
+      time: "EVENING",
+      name: "Devil's Pool",
+      description:
+        "Experience the thrill of swimming in Devil's Pool, a natural rock pool located on the edge of Victoria Falls. Take a dip in the pool and enjoy the exhilarating sensation of being just inches away from the edge of the roaring waterfall.	https://media.tacdn.com/media/attractions-content--1x-1/0b/27/ab/65.jpg",
+      mainImage: "Devil's Pool.jpg",
+    },
+    {
+      country: "64f58abceab052732025294f",
+      Day: 5,
+      time: "MORNING",
+      name: "Chobe National Park",
+      description:
+        "Embark on a day trip to Chobe National Park, known for its abundant wildlife and majestic elephants. Take a boat safari along the Chobe River and spot elephants, hippos, crocodiles, and a variety of bird species.	https://media.tacdn.com/media/attractions-content--1x-1/0b/27/ac/5b.jpg",
+      mainImage: "Chobe National Park.jpg",
+    },
+    {
+      country: "64f58abceab052732025294f",
+      Day: 5,
+      time: "AFTERNOON",
+      name: "Chobe National Park",
+      description:
+        "Enjoy a game drive through Chobe National Park to see more of the park's diverse wildlife, including lions, leopards, buffalos, and various antelope species. Marvel at the natural beauty of the park as you take in the sweeping landscapes.	https://media.tacdn.com/media/attractions-content--1x-1/0b/27/ac/5b.jpg",
+      mainImage: "",
+    },
+    {
+      country: "64f58abceab052732025294f",
+      Day: 5,
+      time: "EVENING",
+      name: "Chobe River Sunset Cruise",
+      description:
+        "End your day with a relaxing sunset cruise on the Chobe River. Admire the stunning colors of the sunset while enjoying a refreshing drink and spotting wildlife along the riverbanks.",
+      mainImage: "",
+    },
+  ];
+
   try {
+    await Tours.insertMany(ToursDataBotswana);
+    console.log("ToursDataBotswana data inserted successfully");
+
+    await Tours.insertMany(ToursDataKenya);
+    console.log("ToursDataKenya data inserted successfully");
+
+    await Tours.insertMany(ToursDataIvoryCoast);
+    console.log("ToursDataIvoryCoast data inserted successfully");
+
+    await Tours.insertMany(ToursDataZimbabwe);
+    console.log("ToursDataZimbabwe data inserted successfully");
+
     await Tours.insertMany(ToursDataAlgeria);
     console.log("ToursDataAlgeria data inserted successfully");
 
