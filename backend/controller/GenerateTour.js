@@ -19,16 +19,13 @@ const getTour = catchAsyncErrors(async (req, res, next) => {
   }
 
   if (params.days) {
-    console.log(params.days);
     days = parseInt(params.days);
     if (isNaN(days)) {
       days = 7;
     }
-    console.log(params.days);
   }
   delete params["id"];
   delete params["days"];
-  console.log(params);
   params.country = id;
   params.Day = { lte: days };
   const apiFeatures = new ApiFeatures(Tours.find(), params).search().filter();
