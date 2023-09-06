@@ -40,7 +40,7 @@ const saveContact = catchAsyncErrors(async (req, res, next) => {
   }
 });
 
-const Subscriber = catchAsyncErrors(async (req, res, next) => {
+const saveSubscriber = catchAsyncErrors(async (req, res, next) => {
   try {
     const { email } = req.body;
 
@@ -70,4 +70,5 @@ const Subscriber = catchAsyncErrors(async (req, res, next) => {
 
 module.exports = {
   saveContact,
+  saveSubscriber,
 };
