@@ -1,16 +1,21 @@
 const express = require("express");
 const api = require(`./routes`);
 const cors = require("cors");
-const router = express.Router();
+const bodyParser = require("body-parser");
+const fileUpload = require("express-fileupload");
+const router = require("./routes/index");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 var option = {
   origin: "*",
   optionsSuccessStatus: 200,
 };
-app.use(cors(option));
 app.use(express.json());
-app.use(`/api`, api);
+app.use(cors())
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(fileUpload());
 
 router.get("/uploads/:image", (req, res) => {
   var image = req.params.image;

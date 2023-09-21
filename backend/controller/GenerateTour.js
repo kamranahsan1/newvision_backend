@@ -3,19 +3,27 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Tours = require("../models/Tours");
 const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Types;
-
+const gettoursv2 = catchAsyncErrors(async (req, res, next) => {
+  const data = await Tours.find();
+  res.status(200).json({
+    success: true,
+    data
+  });
+});
 const getTour = catchAsyncErrors(async (req, res, next) => {
   const params = req.query;
   let id = null;
   let days = null;
+  let sort = null;
   if (params.id && params.id !== undefined) {
     try {
       id = new ObjectId(params.id);
     } catch (err) {
-      id = new ObjectId("64e5ac1e7b1799fa0b234724");
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: "Invalid Country ID" })
+      };
     }
-  } else {
-    id = new ObjectId("64e5ac1e7b1799fa0b234724");
   }
 
   if (params.days) {
@@ -28,15 +36,22 @@ const getTour = catchAsyncErrors(async (req, res, next) => {
   delete params["days"];
   params.country = id;
   params.Day = { lte: days };
+
   const apiFeatures = new ApiFeatures(Tours.find(), params).search().filter();
+  // if (!sort) {
+  //   apiFeatures.sort({ _id: 1 });
+  // } else {
+  //   apiFeatures.sort(sort);
+  // }
+
   const tours = await apiFeatures.query;
   const toursCount = tours.length;
 
   res.status(200).json({
     status: true,
     tours,
-    toursCount,
+    toursCount
   });
 });
 
-module.exports = { getTour };
+module.exports = { getTour, gettoursv2 };

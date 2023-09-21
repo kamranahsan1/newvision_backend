@@ -18,7 +18,7 @@ const VisaCategorySchema = new mongoose.Schema({
     default: "",
   },
   parent: {
-    type: String,
+    type: String  ,
     default: "",
   },
   status: {

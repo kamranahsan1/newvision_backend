@@ -7,6 +7,51 @@ const VisaCategory = require("../VisaCategory");
 
 const PackagesData = [
   {
+    name: "Paris, France",
+    mainImage: "https://vnbackend-b4d0409e1de8.herokuapp.com/uploads/paris.jpg",
+    multipleImages: [],
+    description:
+      "Paris is a popular tourist destination, so be prepared for large crowds at popular attractions. It's a good idea to book tickets in advance and arrive early to avoid long lines.",
+    price: [
+      { amount: 3500, discount: 0, description: "Adult" },
+      { amount: 2500, discount: 0, description: "Child" },
+    ],
+    attractions: [],
+    inclusionsList: [],
+    featured: 1,
+    status: 1,
+  },
+  {
+    name: "London, United Kingdom",
+    mainImage: "https://vnbackend-b4d0409e1de8.herokuapp.com/uploads/uk.jpg",
+    multipleImages: [],
+    description:
+      "The United Kingdom is made up of four countries: England, Scotland, Wales, and Northern Ireland. Each country has its own unique culture and attractions, so be sure to explore beyond just London.",
+    price: [
+      { amount: 3500, discount: 0, description: "Adult" },
+      { amount: 2500, discount: 0, description: "Child" },
+    ],
+    attractions: [],
+    inclusionsList: [],
+    featured: 1,
+    status: 1,
+  },
+  {
+    name: "Tokyo, Japan",
+    mainImage: "https://vnbackend-b4d0409e1de8.herokuapp.com/uploads/tokyo.jpg",
+    multipleImages: [],
+    description:
+      "Tokyo is a bustling city with a highly efficient public transportation system. Make sure to familiarize yourself with the train and subway lines to navigate the city easily.",
+    price: [
+      { amount: 3500, discount: 0, description: "Adult" },
+      { amount: 2500, discount: 0, description: "Child" },
+    ],
+    attractions: [],
+    inclusionsList: [],
+    featured: 1,
+    status: 1,
+  },
+  {
     name: "CULTURAL TOUR",
     mainImage:
       "https://newvision.travel/wp-content/uploads/2023/03/ddAsset-18sec-spass-head-768x508.png",
@@ -259,95 +304,6 @@ const PackagesData = [
       "Fees to enter the traditional heritage centers",
       "Voucher can be changed to other excursion",
     ],
-  },
-];
-
-const VisaData = [
-  {
-    name: "Tourist Visa",
-    NumberOfStay: 14,
-    NumberOfStayName: "Days",
-    description:
-      "The 14 Days visa for Dubai is a tourist and business visa type, this visa is suitable for people who plan to spend up to 14 days in Dubai or the United Arab Emirates. This is only a single-entry visa.",
-    category: "Dubai Visa",
-  },
-  {
-    name: "Tourist Visa",
-    NumberOfStay: 1,
-    NumberOfStayName: "Month",
-    description:
-      "Tourists or visitors who desire to spend up to 1 month or 30 days in the United Arab Emirates for either a long-term business trip or for recreation can apply for a 1-month or 30 days Dubai Visa.",
-    category: "Dubai Visa",
-  },
-  {
-    name: "Tourist Visa",
-    NumberOfStay: 2,
-    NumberOfStayName: "Months",
-    description:
-      "The 2-months visa recommended for visitors who want stay longer with family or visit the United Arab Emirates multiple times within 60 days. Two months visa come with single and multiple entry.",
-    category: "Dubai Visa",
-  },
-  {
-    name: "Tourist Visa",
-    NumberOfStay: 5,
-    NumberOfStayName: "Years",
-    description:
-      "The 2-months visa recommended for visitors who want stay longer with family or visit the United Arab Emirates multiple times within 60 days. Two months visa come with single and multiple entry.",
-    category: "Dubai Visa",
-  },
-  {
-    name: "SHARJAH Visa",
-    description:
-      "We offer different types of Sharjah visas, this includes the Sharjah 14 days (single entry), 30 days (single entry), 30 days (multiple entry), 60 days (single entry), 60 days (multiple entry), 90 days (single entry), 90 days (multiple entry), 90 days (job seekers entry), and Transit visa (single entry).",
-    category: "Sharjah Visa",
-  },
-  {
-    name: "Abu Dhabi Visa",
-    description:
-      "We offer different types of Sharjah visas, this includes the Sharjah 14 days (single entry), 30 days (single entry), 30 days (multiple entry), 60 days (single entry), 60 days (multiple entry), 90 days (single entry), 90 days (multiple entry), 90 days (job seekers entry), and Transit visa (single entry).",
-    category: "Sharjah Packages",
-  },
-  {
-    name: "Abu Dhabi Visa",
-    description:
-      "We offer different types of Sharjah visas, this includes the Sharjah 14 days (single entry), 30 days (single entry), 30 days (multiple entry), 60 days (single entry), 60 days (multiple entry), 90 days (single entry), 90 days (multiple entry), 90 days (job seekers entry), and Transit visa (single entry).",
-    category: "Abu Dhabi Visa",
-  },
-  {
-    name: "Europe Visa",
-    description:
-      "Get in touch with our dedicated team to apply for a Europe Visa and gain entry to any European country of your choice. These countries are: Austria, Belgium, the Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Iceland, Italy, Latvia, Liechtenstein, Lithuania, Luxembourg, Malta, the Netherlands, Norway, Poland, Portugal, Slovakia, Slovenia, Spain, Sweden and Switzerland.",
-    category: "Schengen Visa",
-  },
-  {
-    name: "Uk Visa",
-    description:
-      "Our team is available to guide you through procuring the UK visa.",
-    category: "Schengen Visa",
-  },
-  {
-    name: "Usa Visa",
-    description:
-      "You can contact us to direct you on how to get your USA Visa, or you can apply online for either business or tourism. You must complete the DS-160 online form to commence your USA Visa procurement.",
-    category: "Schengen Visa",
-  },
-  {
-    name: "Canadian Visa",
-    description:
-      "Know more about the documents you need to travel, visit your friends and family, or take part in business activities in Canada. Contact us to get the process started today.",
-    category: "Schengen Visa",
-  },
-  {
-    name: "Turkey Visa",
-    description:
-      "We will apply for you an e-visa with single/multiple entry and will inform you about all the mandatory pre-requisites needed.",
-    category: "Schengen Visa",
-  },
-  {
-    name: "Gcc Visa",
-    description:
-      "Whether you plan to travel to Bahrain, Kuwait, Oman, Qatar or Saudi Arabia, our team of experts have the right tools to help you with your visa application. Visit us today and find out how.",
-    category: "Gulf Visa",
   },
 ];
 
@@ -785,9 +741,97 @@ const VisaCategoryData = [
       "Whether you plan to travel to Bahrain, Kuwait, Oman, Qatar or Saudi Arabia, our team of experts have the right tools to help you with your visa application. Visit us today and find out how.",
   },
 ];
-
+const VisaData = [
+  {
+    name: "Tourist Visa",
+    NumberOfStay: 14,
+    NumberOfStayName: "Days",
+    description:
+      "The 14 Days visa for Dubai is a tourist and business visa type, this visa is suitable for people who plan to spend up to 14 days in Dubai or the United Arab Emirates. This is only a single-entry visa.",
+    category: "Dubai Visa",
+  },
+  {
+    name: "Tourist Visa",
+    NumberOfStay: 1,
+    NumberOfStayName: "Month",
+    description:
+      "Tourists or visitors who desire to spend up to 1 month or 30 days in the United Arab Emirates for either a long-term business trip or for recreation can apply for a 1-month or 30 days Dubai Visa.",
+    category: "Dubai Visa",
+  },
+  {
+    name: "Tourist Visa",
+    NumberOfStay: 2,
+    NumberOfStayName: "Months",
+    description:
+      "The 2-months visa recommended for visitors who want stay longer with family or visit the United Arab Emirates multiple times within 60 days. Two months visa come with single and multiple entry.",
+    category: "Dubai Visa",
+  },
+  {
+    name: "Tourist Visa",
+    NumberOfStay: 5,
+    NumberOfStayName: "Years",
+    description:
+      "The 2-months visa recommended for visitors who want stay longer with family or visit the United Arab Emirates multiple times within 60 days. Two months visa come with single and multiple entry.",
+    category: "Dubai Visa",
+  },
+  {
+    name: "SHARJAH Visa",
+    description:
+      "We offer different types of Sharjah visas, this includes the Sharjah 14 days (single entry), 30 days (single entry), 30 days (multiple entry), 60 days (single entry), 60 days (multiple entry), 90 days (single entry), 90 days (multiple entry), 90 days (job seekers entry), and Transit visa (single entry).",
+    category: "Sharjah Visa",
+  },
+  {
+    name: "Abu Dhabi Visa",
+    description:
+      "We offer different types of Sharjah visas, this includes the Sharjah 14 days (single entry), 30 days (single entry), 30 days (multiple entry), 60 days (single entry), 60 days (multiple entry), 90 days (single entry), 90 days (multiple entry), 90 days (job seekers entry), and Transit visa (single entry).",
+    category: "Sharjah Packages",
+  },
+  {
+    name: "Abu Dhabi Visa",
+    description:
+      "We offer different types of Sharjah visas, this includes the Sharjah 14 days (single entry), 30 days (single entry), 30 days (multiple entry), 60 days (single entry), 60 days (multiple entry), 90 days (single entry), 90 days (multiple entry), 90 days (job seekers entry), and Transit visa (single entry).",
+    category: "Abu Dhabi Visa",
+  },
+  {
+    name: "Europe Visa",
+    description:
+      "Get in touch with our dedicated team to apply for a Europe Visa and gain entry to any European country of your choice. These countries are: Austria, Belgium, the Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Iceland, Italy, Latvia, Liechtenstein, Lithuania, Luxembourg, Malta, the Netherlands, Norway, Poland, Portugal, Slovakia, Slovenia, Spain, Sweden and Switzerland.",
+    category: "Schengen Visa",
+  },
+  {
+    name: "Uk Visa",
+    description:
+      "Our team is available to guide you through procuring the UK visa.",
+    category: "Schengen Visa",
+  },
+  {
+    name: "Usa Visa",
+    description:
+      "You can contact us to direct you on how to get your USA Visa, or you can apply online for either business or tourism. You must complete the DS-160 online form to commence your USA Visa procurement.",
+    category: "Schengen Visa",
+  },
+  {
+    name: "Canadian Visa",
+    description:
+      "Know more about the documents you need to travel, visit your friends and family, or take part in business activities in Canada. Contact us to get the process started today.",
+    category: "Schengen Visa",
+  },
+  {
+    name: "Turkey Visa",
+    description:
+      "We will apply for you an e-visa with single/multiple entry and will inform you about all the mandatory pre-requisites needed.",
+    category: "Schengen Visa",
+  },
+  {
+    name: "Gcc Visa",
+    description:
+      "Whether you plan to travel to Bahrain, Kuwait, Oman, Qatar or Saudi Arabia, our team of experts have the right tools to help you with your visa application. Visit us today and find out how.",
+    category: "Gulf Visa",
+  },
+];
 const insertData = async () => {
   try {
+    /*
     const UaeCount = await Packages.countDocuments({});
 
     if (UaeCount === 0) {
@@ -810,10 +854,6 @@ const insertData = async () => {
       await Packages.insertMany(packagesWithRandomCategories);
       console.log("Packages data inserted successfully");
 
-      // Insert visa data
-      await Visa.insertMany(VisaData);
-      console.log("Visas data inserted successfully");
-
       // Country visa data
       await Country.insertMany(CountryData);
       console.log("Country data inserted successfully");
@@ -821,11 +861,20 @@ const insertData = async () => {
       // Country Ai data
       await Tours.insertMany(ToursData);
       console.log("Tour data inserted successfully");
-
-      // visa data
-      await VisaCategory.insertMany(VisaCategoryData);
-      console.log("VisaCategory data inserted successfully");
     }
+    */
+    /*
+    // Insert visa data
+    await Visa.insertMany(VisaData);
+    console.log("Visas data inserted successfully");
+
+    // visa data
+    await VisaCategory.insertMany(VisaCategoryData);
+    console.log("VisaCategory data inserted successfully");*/
+    // Country visa data
+    /*
+    await Country.insertMany(CountryData);
+    console.log("Country data inserted successfully");*/
   } catch (error) {
     console.log("Error inserting demo data:", error);
   }

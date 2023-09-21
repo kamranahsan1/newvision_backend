@@ -19,19 +19,10 @@ const saveContact = catchAsyncErrors(async (req, res, next) => {
       email,
       phone,
       reason,
-      message,
+      message
     });
 
-    const validationError = newContact.validateSync();
-    if (validationError) {
-      const errors = {};
-      for (const field in validationError.errors) {
-        errors[field] = validationError.errors[field].message;
-      }
-      return res.status(400).json({ errors });
-    }
-
-    await newContact.save();
+    bodyparser
 
     res.status(200).json({ message: "Form data saved successfully" });
   } catch (error) {
@@ -73,8 +64,15 @@ const saveSubscriber = catchAsyncErrors(async (req, res, next) => {
     res.status(500).json({ message: "Internal server error: " + error });
   }
 });
-
+const getContacts = catchAsyncErrors(async (req, res, next) => {
+  const data = await ContactModel.find();
+  res.status(200).json({
+    success: true,
+    data
+  });
+});
 module.exports = {
   saveContact,
   saveSubscriber,
+  getContacts
 };

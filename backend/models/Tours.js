@@ -17,6 +17,11 @@ const TourSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  type: {
+    type: String,
+    enum: ["general", "event-visit"],
+    default: "general",
+  },
   description: {
     type: String,
     default: "",
@@ -24,6 +29,10 @@ const TourSchema = new mongoose.Schema({
   mainImage: {
     type: String,
     default: "",
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
 });
 

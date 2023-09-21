@@ -4,21 +4,21 @@ const CategorySchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    unique: true,
+    unique: true
   },
   slug: {
     type: String,
-    unique: true,
+    unique: true
   },
   description: {
     type: String,
-    default: "",
+    default: ""
   },
   viewType: {
     type: String,
     enum: ["quick", "detail"],
-    default: "quick",
-  },
+    default: "quick"
+  }
 });
 
 const Category = mongoose.model("Category", CategorySchema);
