@@ -4,7 +4,7 @@ dotenv.config({ path: "backend/config/config.env" });
 const connectDatabase = () => {
   console.log(process.env.DB_URI);
   mongoose
-    .connect(process.env.DB_ADMIN_URI, {
+    .connect(process.env.DB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })

@@ -12,9 +12,10 @@ var option = {
   optionsSuccessStatus: 200,
 };
 app.use(express.json());
-app.use(cors())
+app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(api);
 app.use(fileUpload());
 
 router.get("/uploads/:image", (req, res) => {
