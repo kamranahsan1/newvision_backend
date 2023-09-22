@@ -21,6 +21,7 @@ const DeleteTours = catchAsyncErrors(async (req, res, next) => {
 });
 const CreateTour = catchAsyncErrors(async (req, res, next) => {
   console.log(req.body);
+  console.log(req);
   const { time, Day, type, country, description, name } = req.body;
   const uploadedFile = req.files.mainImage;
   console.log(uploadedFile);
