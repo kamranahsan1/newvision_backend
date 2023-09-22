@@ -15,7 +15,7 @@ const PostCategory = catchAsyncErrors(async (req, res, next) => {
       slug: slug,
       description: description,
       viewType: viewType
-    }); 
+    });
 
     res.status(200).json({ message: "Form data saved successfully", data });
   } catch (error) {
@@ -23,6 +23,15 @@ const PostCategory = catchAsyncErrors(async (req, res, next) => {
     res.status(500).json({ message: error });
   }
 });
+const DeleteCategory = catchAsyncErrors(async (req, res, next) => {
+  const user = await Category.findByIdAndDelete(req.params.id);
+
+  res.status(200).json({
+    success: true,
+    message: "User Deleted Successfully"
+  });
+});
 module.exports = {
-  PostCategory
+  PostCategory,
+  DeleteCategory
 };
