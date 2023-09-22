@@ -8,7 +8,7 @@ const gettoursv2 = catchAsyncErrors(async (req, res, next) => {
   const data = await Tours.find().populate("country");
   res.status(200).json({
     success: true,
-    data
+    data,
   });
 });
 const DeleteTours = catchAsyncErrors(async (req, res, next) => {
@@ -16,12 +16,13 @@ const DeleteTours = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: "User Deleted Successfully"
+    message: "User Deleted Successfully",
   });
 });
 const CreateTour = catchAsyncErrors(async (req, res, next) => {
   const { time, Day, type, country, description, name } = req.body;
   const uploadedFile = req.files.mainImage;
+  console.log(uploadedFile);
   await upload(uploadedFile);
   const data = await Tours.create({
     time: time,
@@ -30,11 +31,11 @@ const CreateTour = catchAsyncErrors(async (req, res, next) => {
     country: country,
     description: description,
     name: name,
-    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`
+    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`,
   });
   res.status(200).json({
     success: true,
-    data
+    data,
   });
 });
 const getTour = catchAsyncErrors(async (req, res, next) => {
@@ -48,7 +49,7 @@ const getTour = catchAsyncErrors(async (req, res, next) => {
     } catch (err) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: "Invalid Country ID" })
+        body: JSON.stringify({ error: "Invalid Country ID" }),
       };
     }
   }
@@ -77,8 +78,8 @@ const getTour = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({
     status: true,
     tours,
-    toursCount
+    toursCount,
   });
 });
 
-module.exports = { getTour, gettoursv2, CreateTour,DeleteTours };
+module.exports = { getTour, gettoursv2, CreateTour, DeleteTours };
