@@ -7,21 +7,20 @@ const gettoursv2 = catchAsyncErrors(async (req, res, next) => {
   const data = await Tours.find();
   res.status(200).json({
     success: true,
-    data
+    data,
   });
 });
 const getTour = catchAsyncErrors(async (req, res, next) => {
   const params = req.query;
   let id = null;
   let days = null;
-  let sort = null;
   if (params.id && params.id !== undefined) {
     try {
       id = new ObjectId(params.id);
     } catch (err) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: "Invalid Country ID" })
+        body: JSON.stringify({ error: "Invalid Country ID" }),
       };
     }
   }
@@ -32,17 +31,17 @@ const getTour = catchAsyncErrors(async (req, res, next) => {
       days = 7;
     }
   }
+
   delete params["id"];
   delete params["days"];
   params.country = id;
   params.Day = { lte: days };
 
   const apiFeatures = new ApiFeatures(Tours.find(), params).search().filter();
-  // if (!sort) {
-  //   apiFeatures.sort({ _id: 1 });
-  // } else {
-  //   apiFeatures.sort(sort);
-  // }
+
+  if (params.sort) {
+    apiFeatures.sort({ _id: 1 });
+  }
 
   const tours = await apiFeatures.query;
   const toursCount = tours.length;
@@ -50,7 +49,7 @@ const getTour = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({
     status: true,
     tours,
-    toursCount
+    toursCount,
   });
 });
 
