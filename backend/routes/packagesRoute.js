@@ -1,12 +1,11 @@
 const express = require("express");
 const {
-  getPackages,
   getAllPackages,
   getCategories,
-  
+  CreatePackage,
+  DeletePackage,
 } = require("../controller/PackagesController");
-const { PostCategory,DeleteCategory } = require("../controller/Category");
-const {CreatePackage,DeletePackage}=require("../controller/Packages")
+const { PostCategory, DeleteCategory } = require("../controller/Category");
 const router = express.Router();
 
 router.route("/api/packages").get(getAllPackages);

@@ -30,7 +30,7 @@ const getAllPackages = catchAsyncErrors(async (req, res, next) => {
     status: true,
     packages,
     packagesCount,
-    resultPerPage
+    resultPerPage,
   });
 });
 
@@ -56,7 +56,7 @@ const CreatePackage = catchAsyncErrors(async (req, res, next) => {
     featured,
     country,
     countryCode,
-    status
+    status,
   } = req.body;
   const uploadedFile = req.files.mainImage;
   await upload(uploadedFile);
@@ -71,19 +71,20 @@ const CreatePackage = catchAsyncErrors(async (req, res, next) => {
     country: country,
     countryCode: countryCode,
     status: status,
-    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`
+    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`,
   });
   res.status(200).json({
     success: true,
-    data
+    data,
   });
 });
+
 const DeletePackage = catchAsyncErrors(async (req, res, next) => {
   const user = await Packages.findByIdAndDelete(req.params.id);
 
   res.status(200).json({
     success: true,
-    message: "User Deleted Successfully"
+    message: "User Deleted Successfully",
   });
 });
 module.exports = {
@@ -91,5 +92,5 @@ module.exports = {
   getAllPackages,
   getCategories,
   CreatePackage,
-  DeletePackage
+  DeletePackage,
 };
