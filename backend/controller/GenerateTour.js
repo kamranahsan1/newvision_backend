@@ -37,11 +37,10 @@ const getTour = catchAsyncErrors(async (req, res, next) => {
   params.country = id;
   params.Day = { lte: days };
 
-  const apiFeatures = new ApiFeatures(Tours.find(), params).search().filter();
-
-  if (params.sort) {
-    apiFeatures.sort({ _id: 1 });
-  }
+  const apiFeatures = new ApiFeatures(Tours.find(), params)
+    .search()
+    .sort()
+    .filter();
 
   const tours = await apiFeatures.query;
   const toursCount = tours.length;
