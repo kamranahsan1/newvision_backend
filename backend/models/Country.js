@@ -27,6 +27,11 @@ const CountrySchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  status: {
+    type: Number,
+    enum: [0, 1],
+    default: 1,
+  },
 });
 
 const Category = mongoose.model("Country", CountrySchema);

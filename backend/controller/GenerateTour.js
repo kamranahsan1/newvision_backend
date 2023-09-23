@@ -20,11 +20,8 @@ const DeleteTours = catchAsyncErrors(async (req, res, next) => {
   });
 });
 const CreateTour = catchAsyncErrors(async (req, res, next) => {
-  console.log(req.body);
-  console.log(req);
   const { time, Day, type, country, description, name } = req.body;
   const uploadedFile = req.files.mainImage;
-  console.log(uploadedFile);
   await upload(uploadedFile);
   const data = await Tours.create({
     time: time,
@@ -83,5 +80,12 @@ const getTour = catchAsyncErrors(async (req, res, next) => {
     toursCount,
   });
 });
+const getGtour = catchAsyncErrors(async (req, res, next) => {
+  const data = await Tours.find({ status: 1 });
+  res.status(200).json({
+    success: true,
+    data,
+  });
+});
 
-module.exports = { getTour, gettoursv2, CreateTour, DeleteTours };
+module.exports = { getTour, gettoursv2, CreateTour, DeleteTours, getGtour };
