@@ -19,10 +19,8 @@ const saveContact = catchAsyncErrors(async (req, res, next) => {
       email,
       phone,
       reason,
-      message
+      message,
     });
-
-    bodyparser
 
     res.status(200).json({ message: "Form data saved successfully" });
   } catch (error) {
@@ -68,11 +66,11 @@ const getContacts = catchAsyncErrors(async (req, res, next) => {
   const data = await ContactModel.find();
   res.status(200).json({
     success: true,
-    data
+    data,
   });
 });
 module.exports = {
   saveContact,
   saveSubscriber,
-  getContacts
+  getContacts,
 };

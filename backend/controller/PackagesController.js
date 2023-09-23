@@ -2,10 +2,8 @@ const ApiFeatures = require("../utils/ApiFeatures");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Packages = require("../models/Packages");
 const Category = require("../models/Category");
-const NodeCache = require("node-cache");
 const { upload } = require("../upload");
 
-const cache = new NodeCache();
 const getPackages = catchAsyncErrors(async (req, res, next) => {
   let { category } = req.query;
   category = category || "Uae Packages";

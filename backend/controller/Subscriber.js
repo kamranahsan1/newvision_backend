@@ -1,6 +1,6 @@
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Subscriber = require("../models/Subscriber");
-const Tours=require("../models/Tours")
+
 const postsubscriber = catchAsyncErrors(async (req, res, next) => {
   const { email, status } = req.body;
   try {
@@ -13,7 +13,7 @@ const postsubscriber = catchAsyncErrors(async (req, res, next) => {
     //   });
     const data = await Subscriber.create({
       email: email,
-      status: status
+      status: status,
     });
 
     res.status(200).json({ message: "Form data saved successfully", data });
@@ -42,5 +42,5 @@ const getSubscriber = catchAsyncErrors(async (req, res, next) => {
 
 module.exports = {
   getSubscriber,
-  postsubscriber
+  postsubscriber,
 };
