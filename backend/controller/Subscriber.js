@@ -4,13 +4,6 @@ const Subscriber = require("../models/Subscriber");
 const postsubscriber = catchAsyncErrors(async (req, res, next) => {
   const { email, status } = req.body;
   try {
-    //   console.log(name);
-    //   const newContact = new Category({
-    //     name,
-    //     slug,
-    //     description,
-    //     viewType
-    //   });
     const data = await Subscriber.create({
       email: email,
       status: status,
