@@ -14,7 +14,7 @@ const saveContact = catchAsyncErrors(async (req, res, next) => {
       return res.status(400).json({ message: "Invalid email format" });
     }
 
-    const newContact = new ContactModel({
+    await ContactModel.create({
       name,
       email,
       phone,
