@@ -35,6 +35,9 @@ const getAllPackages = catchAsyncErrors(async (req, res, next) => {
 });
 
 const getCategories = catchAsyncErrors(async (req, res, next) => {
+  const categories = await Category.find();
+  res.status(200).json(categories);
+  /*
   const cacheKey = "categories";
   const cachedCategories = cache.get(cacheKey);
   if (cachedCategories) {
@@ -43,7 +46,7 @@ const getCategories = catchAsyncErrors(async (req, res, next) => {
     const categories = await Category.find();
     cache.set(cacheKey, categories);
     res.status(200).json(categories);
-  }
+  }*/
 });
 
 const CreatePackage = catchAsyncErrors(async (req, res, next) => {
