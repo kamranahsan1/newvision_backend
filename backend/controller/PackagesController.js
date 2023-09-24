@@ -15,8 +15,7 @@ const getPackages = catchAsyncErrors(async (req, res, next) => {
 const getPackageBySlug = catchAsyncErrors(async (req, res, next) => {
   try {
     let { slug } = req.params;
-    const packages = await Packages.find({ slug: slug });
-    console.log(packages);
+    const packages = await Packages.findOne({ slug: slug });
 
     if (packages.length === 0) {
       return res.status(404).json({ message: "Slug not found" });
