@@ -12,6 +12,21 @@ const getPackages = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json(packages);
 });
 
+const getPackageBySlug = catchAsyncErrors(async (req, res, next) => {
+  try {
+    let { slug } = req.params;
+    const packages = await Packages.find({ slug: slug });
+    console.log(packages);
+
+    if (packages.length === 0) {
+      return res.status(404).json({ message: "Slug not found" });
+    }
+    res.status(200).json(packages);
+  } catch (error) {
+    next(error);
+  }
+});
+
 const getAllPackages = catchAsyncErrors(async (req, res, next) => {
   let { resultPerPage } = req.query;
   resultPerPage = resultPerPage || 12;
@@ -90,6 +105,7 @@ const DeletePackage = catchAsyncErrors(async (req, res, next) => {
 });
 module.exports = {
   getPackages,
+  getPackageBySlug,
   getAllPackages,
   getCategories,
   CreatePackage,

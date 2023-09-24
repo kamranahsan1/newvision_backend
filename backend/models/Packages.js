@@ -18,6 +18,10 @@ const PackageSchema = mongooes.Schema({
     type: String,
     default: "",
   },
+  slug: {
+    type: String,
+    unique: true,
+  },
   price: [priceOptionSchema],
   attractions: {
     type: [String],
