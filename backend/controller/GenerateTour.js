@@ -4,6 +4,7 @@ const Tours = require("../models/Tours");
 const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Types;
 const { upload } = require("../upload");
+
 const gettoursv2 = catchAsyncErrors(async (req, res, next) => {
   const data = await Tours.find().populate("country");
   res.status(200).json({

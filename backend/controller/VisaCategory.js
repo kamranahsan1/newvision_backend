@@ -7,7 +7,7 @@ const { upload } = require("../upload");
 
 const getViewCategory = catchAsyncErrors(async (req, res, next) => {
   let { resultPerPage } = req.query;
-  resultPerPage = resultPerPage || 4;
+  resultPerPage = resultPerPage || 12;
 
   const apiFeatures = new ApiFeatures(VisaCategory.find(), req.query)
     .search()
@@ -21,7 +21,7 @@ const getVisas = catchAsyncErrors(async (req, res, next) => {
   const data = await Visa.find();
   res.status(200).json({
     success: true,
-    data
+    data,
   });
 });
 const PostVisaCategory = catchAsyncErrors(async (req, res, next) => {
@@ -44,11 +44,11 @@ const PostVisaCategory = catchAsyncErrors(async (req, res, next) => {
     status: status,
     description: description,
     name: name,
-    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`
+    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`,
   });
   res.status(200).json({
     success: true,
-    data
+    data,
   });
 
   // res.status(200).json({
@@ -60,15 +60,15 @@ const DeleteVisaCategory = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: "User Deleted Successfully"
+    message: "User Deleted Successfully",
   });
 });
-const DeleteVisa= catchAsyncErrors(async (req, res, next) => {
+const DeleteVisa = catchAsyncErrors(async (req, res, next) => {
   const user = await VisaSchema.findByIdAndDelete(req.params.id);
 
   res.status(200).json({
     success: true,
-    message: "User Deleted Successfully"
+    message: "User Deleted Successfully",
   });
 });
 const PostVisa = catchAsyncErrors(async (req, res, next) => {
@@ -78,7 +78,7 @@ const PostVisa = catchAsyncErrors(async (req, res, next) => {
     category,
     country,
     description,
-    name
+    name,
   } = req.body;
   const uploadedFile = req.files.mainImage;
   await upload(uploadedFile);
@@ -89,11 +89,11 @@ const PostVisa = catchAsyncErrors(async (req, res, next) => {
     country: country,
     description: description,
     name: name,
-    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`
+    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`,
   });
   res.status(200).json({
     success: true,
-    data
+    data,
   });
 });
 
@@ -103,5 +103,5 @@ module.exports = {
   getVisas,
   PostVisa,
   DeleteVisaCategory,
-  DeleteVisa
+  DeleteVisa,
 };
