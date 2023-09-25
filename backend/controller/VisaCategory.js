@@ -4,6 +4,7 @@ const VisaSchema = require("../models/Visa");
 const ApiFeatures = require("../utils/ApiFeatures");
 const Visa = require("../models/Visa");
 const { upload } = require("../upload");
+
 const SingleVisaCategory = catchAsyncErrors(async (req, res, next) => {
   const data = await VisaCategory.findById(req.params.id);
   res.status(200).json({
@@ -132,6 +133,7 @@ const PostVisa = catchAsyncErrors(async (req, res, next) => {
     NumberOfStayName,
     category,
     country,
+    type,
     description,
     name,
   } = req.body;
@@ -143,6 +145,7 @@ const PostVisa = catchAsyncErrors(async (req, res, next) => {
     data = {
       NumberOfStay: NumberOfStay,
       NumberOfStayName: NumberOfStayName,
+      type: type,
       category: category,
       country: country,
       description: description,
@@ -171,6 +174,7 @@ const EditVisa = catchAsyncErrors(async (req, res, next) => {
   const {
     NumberOfStay,
     NumberOfStayName,
+    tour,
     category,
     country,
     description,
@@ -178,7 +182,6 @@ const EditVisa = catchAsyncErrors(async (req, res, next) => {
     previousimage,
   } = req.body;
   let imageroute = previousimage;
-  console.log(req.files);
   if (req.files?.mainImage) {
     const uploadedFile = req.files.mainImage;
     console.log(
@@ -187,18 +190,12 @@ const EditVisa = catchAsyncErrors(async (req, res, next) => {
     imageroute = `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`;
   }
   try {
-    //   console.log(name);
-    //   const newContact = new VisaCategory({
-    //     name,
-    //     slug,
-    //     description,
-    //     viewType
-    //   });
     const data = await VisaSchema.findByIdAndUpdate(
       req.params.id,
       {
         NumberOfStay: NumberOfStay,
         NumberOfStayName: NumberOfStayName,
+        tour: tour,
         category: category,
         country: country,
         description: description,
@@ -222,11 +219,17 @@ const getVisaCategories = catchAsyncErrors(async (req, res, next) => {
   const categories = await VisaCategory.find();
   res.status(200).json(categories);
 });
-
 const getAllVisas = catchAsyncErrors(async (req, res, next) => {
   let { resultPerPage, slug } = req.query;
 
+  if (!slug) {
+    return res
+      .status(400)
+      .json({ status: false, message: "Slug parameter is missing" });
+  }
+
   const visacateData = await VisaCategory.findOne({ slug: slug });
+
   if (!visacateData) {
     return res
       .status(404)
@@ -234,18 +237,19 @@ const getAllVisas = catchAsyncErrors(async (req, res, next) => {
   }
 
   resultPerPage = resultPerPage || 12;
+  req.query["category"] = visacateData._id;
   const apiFeatures = new ApiFeatures(Visa.find(), req.query)
     .search()
     .filter()
     .pagination(resultPerPage);
 
-  const packages = await apiFeatures.query;
-  const packagesCount = packages.length;
+  const visaCount = await Visa.countDocuments({ category: visacateData._id });
+  const visas = await apiFeatures.query;
 
   res.status(200).json({
     status: true,
-    packages,
-    packagesCount,
+    visas,
+    visaCount,
     resultPerPage,
   });
 });
