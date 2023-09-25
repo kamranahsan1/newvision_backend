@@ -8,14 +8,14 @@ const SingleVisaCategory = catchAsyncErrors(async (req, res, next) => {
   const data = await VisaCategory.findById(req.params.id);
   res.status(200).json({
     success: true,
-    data
+    data,
   });
 });
 const SingleVisa = catchAsyncErrors(async (req, res, next) => {
-const data = await VisaSchema.findById(req.params.id);
+  const data = await VisaSchema.findById(req.params.id);
   res.status(200).json({
     success: true,
-    data
+    data,
   });
 });
 const EditVisaCategory = catchAsyncErrors(async (req, res, next) => {
@@ -45,12 +45,12 @@ const EditVisaCategory = catchAsyncErrors(async (req, res, next) => {
         status: status || 1,
         description: description,
         name: name,
-        mainImage: imageroute
+        mainImage: imageroute,
       },
       {
         new: true,
         runValidators: true,
-        useFindAndModify: false
+        useFindAndModify: false,
       }
     );
 
@@ -76,7 +76,7 @@ const getVisas = catchAsyncErrors(async (req, res, next) => {
   const data = await Visa.find();
   res.status(200).json({
     success: true,
-    data
+    data,
   });
 });
 const PostVisaCategory = catchAsyncErrors(async (req, res, next) => {
@@ -99,11 +99,11 @@ const PostVisaCategory = catchAsyncErrors(async (req, res, next) => {
     status: status,
     description: description,
     name: name,
-    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`
+    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`,
   });
   res.status(200).json({
     success: true,
-    data
+    data,
   });
 
   // res.status(200).json({
@@ -115,7 +115,7 @@ const DeleteVisaCategory = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: "User Deleted Successfully"
+    message: "User Deleted Successfully",
   });
 });
 const DeleteVisa = catchAsyncErrors(async (req, res, next) => {
@@ -123,7 +123,7 @@ const DeleteVisa = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: "User Deleted Successfully"
+    message: "User Deleted Successfully",
   });
 });
 const PostVisa = catchAsyncErrors(async (req, res, next) => {
@@ -133,22 +133,38 @@ const PostVisa = catchAsyncErrors(async (req, res, next) => {
     category,
     country,
     description,
-    name
+    name,
   } = req.body;
-  const uploadedFile = req.files.mainImage;
-  await upload(uploadedFile);
-  const data = await VisaSchema.create({
-    NumberOfStay: NumberOfStay,
-    NumberOfStayName: NumberOfStayName,
-    category: category,
-    country: country,
-    description: description,
-    name: name,
-    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`
-  });
+  let data = {};
+
+  if (req.files && req.files.mainImage !== null) {
+    const uploadedFile = req.files.mainImage;
+    await upload(uploadedFile);
+    data = {
+      NumberOfStay: NumberOfStay,
+      NumberOfStayName: NumberOfStayName,
+      category: category,
+      country: country,
+      description: description,
+      name: name,
+      mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`,
+    };
+  } else {
+    data = {
+      NumberOfStay: NumberOfStay,
+      NumberOfStayName: NumberOfStayName,
+      category: category,
+      country: country,
+      description: description,
+      name: name,
+    };
+  }
+
+  const createdData = await VisaSchema.create(data);
+
   res.status(200).json({
     success: true,
-    data
+    data: createdData,
   });
 });
 const EditVisa = catchAsyncErrors(async (req, res, next) => {
@@ -159,7 +175,7 @@ const EditVisa = catchAsyncErrors(async (req, res, next) => {
     country,
     description,
     name,
-    previousimage
+    previousimage,
   } = req.body;
   let imageroute = previousimage;
   console.log(req.files);
@@ -187,12 +203,12 @@ const EditVisa = catchAsyncErrors(async (req, res, next) => {
         country: country,
         description: description,
         name: name,
-        mainImage: imageroute
+        mainImage: imageroute,
       },
       {
         new: true,
         runValidators: true,
-        useFindAndModify: false
+        useFindAndModify: false,
       }
     );
 
@@ -202,7 +218,40 @@ const EditVisa = catchAsyncErrors(async (req, res, next) => {
     res.status(500).json({ message: error });
   }
 });
+const getVisaCategories = catchAsyncErrors(async (req, res, next) => {
+  const categories = await VisaCategory.find();
+  res.status(200).json(categories);
+});
+
+const getAllVisas = catchAsyncErrors(async (req, res, next) => {
+  let { resultPerPage, slug } = req.query;
+
+  const visacateData = await VisaCategory.findOne({ slug: slug });
+  if (!visacateData) {
+    return res
+      .status(404)
+      .json({ status: false, message: "Visa Category not found" });
+  }
+
+  resultPerPage = resultPerPage || 12;
+  const apiFeatures = new ApiFeatures(Visa.find(), req.query)
+    .search()
+    .filter()
+    .pagination(resultPerPage);
+
+  const packages = await apiFeatures.query;
+  const packagesCount = packages.length;
+
+  res.status(200).json({
+    status: true,
+    packages,
+    packagesCount,
+    resultPerPage,
+  });
+});
+
 module.exports = {
+  getVisaCategories,
   PostVisaCategory,
   getViewCategory,
   getVisas,
@@ -212,5 +261,6 @@ module.exports = {
   SingleVisaCategory,
   EditVisaCategory,
   SingleVisa,
-  EditVisa
+  EditVisa,
+  getAllVisas,
 };

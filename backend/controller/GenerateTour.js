@@ -4,17 +4,15 @@ const Tours = require("../models/Tours");
 const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Types;
 const { upload } = require("../upload");
+
 const EditTour = catchAsyncErrors(async (req, res, next) => {
   const { time, Day, type, country, description, name, previousimage } =
     req.body;
   let imageroute = previousimage;
-  console.log(req.files);
   if (req.files?.mainImage) {
     const uploadedFile = req.files.mainImage;
-    console.log(
-      `${req.protocol}"//"${req.hostname}:5000'/uploads/'${uploadedFile.name}`
-    );
     imageroute = `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`;
+    await upload(uploadedFile);
   }
   try {
     //   console.log(name);
@@ -33,12 +31,12 @@ const EditTour = catchAsyncErrors(async (req, res, next) => {
         country: country,
         description: description,
         name: name,
-        mainImage: imageroute
+        mainImage: imageroute,
       },
       {
         new: true,
         runValidators: true,
-        useFindAndModify: false
+        useFindAndModify: false,
       }
     );
 
@@ -52,7 +50,7 @@ const gettoursv2 = catchAsyncErrors(async (req, res, next) => {
   const data = await Tours.find().populate("country");
   res.status(200).json({
     success: true,
-    data
+    data,
   });
 });
 const DeleteTours = catchAsyncErrors(async (req, res, next) => {
@@ -60,7 +58,7 @@ const DeleteTours = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: "User Deleted Successfully"
+    message: "User Deleted Successfully",
   });
 });
 const CreateTour = catchAsyncErrors(async (req, res, next) => {
@@ -74,11 +72,11 @@ const CreateTour = catchAsyncErrors(async (req, res, next) => {
     country: country,
     description: description,
     name: name,
-    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`
+    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`,
   });
   res.status(200).json({
     success: true,
-    data
+    data,
   });
 });
 const getTour = catchAsyncErrors(async (req, res, next) => {
@@ -92,7 +90,7 @@ const getTour = catchAsyncErrors(async (req, res, next) => {
     } catch (err) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: "Invalid Country ID" })
+        body: JSON.stringify({ error: "Invalid Country ID" }),
       };
     }
   }
@@ -121,21 +119,21 @@ const getTour = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({
     status: true,
     tours,
-    toursCount
+    toursCount,
   });
 });
 const getGtour = catchAsyncErrors(async (req, res, next) => {
   const data = await Tours.find({ status: 1 });
   res.status(200).json({
     success: true,
-    data
+    data,
   });
 });
 const SingleTour = catchAsyncErrors(async (req, res, next) => {
   const data = await Tours.findById(req.params.id);
   res.status(200).json({
     success: true,
-    data
+    data,
   });
 });
 
@@ -146,5 +144,5 @@ module.exports = {
   CreateTour,
   DeleteTours,
   getGtour,
-  EditTour
+  EditTour,
 };

@@ -3,19 +3,21 @@ const {
   getAllPackages,
   getCategories,
   CreatePackage,
-  DeletePackage
+  DeletePackage,
+  SinglePackage,
 } = require("../controller/PackagesController");
 const {
   PostCategory,
   DeleteCategory,
   EditCategory,
-  SingleCategory
+  SingleCategory,
 } = require("../controller/Category");
 const router = express.Router();
 
 router.route("/api/packages").get(getAllPackages);
 router.route("/api/CreatePackage").post(CreatePackage);
 router.route("/api/categories").get(getCategories);
+router.route("/api/SinglePackage/:id").get(SinglePackage);
 router.route("/api/SingleCategory/:id").get(SingleCategory);
 router.route("/api/DeleteCategory/:id").delete(DeleteCategory);
 router.route("/api/EditCategory/:id").put(EditCategory);

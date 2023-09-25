@@ -2,6 +2,7 @@ const express = require("express");
 const {
   getViewCategory,
   getCategories,
+  getVisaCategories,
   PostVisa,
   getVisas,
   PostVisaCategory,
@@ -10,13 +11,16 @@ const {
   SingleVisaCategory,
   EditVisaCategory,
   SingleVisa,
-  EditVisa
+  EditVisa,
+  getAllVisas,
 } = require("../controller/VisaCategory");
 const router = express.Router();
 
 router.route("/api/EditVisa/:id").put(EditVisa);
 router.route("/api/EditVisaCategory/:id").put(EditVisaCategory);
 router.route("/api/SingleVisaCategory/:id").get(SingleVisaCategory);
+router.route("/api/visaCategories").get(getViewCategory);
+router.route("/api/getAllVisas").get(getAllVisas);
 router.route("/api/SingleVisa/:id").get(SingleVisa);
 router.route("/api/viewcategories").get(getViewCategory);
 router.route("/api/getVisas").get(getVisas);

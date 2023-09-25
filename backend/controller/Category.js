@@ -1,27 +1,22 @@
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Category = require("../models/Category");
+
 const SingleCategory = catchAsyncErrors(async (req, res, next) => {
   const data = await Category.findById(req.params.id);
   res.status(200).json({
     success: true,
-    data
+    data,
   });
 });
+
 const PostCategory = catchAsyncErrors(async (req, res, next) => {
   const { name, slug, description, viewType } = req.body;
   try {
-    //   console.log(name);
-    //   const newContact = new Category({
-    //     name,
-    //     slug,
-    //     description,
-    //     viewType
-    //   });
     const data = await Category.create({
       name: name,
       slug: slug,
       description: description,
-      viewType: viewType
+      viewType: viewType,
     });
 
     res.status(200).json({ message: "Form data saved successfully", data });
@@ -30,36 +25,31 @@ const PostCategory = catchAsyncErrors(async (req, res, next) => {
     res.status(500).json({ message: error });
   }
 });
+
 const DeleteCategory = catchAsyncErrors(async (req, res, next) => {
   const user = await Category.findByIdAndDelete(req.params.id);
 
   res.status(200).json({
     success: true,
-    message: "User Deleted Successfully"
+    message: "User Deleted Successfully",
   });
 });
+
 const EditCategory = catchAsyncErrors(async (req, res, next) => {
   const { name, slug, description, viewType } = req.body;
   try {
-    //   console.log(name);
-    //   const newContact = new Category({
-    //     name,
-    //     slug,
-    //     description,
-    //     viewType
-    //   });
     const data = await Category.findByIdAndUpdate(
       req.params.id,
       {
         name: name,
         slug: slug,
         description: description,
-        viewType: viewType
+        viewType: viewType,
       },
       {
         new: true,
         runValidators: true,
-        useFindAndModify: false
+        useFindAndModify: false,
       }
     );
 
@@ -69,9 +59,10 @@ const EditCategory = catchAsyncErrors(async (req, res, next) => {
     res.status(500).json({ message: error });
   }
 });
+
 module.exports = {
   PostCategory,
   DeleteCategory,
   SingleCategory,
-  EditCategory
+  EditCategory,
 };
