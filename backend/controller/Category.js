@@ -1,5 +1,12 @@
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Category = require("../models/Category");
+const SingleCategory = catchAsyncErrors(async (req, res, next) => {
+  const data = await Category.findById(req.params.id);
+  res.status(200).json({
+    success: true,
+    data
+  });
+});
 const PostCategory = catchAsyncErrors(async (req, res, next) => {
   const { name, slug, description, viewType } = req.body;
   try {
@@ -31,7 +38,40 @@ const DeleteCategory = catchAsyncErrors(async (req, res, next) => {
     message: "User Deleted Successfully"
   });
 });
+const EditCategory = catchAsyncErrors(async (req, res, next) => {
+  const { name, slug, description, viewType } = req.body;
+  try {
+    //   console.log(name);
+    //   const newContact = new Category({
+    //     name,
+    //     slug,
+    //     description,
+    //     viewType
+    //   });
+    const data = await Category.findByIdAndUpdate(
+      req.params.id,
+      {
+        name: name,
+        slug: slug,
+        description: description,
+        viewType: viewType
+      },
+      {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false
+      }
+    );
+
+    res.status(200).json({ message: "Form Edit successfully", data });
+  } catch (error) {
+    console.error("Error saving form data:", error);
+    res.status(500).json({ message: error });
+  }
+});
 module.exports = {
   PostCategory,
-  DeleteCategory
+  DeleteCategory,
+  SingleCategory,
+  EditCategory
 };

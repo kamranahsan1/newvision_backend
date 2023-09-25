@@ -12,36 +12,17 @@ const getPackages = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json(packages);
 });
 
-const getPackageBySlug = catchAsyncErrors(async (req, res, next) => {
-  try {
-    let { slug } = req.params;
-    const packages = await Packages.findOne({ slug: slug });
-
-    if (packages.length === 0) {
-      return res.status(404).json({ message: "Slug not found" });
-    }
-    res.status(200).json(packages);
-  } catch (error) {
-    next(error);
-  }
-});
-
 const getAllPackages = catchAsyncErrors(async (req, res, next) => {
-  let { resultPerPage, category } = req.query;
+  let { resultPerPage } = req.query;
   resultPerPage = resultPerPage || 12;
 
-  let condition = {};
-  if (category) {
-    condition.category = category;
-  }
-  condition.status = 1;
-  const apiFeatures = new ApiFeatures(Packages.find(condition), req.query)
+  const apiFeatures = new ApiFeatures(Packages.find(), req.query)
     .search()
     .filter()
     .pagination(resultPerPage);
 
-  const packagesCount = await Packages.countDocuments(condition);
   const packages = await apiFeatures.query;
+  const packagesCount = packages.length;
 
   res.status(200).json({
     status: true,
@@ -109,7 +90,6 @@ const DeletePackage = catchAsyncErrors(async (req, res, next) => {
 });
 module.exports = {
   getPackages,
-  getPackageBySlug,
   getAllPackages,
   getCategories,
   CreatePackage,

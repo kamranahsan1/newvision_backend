@@ -1,7 +1,21 @@
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Country = require("../models/Country");
 const { upload } = require("../upload");
+const DeleteCountry = catchAsyncErrors(async (req, res, next) => {
+  const user = await Country.findByIdAndDelete(req.params.id);
 
+  res.status(200).json({
+    success: true,
+    message: "User Deleted Successfully"
+  });
+});
+const SingleCountry = catchAsyncErrors(async (req, res, next) => {
+  const data = await Country.findById(req.params.id);
+  res.status(200).json({
+    success: true,
+    data
+  });
+});
 const getCountries = catchAsyncErrors(async (req, res, next) => {
   const countries = await Country.find();
   res.status(200).json(countries);
@@ -18,7 +32,46 @@ const getCountries = catchAsyncErrors(async (req, res, next) => {
   }
   */
 });
+const EditCountry = catchAsyncErrors(async (req, res, next) => {
+  const { name, description, featured, previousimage } = req.body;
+  let imageroute = previousimage;
+  console.log(req.files);
+  if (req.files?.mainImage) {
+    const uploadedFile = req.files.mainImage;
+    console.log(
+      `${req.protocol}"//"${req.hostname}:5000'/uploads/'${uploadedFile.name}`
+    );
+    imageroute = `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`;
+  }
+  try {
+    //   console.log(name);
+    //   const newContact = new VisaCategory({
+    //     name,
+    //     slug,
+    //     description,
+    //     viewType
+    //   });
+    const data = await Country.findByIdAndUpdate(
+      req.params.id,
+      {
+        name: name,
+        description: description,
+        featured: featured,
+        mainImage: imageroute
+      },
+      {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false
+      }
+    );
 
+    res.status(200).json({ message: "Form Edit successfully", data });
+  } catch (error) {
+    console.error("Error saving form data:", error);
+    res.status(500).json({ message: error });
+  }
+});
 const createCountry = catchAsyncErrors(async (req, res, next) => {
   const { name, description, featured } = req.body;
 
@@ -27,7 +80,7 @@ const createCountry = catchAsyncErrors(async (req, res, next) => {
   if (existingCountry) {
     return res.status(400).json({
       success: false,
-      message: "Country with the same name already exists.",
+      message: "Country with the same name already exists."
     });
   }
   const uploadedFile = req.files.mainImage;
@@ -36,22 +89,25 @@ const createCountry = catchAsyncErrors(async (req, res, next) => {
     name: name,
     description,
     featured,
-    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`,
+    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`
   });
   res.status(200).json({
     success: true,
-    data,
+    data
   });
 });
 const getAllCountries = catchAsyncErrors(async (req, res, next) => {
   const data = await Country.find({ status: 1 });
   res.status(200).json({
     success: true,
-    data,
+    data
   });
 });
 module.exports = {
   getCountries,
   createCountry,
-  getAllCountries,
+  SingleCountry,
+  EditCountry,
+  DeleteCountry,
+  getAllCountries
 };

@@ -4,12 +4,55 @@ const Tours = require("../models/Tours");
 const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Types;
 const { upload } = require("../upload");
+const EditTour = catchAsyncErrors(async (req, res, next) => {
+  const { time, Day, type, country, description, name, previousimage } =
+    req.body;
+  let imageroute = previousimage;
+  console.log(req.files);
+  if (req.files?.mainImage) {
+    const uploadedFile = req.files.mainImage;
+    console.log(
+      `${req.protocol}"//"${req.hostname}:5000'/uploads/'${uploadedFile.name}`
+    );
+    imageroute = `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`;
+  }
+  try {
+    //   console.log(name);
+    //   const newContact = new VisaCategory({
+    //     name,
+    //     slug,
+    //     description,
+    //     viewType
+    //   });
+    const data = await Tours.findByIdAndUpdate(
+      req.params.id,
+      {
+        time: time,
+        Day: Day,
+        type: type,
+        country: country,
+        description: description,
+        name: name,
+        mainImage: imageroute
+      },
+      {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false
+      }
+    );
 
+    res.status(200).json({ message: "Form Edit successfully", data });
+  } catch (error) {
+    console.error("Error saving form data:", error);
+    res.status(500).json({ message: error });
+  }
+});
 const gettoursv2 = catchAsyncErrors(async (req, res, next) => {
   const data = await Tours.find().populate("country");
   res.status(200).json({
     success: true,
-    data,
+    data
   });
 });
 const DeleteTours = catchAsyncErrors(async (req, res, next) => {
@@ -17,7 +60,7 @@ const DeleteTours = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: "User Deleted Successfully",
+    message: "User Deleted Successfully"
   });
 });
 const CreateTour = catchAsyncErrors(async (req, res, next) => {
@@ -31,11 +74,11 @@ const CreateTour = catchAsyncErrors(async (req, res, next) => {
     country: country,
     description: description,
     name: name,
-    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`,
+    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`
   });
   res.status(200).json({
     success: true,
-    data,
+    data
   });
 });
 const getTour = catchAsyncErrors(async (req, res, next) => {
@@ -49,7 +92,7 @@ const getTour = catchAsyncErrors(async (req, res, next) => {
     } catch (err) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: "Invalid Country ID" }),
+        body: JSON.stringify({ error: "Invalid Country ID" })
       };
     }
   }
@@ -78,15 +121,30 @@ const getTour = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({
     status: true,
     tours,
-    toursCount,
+    toursCount
   });
 });
 const getGtour = catchAsyncErrors(async (req, res, next) => {
   const data = await Tours.find({ status: 1 });
   res.status(200).json({
     success: true,
-    data,
+    data
+  });
+});
+const SingleTour = catchAsyncErrors(async (req, res, next) => {
+  const data = await Tours.findById(req.params.id);
+  res.status(200).json({
+    success: true,
+    data
   });
 });
 
-module.exports = { getTour, gettoursv2, CreateTour, DeleteTours, getGtour };
+module.exports = {
+  getTour,
+  SingleTour,
+  gettoursv2,
+  CreateTour,
+  DeleteTours,
+  getGtour,
+  EditTour
+};

@@ -6,10 +6,18 @@ const {
   getVisas,
   PostVisaCategory,
   DeleteVisa,
-  DeleteVisaCategory
+  DeleteVisaCategory,
+  SingleVisaCategory,
+  EditVisaCategory,
+  SingleVisa,
+  EditVisa
 } = require("../controller/VisaCategory");
 const router = express.Router();
 
+router.route("/api/EditVisa/:id").put(EditVisa);
+router.route("/api/EditVisaCategory/:id").put(EditVisaCategory);
+router.route("/api/SingleVisaCategory/:id").get(SingleVisaCategory);
+router.route("/api/SingleVisa/:id").get(SingleVisa);
 router.route("/api/viewcategories").get(getViewCategory);
 router.route("/api/getVisas").get(getVisas);
 router.route("/api/PostVisa").post(PostVisa);

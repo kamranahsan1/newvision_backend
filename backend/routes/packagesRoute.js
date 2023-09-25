@@ -1,20 +1,25 @@
 const express = require("express");
 const {
-  getPackageBySlug,
   getAllPackages,
   getCategories,
   CreatePackage,
-  DeletePackage,
+  DeletePackage
 } = require("../controller/PackagesController");
-const { PostCategory, DeleteCategory } = require("../controller/Category");
+const {
+  PostCategory,
+  DeleteCategory,
+  EditCategory,
+  SingleCategory
+} = require("../controller/Category");
 const router = express.Router();
 
 router.route("/api/packages").get(getAllPackages);
-router.route("/api/getTourBySlug/:slug").get(getPackageBySlug);
 router.route("/api/CreatePackage").post(CreatePackage);
 router.route("/api/categories").get(getCategories);
+router.route("/api/SingleCategory/:id").get(SingleCategory);
 router.route("/api/DeleteCategory/:id").delete(DeleteCategory);
+router.route("/api/EditCategory/:id").put(EditCategory);
 router.route("/api/DeletePackage/:id").delete(DeletePackage);
-router.route("/postcategory").post(PostCategory);
+router.route("/api/postcategory").post(PostCategory);
 
 module.exports = router;
