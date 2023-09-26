@@ -74,7 +74,7 @@ const getViewCategory = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json(data);
 });
 const getVisas = catchAsyncErrors(async (req, res, next) => {
-  const data = await Visa.find();
+  const data = await Visa.find().populate("category").populate("country");
   res.status(200).json({
     success: true,
     data,
@@ -178,12 +178,14 @@ const EditVisa = catchAsyncErrors(async (req, res, next) => {
     category,
     country,
     description,
+    type,
     name,
     previousimage,
   } = req.body;
   let imageroute = previousimage;
   if (req.files?.mainImage) {
     const uploadedFile = req.files.mainImage;
+    await upload(uploadedFile);
     console.log(
       `${req.protocol}"//"${req.hostname}:5000'/uploads/'${uploadedFile.name}`
     );
@@ -196,6 +198,7 @@ const EditVisa = catchAsyncErrors(async (req, res, next) => {
         NumberOfStay: NumberOfStay,
         NumberOfStayName: NumberOfStayName,
         tour: tour,
+        type: type,
         category: category,
         country: country,
         description: description,
@@ -229,7 +232,6 @@ const getAllVisas = catchAsyncErrors(async (req, res, next) => {
   }
 
   const visacateData = await VisaCategory.findOne({ slug: slug });
-
   if (!visacateData) {
     return res
       .status(404)
@@ -237,7 +239,9 @@ const getAllVisas = catchAsyncErrors(async (req, res, next) => {
   }
 
   resultPerPage = resultPerPage || 12;
+  delete req.query.slug;
   req.query["category"] = visacateData._id;
+  console.log("req.query", req.query);
   const apiFeatures = new ApiFeatures(Visa.find(), req.query)
     .search()
     .filter()

@@ -5,7 +5,8 @@ const {
   CreateTour,
   DeleteTours,
   getGtour,
-  EditTour,SingleTour
+  EditTour,
+  SingleTour,
 } = require("../controller/GenerateTour");
 const router = express.Router();
 

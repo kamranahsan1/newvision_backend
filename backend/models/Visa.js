@@ -3,8 +3,8 @@ const priceOptionSchema = require("./Price");
 
 const VisaSchema = mongooes.Schema({
   category: {
-    type: String,
-    require: true,
+    type: mongooes.Schema.ObjectId,
+    ref: "VisaCategory",
   },
   name: {
     type: String,
@@ -30,10 +30,15 @@ const VisaSchema = mongooes.Schema({
     type: String,
     default: "",
   },
+  type: {
+    type: String,
+    enum: ["quick", "detail"],
+    default: "quick",
+  },
   price: [priceOptionSchema],
   country: {
-    type: String,
-    default: "United Arab Emirates",
+    type: mongooes.Schema.ObjectId,
+    ref: "Country",
   },
   createdAt: {
     type: Date,

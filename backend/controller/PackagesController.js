@@ -138,9 +138,16 @@ const SinglePackage = catchAsyncErrors(async (req, res, next) => {
     data,
   });
 });
-
+const getTourBySlug = catchAsyncErrors(async (req, res, next) => {
+  const data = await Packages.findOne({ slug: req.params.slug });
+  res.status(200).json({
+    success: true,
+    data,
+  });
+});
 module.exports = {
   getPackages,
+  getTourBySlug,
   getAllPackages,
   editPackage,
   SinglePackage,

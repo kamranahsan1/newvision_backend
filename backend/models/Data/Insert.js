@@ -486,14 +486,15 @@ const insertData = async () => {
       // Insert packages data
       await Packages.insertMany(packagesWithRandomCategories);
       console.log("Packages data inserted successfully");
+
+      // visa data
+      await VisaCategory.insertMany(VisaCategoryData);
+      console.log("VisaCategory data inserted successfully");
     }
+
     // Insert visa data
     await Visa.insertMany(VisaData);
     console.log("Visas data inserted successfully");
-
-    // visa data
-    await VisaCategory.insertMany(VisaCategoryData);
-    console.log("VisaCategory data inserted successfully");
   } catch (error) {
     console.log("Error inserting demo data:", error);
   }
