@@ -245,6 +245,7 @@ const getAllVisas = catchAsyncErrors(async (req, res, next) => {
   const apiFeatures = new ApiFeatures(Visa.find(), req.query)
     .search()
     .filter()
+    .sort()
     .pagination(resultPerPage);
 
   const visaCount = await Visa.countDocuments({ category: visacateData._id });
@@ -257,7 +258,19 @@ const getAllVisas = catchAsyncErrors(async (req, res, next) => {
     resultPerPage,
   });
 });
-
+const SingleVisaSlug = catchAsyncErrors(async (req, res, next) => {
+  const data = await VisaCategory.findOne(req.params.slug);
+  if (!data) {
+    res.status(404).json({
+      success: false,
+      message: "Visa Category Not Found!",
+    });
+  }
+  res.status(200).json({
+    success: true,
+    data,
+  });
+});
 module.exports = {
   getVisaCategories,
   PostVisaCategory,
@@ -271,4 +284,5 @@ module.exports = {
   SingleVisa,
   EditVisa,
   getAllVisas,
+  SingleVisaSlug,
 };

@@ -14,7 +14,7 @@ import axios from 'axios';
 
 import { ToastContainer, toast } from 'react-toastify';
 
-import { API_URL } from '../constants/General';
+import { API_URL, setImage } from '../constants/General';
 
 const EditPackage = () => {
   const { state } = useLocation();
@@ -113,7 +113,7 @@ const EditPackage = () => {
         console.log(formData);
         const res = await axios.post(`${API_URL}/CreatePackage`, formData);
         toast.success(res.data.message);
-        navigate('/dashboard/categories');
+        navigate('/dashboard/package');
       } catch (error) {
         toast.error(error.response.data.message.message || 'error occured');
         console.log(error);
@@ -138,7 +138,7 @@ const EditPackage = () => {
                       onChange={handleChange}
                       required
                     />
-                    <Form.Control.Feedback type="invalid">'Please provide name.'</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid">Please provide name.</Form.Control.Feedback>
                   </Form.Group>
                 </div>
                 <div className="col-sm-6">
@@ -156,20 +156,6 @@ const EditPackage = () => {
                   </Form.Group>
                 </div>
                 <div className="col-sm-6">
-                  {/*
-                  <Form.Group controlId="validationCustom05">
-                    <Form.Label>Country</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="country"
-                      placeholder="country"
-                      onChange={handleChange}
-                      value={country}
-                      required
-                    />
-                    <Form.Control.Feedback type="invalid">Please provide a valid country.</Form.Control.Feedback>
-                  </Form.Group>
-                  */}
                   <Form.Group controlId="validationCustom05">
                     <Form.Label>Country</Form.Label>
                     <Form.Select name="country" value={country} onChange={handleChange} required>
@@ -180,36 +166,6 @@ const EditPackage = () => {
                     <Form.Control.Feedback type="invalid">Please provide a valid category.</Form.Control.Feedback>
                   </Form.Group>
                 </div>
-
-                {/* <div className="col-sm-6">
-                  <Form.Group controlId="validationCustom05">
-                    <Form.Label>category</Form.Label>
-                    <Form.Control
-                      name="category"
-                      type="text"
-                      placeholder="category"
-                      value={category}
-                      onChange={handleChange}
-                      required
-                    />
-                    <Form.Control.Feedback type="invalid">Please provide a valid category.</Form.Control.Feedback>
-                  </Form.Group>
-                </div> */}
-                {/* <div className="col-sm-6">
-                  <Form.Group controlId="validationCustom05">
-                    <Form.Label>Featured</Form.Label>
-                    <Form.Control
-                      name="Featured"
-                      type="text"
-                      placeholder="Featured"
-                      value={Featured}
-                      onChange={handleChange}
-                      required
-                    />
-                    <Form.Control.Feedback type="invalid">Please provide a valid Featured.</Form.Control.Feedback>
-                  </Form.Group>
-                </div> */}
-
                 <div className="col-sm-6">
                   <Form.Group controlId="validationCustom05">
                     <Form.Label>Status</Form.Label>
@@ -248,85 +204,9 @@ const EditPackage = () => {
                 <div className="col-sm-12">
                   <Form.Group controlId="validationCustom05">
                     <Form.Label>Main Image</Form.Label>
-                    <Form.Control onChange={onSelectFileProfile} type="file" required />
-                    <Form.Control.Feedback type="invalid">'Please provide a valid Main Image'</Form.Control.Feedback>
+                    <Form.Control onChange={onSelectFileProfile} type="file" />
                   </Form.Group>
-                  {/* {PassportPicture && (
-                      <>
-                        <img src={preview} className="PreviewImage" alt="" />
-                      </>
-                    )} */}
                 </div>
-                {/* <div className="col-sm-6">
-                <Form.Group controlId="validationCustom05">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control
-                    value={state.Password}
-                    onChange={handlePasswordChange}
-                    name="price"
-                    type="text"
-                    placeholder="Password"
-                    required
-                  />
-                  <Form.Control.Feedback type="invalid">Please provide a valid Password.</Form.Control.Feedback>
-                  {passwordError && (
-                    <div className="error-message1" style={{ color: '#fff' }}>
-                      {passwordError}
-                    </div>
-                  )}
-                </Form.Group>
-              </div>
-
-              <div className="col-sm-6">
-                <Form.Group controlId="validationCustom05">
-                  <Form.Label>Confirm Password</Form.Label>
-                  <Form.Control
-                    value={state.ConfirmPassword}
-                    onChange={handleConfirmPasswordChange}
-                    name="price"
-                    type="text"
-                    placeholder="Confirm Password"
-                    required
-                  />
-                  <Form.Control.Feedback type="invalid">Please provide a valid Password.</Form.Control.Feedback>
-                  {confirmPasswordError && (
-                    <div className="error-message1" style={{ color: '#fff' }}>
-                      {confirmPasswordError}
-                    </div>
-                  )}
-                </Form.Group>
-              </div>
-
-              <div className="col-sm-6">
-                <Form.Group controlId="validationCustom05">
-                  <Form.Label>Profile Picture</Form.Label>
-                  <Form.Control onChange={onSelectFileProfile} type="file" required />
-                  <Form.Control.Feedback type="invalid">
-                    Please provide a valid Profile Picture.
-                  </Form.Control.Feedback>
-                </Form.Group>
-                {PassportPicture && (
-                    <>
-                      <img src={preview} className="PreviewImage" alt="" />
-                    </>
-                  )}
-              </div> */}
-
-                {/* <div className="col-sm-6">
-                <Form.Group controlId="validationCustom05">
-                  <Form.Label>Passport Picture</Form.Label>
-                  <Form.Control onChange={onSelectFilePassport} type="file" />
-                  <Form.Control.Feedback type="invalid">
-                    Please provide a valid Passport Picture.
-                  </Form.Control.Feedback>
-                </Form.Group>
-                {PassportPicture && (
-                  <div>
-                    <img src={preview1} className="PreviewImage" alt="" />
-                    <i className="fa fa-times" onClick={removeImagePreview}></i>
-                  </div>
-                )}
-              </div> */}
                 <div className="col-sm-12">
                   <Form.Group controlId="validationCustom04">
                     <Form.Label>Attractions(for points seperate line from $ Sign)</Form.Label>
@@ -364,10 +244,11 @@ const EditPackage = () => {
             </Form>
           </div>
         </div>
-
-        {/* <div className="col-sm-6 registrationimg">
-          <img src={images} alt="asd" />
-        </div> */}
+        {mainImage && (
+          <div className="">
+            <img style={{ maxWidth: '200px' }} src={setImage(mainImage)} alt="asd" />
+          </div>
+        )}
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ const {
   getViewCategory,
   getCategories,
   getVisaCategories,
+  SingleVisaSlug,
   PostVisa,
   getVisas,
   PostVisaCategory,
@@ -22,6 +23,7 @@ router.route("/api/SingleVisaCategory/:id").get(SingleVisaCategory);
 router.route("/api/visaCategories").get(getViewCategory);
 router.route("/api/getAllVisas").get(getAllVisas);
 router.route("/api/SingleVisa/:id").get(SingleVisa);
+router.route("/api/SingleVisaSlug/:slug").get(SingleVisaSlug);
 router.route("/api/viewcategories").get(getViewCategory);
 router.route("/api/getVisas").get(getVisas);
 router.route("/api/PostVisa").post(PostVisa);
