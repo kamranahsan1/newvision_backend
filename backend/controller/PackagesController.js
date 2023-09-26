@@ -3,6 +3,7 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Packages = require("../models/Packages");
 const Category = require("../models/Category");
 const { upload } = require("../upload");
+const { generateUniqueSlug } = require("../utils/Functions");
 
 const getPackages = catchAsyncErrors(async (req, res, next) => {
   let { category } = req.query;
@@ -64,21 +65,34 @@ const CreatePackage = catchAsyncErrors(async (req, res, next) => {
     countryCode,
     status,
   } = req.body;
-  const uploadedFile = req.files.mainImage;
+  const inclusionsArray = inclusionsList.split("\n").map((item) => item.trim());
+  const attractionsArray = attractions.split("\n").map((item) => item.trim());
+
+  uploadedFile = req.files.mainImage;
   await upload(uploadedFile);
+
+  let slug = generateUniqueSlug(name);
+  const existingPackage = await Packages.findOne({ slug });
+
+  if (existingPackage) {
+    slug = slug + "_" + existingPackage._id;
+  }
 
   const data = await Packages.create({
     name: name,
+    slug: slug,
     description: description,
-    inclusionsList: inclusionsList,
-    attractions: attractions,
+    inclusionsList: inclusionsArray,
+    attractions: attractionsArray,
     category: category,
     featured: featured,
     country: country,
     countryCode: countryCode,
     status: status,
+    slug: slug,
     mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`,
   });
+
   res.status(200).json({
     success: true,
     data,
@@ -96,7 +110,12 @@ const editPackage = catchAsyncErrors(async (req, res, next) => {
     country,
     countryCode,
     status,
+    previousimage,
   } = req.body;
+
+  const inclusionsArray = inclusionsList.split("\n").map((item) => item.trim());
+  const attractionsArray = attractions.split("\n").map((item) => item.trim());
+
   let imageroute = previousimage;
   if (req.files?.mainImage) {
     const uploadedFile = req.files.mainImage;
@@ -104,17 +123,25 @@ const editPackage = catchAsyncErrors(async (req, res, next) => {
     await upload(uploadedFile);
   }
 
-  const data = await Packages.findByIdAndUpdate({
+  let slug = generateUniqueSlug(name);
+  const existingPackage = await Packages.findOne({ slug });
+
+  if (existingPackage) {
+    slug = slug + "_" + existingPackage._id;
+  }
+
+  const data = await Packages.findByIdAndUpdate(req.params.id, {
     name: name,
+    slug: slug,
     description: description,
-    inclusionsList: inclusionsList,
-    attractions: attractions,
+    inclusionsList: inclusionsArray,
+    attractions: attractionsArray,
     category: category,
     featured: featured,
     country: country,
     countryCode: countryCode,
     status: status,
-    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`,
+    mainImage: imageroute,
   });
   res.status(200).json({
     success: true,

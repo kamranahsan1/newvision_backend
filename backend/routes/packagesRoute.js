@@ -6,6 +6,7 @@ const {
   DeletePackage,
   SinglePackage,
   getTourBySlug,
+  editPackage,
 } = require("../controller/PackagesController");
 const {
   PostCategory,
@@ -17,6 +18,7 @@ const router = express.Router();
 router.route("/api/getTourBySlug/:slug").get(getTourBySlug);
 router.route("/api/packages").get(getAllPackages);
 router.route("/api/CreatePackage").post(CreatePackage);
+router.route("/api/editPackage/:id").post(editPackage);
 router.route("/api/categories").get(getCategories);
 router.route("/api/SinglePackage/:id").get(SinglePackage);
 router.route("/api/SingleCategory/:id").get(SingleCategory);

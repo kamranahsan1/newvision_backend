@@ -24,7 +24,7 @@ const navConfig = [
   {
     title: 'Categories',
     path: '/dashboard/categories',
-    icon: icon('ic_user'),
+    icon: icon('ic_category'),
   },
   {
     title: 'Contact',
@@ -32,19 +32,19 @@ const navConfig = [
     icon: icon('ic_user'),
   },
   {
-    title: 'Package',
+    title: 'Packages',
     path: '/dashboard/package',
-    icon: icon('ic_user'),
+    icon: icon('ic_packages'),
   },
   {
     title: 'Subscriber',
     path: '/dashboard/subscriber',
-    icon: icon('ic_user'),
+    icon: icon('ic_bell'),
   },
   {
     title: 'Tours',
     path: '/dashboard/tours',
-    icon: icon('ic_user'),
+    icon: icon('ic_tour'),
   },
   {
     title: 'Visa Categories',
@@ -54,7 +54,7 @@ const navConfig = [
   {
     title: 'Visas',
     path: '/dashboard/visas',
-    icon: icon('ic_cart'),
+    icon: icon('ic_visa'),
   },
   // {
   //   title: 'blog',

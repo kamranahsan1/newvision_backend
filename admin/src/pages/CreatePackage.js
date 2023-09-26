@@ -17,6 +17,7 @@ const CreatePackage = () => {
 
   const [formValues, setFormValues] = useState({
     name: '',
+    slug: '',
     description: '',
     inclusionsList: '',
     price: '',
@@ -33,8 +34,19 @@ const CreatePackage = () => {
   const onSelectFileProfile = (e) => {
     setmainImage(e.target.files[0]);
   };
-  const { name, description, inclusionsList, attractions, category, featured, country, errors, countryCode, status } =
-    formValues;
+  const {
+    name,
+    slug,
+    description,
+    inclusionsList,
+    attractions,
+    category,
+    featured,
+    country,
+    errors,
+    countryCode,
+    status,
+  } = formValues;
 
   const handlePassportNumberChange = (e) => {
     const newValue = e.target.value;
@@ -84,6 +96,16 @@ const CreatePackage = () => {
       try {
         const formData = new FormData();
         formData.append('name', name);
+        formData.append(
+          'slug',
+          name
+            .toString()
+            .toLowerCase()
+            .replace(/\s+/g, '-')
+            .replace(/[^a-z0-9-]/g, '')
+            .replace(/-+/g, '-')
+            .slice(0, 50)
+        );
         formData.append('description', description);
         formData.append('inclusionsList', inclusionsList);
         formData.append('attractions', attractions);
@@ -139,64 +161,22 @@ const CreatePackage = () => {
                   </Form.Group>
                 </div>
                 <div className="col-sm-6">
-                  {/*
-                  <Form.Group controlId="validationCustom05">
-                    <Form.Label>Country</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="country"
-                      placeholder="country"
-                      onChange={handleChange}
-                      value={country}
-                      required
-                    />
-                    <Form.Control.Feedback type="invalid">Please provide a valid country.</Form.Control.Feedback>
-                  </Form.Group>
-                  */}
                   <Form.Group controlId="validationCustom05">
                     <Form.Label>Country</Form.Label>
                     <Form.Select name="country" value={country} onChange={handleChange} required>
+                      <option value="">Select Country</option>
                       {Country.map((item, i) => {
                         return <option value={item.name}>{item.name}</option>;
                       })}
                     </Form.Select>
-                    <Form.Control.Feedback type="invalid">Please provide a valid category.</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid">Please provide a valid Country.</Form.Control.Feedback>
                   </Form.Group>
                 </div>
-
-                {/* <div className="col-sm-6">
-                  <Form.Group controlId="validationCustom05">
-                    <Form.Label>category</Form.Label>
-                    <Form.Control
-                      name="category"
-                      type="text"
-                      placeholder="category"
-                      value={category}
-                      onChange={handleChange}
-                      required
-                    />
-                    <Form.Control.Feedback type="invalid">Please provide a valid category.</Form.Control.Feedback>
-                  </Form.Group>
-                </div> */}
-                {/* <div className="col-sm-6">
-                  <Form.Group controlId="validationCustom05">
-                    <Form.Label>Featured</Form.Label>
-                    <Form.Control
-                      name="Featured"
-                      type="text"
-                      placeholder="Featured"
-                      value={Featured}
-                      onChange={handleChange}
-                      required
-                    />
-                    <Form.Control.Feedback type="invalid">Please provide a valid Featured.</Form.Control.Feedback>
-                  </Form.Group>
-                </div> */}
-
                 <div className="col-sm-6">
                   <Form.Group controlId="validationCustom05">
                     <Form.Label>Status</Form.Label>
                     <Form.Select name="status" value={status} onChange={handleChange} required>
+                      <option value="">Select Status</option>
                       <option value="1">Active</option>
                       <option value="0">Not Active</option>
                     </Form.Select>
@@ -204,11 +184,11 @@ const CreatePackage = () => {
                     <Form.Control.Feedback type="invalid">Please provide a valid status.</Form.Control.Feedback>
                   </Form.Group>
                 </div>
-
                 <div className="col-sm-6">
                   <Form.Group controlId="validationCustom05">
                     <Form.Label>Category</Form.Label>
                     <Form.Select name="category" value={category} onChange={handleChange} required>
+                      <option value="">Select a category</option>
                       {Categories.map((item, i) => {
                         return <option value={item._id}>{item.name}</option>;
                       })}
@@ -234,87 +214,13 @@ const CreatePackage = () => {
                     <Form.Control onChange={onSelectFileProfile} type="file" required />
                     <Form.Control.Feedback type="invalid">'Please provide a valid Main Image'</Form.Control.Feedback>
                   </Form.Group>
-                  {/* {PassportPicture && (
-                      <>
-                        <img src={preview} className="PreviewImage" alt="" />
-                      </>
-                    )} */}
                 </div>
-                {/* <div className="col-sm-6">
-                <Form.Group controlId="validationCustom05">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control
-                    value={state.Password}
-                    onChange={handlePasswordChange}
-                    name="price"
-                    type="text"
-                    placeholder="Password"
-                    required
-                  />
-                  <Form.Control.Feedback type="invalid">Please provide a valid Password.</Form.Control.Feedback>
-                  {passwordError && (
-                    <div className="error-message1" style={{ color: '#fff' }}>
-                      {passwordError}
-                    </div>
-                  )}
-                </Form.Group>
-              </div>
-
-              <div className="col-sm-6">
-                <Form.Group controlId="validationCustom05">
-                  <Form.Label>Confirm Password</Form.Label>
-                  <Form.Control
-                    value={state.ConfirmPassword}
-                    onChange={handleConfirmPasswordChange}
-                    name="price"
-                    type="text"
-                    placeholder="Confirm Password"
-                    required
-                  />
-                  <Form.Control.Feedback type="invalid">Please provide a valid Password.</Form.Control.Feedback>
-                  {confirmPasswordError && (
-                    <div className="error-message1" style={{ color: '#fff' }}>
-                      {confirmPasswordError}
-                    </div>
-                  )}
-                </Form.Group>
-              </div>
-
-              <div className="col-sm-6">
-                <Form.Group controlId="validationCustom05">
-                  <Form.Label>Profile Picture</Form.Label>
-                  <Form.Control onChange={onSelectFileProfile} type="file" required />
-                  <Form.Control.Feedback type="invalid">
-                    Please provide a valid Profile Picture.
-                  </Form.Control.Feedback>
-                </Form.Group>
-                {PassportPicture && (
-                    <>
-                      <img src={preview} className="PreviewImage" alt="" />
-                    </>
-                  )}
-              </div> */}
-
-                {/* <div className="col-sm-6">
-                <Form.Group controlId="validationCustom05">
-                  <Form.Label>Passport Picture</Form.Label>
-                  <Form.Control onChange={onSelectFilePassport} type="file" />
-                  <Form.Control.Feedback type="invalid">
-                    Please provide a valid Passport Picture.
-                  </Form.Control.Feedback>
-                </Form.Group>
-                {PassportPicture && (
-                  <div>
-                    <img src={preview1} className="PreviewImage" alt="" />
-                    <i className="fa fa-times" onClick={removeImagePreview}></i>
-                  </div>
-                )}
-              </div> */}
                 <div className="col-sm-12">
                   <Form.Group controlId="validationCustom04">
-                    <Form.Label>Attractions(for points seperate line from $ Sign)</Form.Label>
+                    <Form.Label>Attractions(For points Use New Line)</Form.Label>
                     <Form.Control
-                      type="text"
+                      as="textarea"
+                      row={8}
                       placeholder="attractions"
                       value={attractions}
                       name="attractions"
@@ -326,9 +232,10 @@ const CreatePackage = () => {
                 </div>
                 <div className="col-sm-12">
                   <Form.Group controlId="validationCustom05">
-                    <Form.Label>Inclusions List(for points seperate line from $ Sign)</Form.Label>
+                    <Form.Label>Inclusions List(For points Use New Line)</Form.Label>
                     <Form.Control
-                      type="text"
+                      as="textarea"
+                      row={8}
                       value={inclusionsList}
                       name="inclusionsList"
                       placeholder="inclusionsList"

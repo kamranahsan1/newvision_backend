@@ -93,7 +93,6 @@ export default function ContactPage() {
   const [filterName, setFilterName] = useState('');
   const LoadCategories = async () => {
     const response = await axios.get(`${API_URL}/getContacts?resultPerPage=100`);
-    console.log(response.data.data);
     SetData(applySortFilter(response.data.data, getComparator(order, orderBy), filterName));
     setPage(response.data.data.length);
     SetAllData(applySortFilter(response.data.data, getComparator(order, orderBy), filterName));
@@ -165,7 +164,7 @@ export default function ContactPage() {
   return (
     <>
       <Helmet>
-        <title> User | New Vision </title>
+        <title> Customer Queries | New Vision </title>
       </Helmet>
 
       <Container>
@@ -173,9 +172,6 @@ export default function ContactPage() {
           <Typography variant="h4" gutterBottom>
             Contact
           </Typography>
-          {/* <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            New Contact
-          </Button> */}
         </Stack>
 
         <Card>
@@ -218,16 +214,6 @@ export default function ContactPage() {
 
                           <TableCell align="left">{reason}</TableCell>
                           <TableCell align="left">{message}</TableCell>
-
-                          {/* <TableCell align="left">
-                            <Label color={(status === 'banned' && 'error') || 'success'}>{sentenceCase(status)}</Label>
-                          </TableCell> */}
-
-                          <TableCell align="right">
-                            <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
-                              <Iconify icon={'eva:more-vertical-fill'} />
-                            </IconButton>
-                          </TableCell>
                         </TableRow>
                       );
                     })}
