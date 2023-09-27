@@ -19,9 +19,9 @@ const upload = async (uploadedFile) => {
     await new Promise((resolve, reject) => {
       uploadedFile.mv(uploadPath, (err) => {
         if (err) {
-          reject(err); // Reject with the error
+          reject(err);
         } else {
-          resolve(uploadPath); // Resolve with the file path
+          resolve(uploadPath);
         }
       });
     });
@@ -30,7 +30,7 @@ const upload = async (uploadedFile) => {
     return uploadPath;
   } catch (err) {
     console.error("Error uploading file:", err);
-    throw err; // Rethrow the error to handle it in the calling code
+    throw err;
   }
 };
 module.exports = {
