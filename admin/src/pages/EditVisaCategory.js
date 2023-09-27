@@ -28,6 +28,7 @@ const CreateVisaCategory = () => {
     console.log(response.data.data);
     setFormValues({
       name: response.data.data.name,
+      isNavigation: response.data.data.isNavigation,
       status: response.data.data.status,
       slug: response.data.data.slug,
       description: response.data.data.description,
@@ -49,6 +50,7 @@ const CreateVisaCategory = () => {
   };
   const [formValues, setFormValues] = useState({
     name: '',
+    isNavigation: '',
     status: '',
     slug: '',
     description: '',
@@ -90,6 +92,7 @@ const CreateVisaCategory = () => {
         formData.append('slug', slug);
         formData.append('description', description);
         formData.append('previousimage', Data.mainImage);
+        formData.append('isNavigation', isNavigation);
         formData.append('mainImage', mainImage);
 
         console.log(formData);
@@ -153,6 +156,17 @@ const CreateVisaCategory = () => {
                   </Form.Group>
                 </div>
                 <div className="col-sm-6">
+                  <Form.Group controlId="validationCustom06">
+                    <Form.Label>Add in Navigation?</Form.Label>
+                    <Form.Select name="isNavigation" value={isNavigation} onChange={handleChange} required>
+                      <option value="">Select option</option>
+                      <option value="0">No</option>
+                      <option value="1">Yes</option>
+                    </Form.Select>
+                    <Form.Control.Feedback type="invalid">Please select an option.</Form.Control.Feedback>
+                  </Form.Group>
+                </div>
+                <div className="col-sm-6">
                   <Form.Group controlId="validationCustom04">
                     <Form.Label>Description</Form.Label>
                     <Form.Control
@@ -166,7 +180,7 @@ const CreateVisaCategory = () => {
                     <Form.Control.Feedback type="invalid"> Please provide a description</Form.Control.Feedback>
                   </Form.Group>
                 </div>
-                <div className="col-sm-12">
+                <div className="col-sm-6">
                   <Form.Group controlId="validationCustom05">
                     <Form.Label>Main Image</Form.Label>
                     <Form.Control onChange={onSelectFileProfile} type="file" />

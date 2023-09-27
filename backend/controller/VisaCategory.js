@@ -20,7 +20,15 @@ const SingleVisa = catchAsyncErrors(async (req, res, next) => {
   });
 });
 const EditVisaCategory = catchAsyncErrors(async (req, res, next) => {
-  const { description, name, parent, slug, status, previousimage } = req.body;
+  const {
+    description,
+    name,
+    parent,
+    slug,
+    status,
+    previousimage,
+    isNavigation,
+  } = req.body;
   let imageroute = previousimage;
   console.log(req.files);
   if (req.files?.mainImage) {
@@ -31,13 +39,6 @@ const EditVisaCategory = catchAsyncErrors(async (req, res, next) => {
     imageroute = `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`;
   }
   try {
-    //   console.log(name);
-    //   const newContact = new VisaCategory({
-    //     name,
-    //     slug,
-    //     description,
-    //     viewType
-    //   });
     const data = await VisaCategory.findByIdAndUpdate(
       req.params.id,
       {
@@ -45,6 +46,7 @@ const EditVisaCategory = catchAsyncErrors(async (req, res, next) => {
         slug: slug,
         status: status || 1,
         description: description,
+        isNavigation: isNavigation,
         name: name,
         mainImage: imageroute,
       },
@@ -82,20 +84,12 @@ const getVisas = catchAsyncErrors(async (req, res, next) => {
 });
 const PostVisaCategory = catchAsyncErrors(async (req, res, next) => {
   const uploadedFile = req.files.mainImage;
-  console.log(
-    `${req.protocol}"//"${req.hostname}:5000'/uploads/'${uploadedFile.name}`
-  );
-  const { description, name, parent, slug, status } = req.body;
-  // const uploadPath = __dirname + `\\uploads\\` + uploadedFile.name;
+  const { description, name, parent, slug, status, isNavigation } = req.body;
 
-  // uploadedFile.mv(uploadPath, (err) => {
-  //   if (err) {
-  //     return res.status(500).send(err);
-  //   }
-  // });
   await upload(uploadedFile);
   const data = await VisaCategory.create({
     parent: parent,
+    isNavigation: isNavigation,
     slug: slug,
     status: status,
     description: description,
@@ -271,6 +265,7 @@ const SingleVisaSlug = catchAsyncErrors(async (req, res, next) => {
     data,
   });
 });
+
 module.exports = {
   getVisaCategories,
   PostVisaCategory,

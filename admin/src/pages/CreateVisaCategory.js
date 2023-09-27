@@ -27,12 +27,13 @@ const CreateVisaCategory = () => {
   };
   const [formValues, setFormValues] = useState({
     name: '',
+    isNavigation: '',
     status: '',
     slug: '',
     description: '',
     errors: {},
   });
-  const { name, status, slug, description } = formValues;
+  const { name, status, slug, description, isNavigation } = formValues;
 
   const handlePassportNumberChange = (e) => {
     const newValue = e.target.value;
@@ -66,9 +67,8 @@ const CreateVisaCategory = () => {
         formData.append('status', status);
         formData.append('slug', slug);
         formData.append('description', description);
+        formData.append('isNavigation', isNavigation);
         formData.append('mainImage', mainImage);
-
-        console.log(formData);
         const res = await axios.post(`${API_URL}/PostVisaCategory`, formData);
         toast.success(res.data.message);
         navigate('/dashboard/visacategories');
@@ -121,6 +121,7 @@ const CreateVisaCategory = () => {
                   <Form.Group controlId="validationCustom05">
                     <Form.Label>Status</Form.Label>
                     <Form.Select name="status" value={status} onChange={handleChange} required>
+                      <option value="">Select status</option>
                       <option value="1">Active</option>
                       <option value="0">NotActive</option>
                     </Form.Select>
@@ -142,7 +143,18 @@ const CreateVisaCategory = () => {
                     <Form.Control.Feedback type="invalid"> Please provide a description</Form.Control.Feedback>
                   </Form.Group>
                 </div>
-                <div className="col-sm-12">
+                <div className="col-sm-6">
+                  <Form.Group controlId="validationCustom06">
+                    <Form.Label>Add in Navigation?</Form.Label>
+                    <Form.Select name="isNavigation" value={isNavigation} onChange={handleChange} required>
+                      <option value="">Select option</option>
+                      <option value="0">No</option>
+                      <option value="1">Yes</option>
+                    </Form.Select>
+                    <Form.Control.Feedback type="invalid">Please select an option.</Form.Control.Feedback>
+                  </Form.Group>
+                </div>
+                <div className="col-sm-6">
                   <Form.Group controlId="validationCustom05">
                     <Form.Label>Main Image</Form.Label>
                     <Form.Control onChange={onSelectFileProfile} type="file" required />
