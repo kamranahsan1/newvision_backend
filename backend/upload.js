@@ -1,5 +1,6 @@
 const upload = async (uploadedFile) => {
   const uploadPath = __dirname + `\\uploads\\` + uploadedFile.name;
+  console.log(uploadPath);
   uploadedFile.mv(uploadPath, (err) => {
     if (err) {
       return err;
@@ -9,5 +10,5 @@ const upload = async (uploadedFile) => {
   });
 };
 module.exports = {
-  upload
+  upload,
 };
