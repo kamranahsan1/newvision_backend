@@ -30,12 +30,8 @@ const EditVisaCategory = catchAsyncErrors(async (req, res, next) => {
     isNavigation,
   } = req.body;
   let imageroute = previousimage;
-  console.log(req.files);
   if (req.files?.mainImage) {
     const uploadedFile = req.files.mainImage;
-    console.log(
-      `${req.protocol}"//"${req.hostname}:5000'/uploads/'${uploadedFile.name}`
-    );
     imageroute = `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`;
   }
   try {

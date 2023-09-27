@@ -21,6 +21,11 @@ const VisaCategorySchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  isNavigation: {
+    type: Number,
+    enum: [0, 1],
+    default: 0,
+  },
   status: {
     type: Number,
     enum: [0, 1],
