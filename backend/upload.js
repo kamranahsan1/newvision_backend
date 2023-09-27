@@ -12,7 +12,7 @@ const upload = async (uploadedFile) => {
 };
 */
 const upload = async (uploadedFile) => {
-  const uploadPath = __dirname + `\\upload\\` + uploadedFile.name;
+  const uploadPath = __dirname + `\\uploads\\` + uploadedFile.name;
   console.log(uploadPath);
 
   try {
