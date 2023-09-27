@@ -56,7 +56,7 @@ const CreateVisaCategory = () => {
     description: '',
     errors: {},
   });
-  const { name, status, slug, description } = formValues;
+  const { name, status, slug, description, isNavigation } = formValues;
 
   const handlePassportNumberChange = (e) => {
     const newValue = e.target.value;
