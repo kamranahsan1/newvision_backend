@@ -69,7 +69,8 @@ const CreatePackage = catchAsyncErrors(async (req, res, next) => {
   const attractionsArray = attractions.split("\n").map((item) => item.trim());
 
   uploadedFile = req.files.mainImage;
-  await upload(uploadedFile);
+const ImageName = generateFileName();
+  await upload(uploadedFile, ImageName);
 
   let slug = generateUniqueSlug(name);
   const existingPackage = await Packages.findOne({ slug });
@@ -90,7 +91,9 @@ const CreatePackage = catchAsyncErrors(async (req, res, next) => {
     countryCode: countryCode,
     status: status,
     slug: slug,
-    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`,
+   mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${ImageName}.${
+      uploadedFile.mimetype.split("/")[1]
+    }`,
   });
 
   res.status(200).json({
@@ -120,7 +123,8 @@ const editPackage = catchAsyncErrors(async (req, res, next) => {
   if (req.files?.mainImage) {
     const uploadedFile = req.files.mainImage;
     imageroute = `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`;
-    await upload(uploadedFile);
+  const ImageName = generateFileName();
+  await upload(uploadedFile, ImageName);
   }
 
   let slug = generateUniqueSlug(name);

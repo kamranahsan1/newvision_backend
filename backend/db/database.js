@@ -4,7 +4,7 @@ dotenv.config({ path: "backend/config/config.env" });
 const connectDatabase = () => {
   console.log(process.env.DB_URI);
   mongoose
-    .connect(process.env.DB_URI, {
+    .connect("mongodb://kamranahsan75:N0hE0n3uaVKRIDvB@ac-x5j8ovy-shard-00-00.3tkgsnk.mongodb.net:27017,ac-x5j8ovy-shard-00-01.3tkgsnk.mongodb.net:27017,ac-x5j8ovy-shard-00-02.3tkgsnk.mongodb.net:27017/?replicaSet=atlas-tw717k-shard-0&ssl=true&authSource=admin", {
       useNewUrlParser: true,
       useUnifiedTopology: true
     })

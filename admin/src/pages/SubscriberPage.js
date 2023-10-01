@@ -17,7 +17,7 @@ import {
   TableRow,
   MenuItem,
   TableBody,
-  TableCell,
+TableCell,
   Container,
   Typography,
   IconButton,

@@ -59,7 +59,8 @@ const CreatePackage = catchAsyncErrors(async (req, res, next) => {
     status,
   } = req.body;
   const uploadedFile = req.files.mainImage;
-  await upload(uploadedFile);
+const ImageName = generateFileName();
+  await upload(uploadedFile, ImageName);
 
   const data = await Packages.create({
     name: name,
@@ -71,7 +72,9 @@ const CreatePackage = catchAsyncErrors(async (req, res, next) => {
     country: country,
     countryCode: countryCode,
     status: status,
-    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`,
+   mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${ImageName}.${
+      uploadedFile.mimetype.split("/")[1]
+    }`,
   });
   res.status(200).json({
     success: true,

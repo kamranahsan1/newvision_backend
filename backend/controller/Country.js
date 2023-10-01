@@ -6,14 +6,14 @@ const DeleteCountry = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: "User Deleted Successfully",
+    message: "User Deleted Successfully"
   });
 });
 const SingleCountry = catchAsyncErrors(async (req, res, next) => {
   const data = await Country.findById(req.params.id);
   res.status(200).json({
     success: true,
-    data,
+    data
   });
 });
 const getCountries = catchAsyncErrors(async (req, res, next) => {
@@ -50,12 +50,12 @@ const EditCountry = catchAsyncErrors(async (req, res, next) => {
         name: name,
         description: description,
         featured: featured,
-        mainImage: imageroute,
+        mainImage: imageroute
       },
       {
         new: true,
         runValidators: true,
-        useFindAndModify: false,
+        useFindAndModify: false
       }
     );
 
@@ -73,27 +73,30 @@ const createCountry = catchAsyncErrors(async (req, res, next) => {
   if (existingCountry) {
     return res.status(400).json({
       success: false,
-      message: "Country with the same name already exists.",
+      message: "Country with the same name already exists."
     });
   }
   const uploadedFile = req.files.mainImage;
-  await upload(uploadedFile);
+  const ImageName = generateFileName();
+  await upload(uploadedFile, ImageName);
   const data = await Country.create({
     name: name,
     description,
     featured,
-    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`,
+    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${ImageName}.${
+      uploadedFile.mimetype.split("/")[1]
+    }`
   });
   res.status(200).json({
     success: true,
-    data,
+    data
   });
 });
 const getAllCountries = catchAsyncErrors(async (req, res, next) => {
   const data = await Country.find({ status: 1 });
   res.status(200).json({
     success: true,
-    data,
+    data
   });
 });
 module.exports = {
@@ -102,5 +105,5 @@ module.exports = {
   SingleCountry,
   EditCountry,
   DeleteCountry,
-  getAllCountries,
+  getAllCountries
 };

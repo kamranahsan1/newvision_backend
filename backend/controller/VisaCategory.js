@@ -4,19 +4,19 @@ const VisaSchema = require("../models/Visa");
 const ApiFeatures = require("../utils/ApiFeatures");
 const Visa = require("../models/Visa");
 const { upload } = require("../upload");
-
+const { generateFileName } = require("../utils/FileNameGeneration");
 const SingleVisaCategory = catchAsyncErrors(async (req, res, next) => {
   const data = await VisaCategory.findById(req.params.id);
   res.status(200).json({
     success: true,
-    data,
+    data
   });
 });
 const SingleVisa = catchAsyncErrors(async (req, res, next) => {
   const data = await VisaSchema.findById(req.params.id);
   res.status(200).json({
     success: true,
-    data,
+    data
   });
 });
 const EditVisaCategory = catchAsyncErrors(async (req, res, next) => {
@@ -27,12 +27,13 @@ const EditVisaCategory = catchAsyncErrors(async (req, res, next) => {
     slug,
     status,
     previousimage,
-    isNavigation,
+    isNavigation
   } = req.body;
   let imageroute = previousimage;
   if (req.files?.mainImage) {
+    const ImageName = generateFileName();
     const uploadedFile = req.files.mainImage;
-    imageroute = `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`;
+    imageroute = `${req.protocol}://${req.hostname}:5000/uploads/${ImageName}`;
   }
   try {
     const data = await VisaCategory.findByIdAndUpdate(
@@ -44,12 +45,12 @@ const EditVisaCategory = catchAsyncErrors(async (req, res, next) => {
         description: description,
         isNavigation: isNavigation,
         name: name,
-        mainImage: imageroute,
+        mainImage: imageroute
       },
       {
         new: true,
         runValidators: true,
-        useFindAndModify: false,
+        useFindAndModify: false
       }
     );
 
@@ -75,14 +76,15 @@ const getVisas = catchAsyncErrors(async (req, res, next) => {
   const data = await Visa.find().populate("category").populate("country");
   res.status(200).json({
     success: true,
-    data,
+    data
   });
 });
 const PostVisaCategory = catchAsyncErrors(async (req, res, next) => {
   const uploadedFile = req.files.mainImage;
+  console.log(uploadedFile);
   const { description, name, parent, slug, status, isNavigation } = req.body;
-
-  await upload(uploadedFile);
+  const ImageName = generateFileName();
+  await upload(uploadedFile, ImageName);
   const data = await VisaCategory.create({
     parent: parent,
     isNavigation: isNavigation,
@@ -90,11 +92,13 @@ const PostVisaCategory = catchAsyncErrors(async (req, res, next) => {
     status: status,
     description: description,
     name: name,
-    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`,
+    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${ImageName}.${
+      uploadedFile.mimetype.split("/")[1]
+    }`
   });
   res.status(200).json({
     success: true,
-    data,
+    data
   });
 
   // res.status(200).json({
@@ -106,7 +110,7 @@ const DeleteVisaCategory = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: "User Deleted Successfully",
+    message: "User Deleted Successfully"
   });
 });
 const DeleteVisa = catchAsyncErrors(async (req, res, next) => {
@@ -114,7 +118,7 @@ const DeleteVisa = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: "User Deleted Successfully",
+    message: "User Deleted Successfully"
   });
 });
 const PostVisa = catchAsyncErrors(async (req, res, next) => {
@@ -125,13 +129,14 @@ const PostVisa = catchAsyncErrors(async (req, res, next) => {
     country,
     type,
     description,
-    name,
+    name
   } = req.body;
   let data = {};
 
   if (req.files && req.files.mainImage !== null) {
     const uploadedFile = req.files.mainImage;
-    await upload(uploadedFile);
+  const ImageName = generateFileName();
+  await upload(uploadedFile, ImageName);
     data = {
       NumberOfStay: NumberOfStay,
       NumberOfStayName: NumberOfStayName,
@@ -140,7 +145,9 @@ const PostVisa = catchAsyncErrors(async (req, res, next) => {
       country: country,
       description: description,
       name: name,
-      mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`,
+     mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${ImageName}.${
+      uploadedFile.mimetype.split("/")[1]
+    }`
     };
   } else {
     data = {
@@ -149,7 +156,7 @@ const PostVisa = catchAsyncErrors(async (req, res, next) => {
       category: category,
       country: country,
       description: description,
-      name: name,
+      name: name
     };
   }
 
@@ -157,7 +164,7 @@ const PostVisa = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    data: createdData,
+    data: createdData
   });
 });
 const EditVisa = catchAsyncErrors(async (req, res, next) => {
@@ -170,12 +177,13 @@ const EditVisa = catchAsyncErrors(async (req, res, next) => {
     description,
     type,
     name,
-    previousimage,
+    previousimage
   } = req.body;
   let imageroute = previousimage;
   if (req.files?.mainImage) {
     const uploadedFile = req.files.mainImage;
-    await upload(uploadedFile);
+  const ImageName = generateFileName();
+  await upload(uploadedFile, ImageName);
     console.log(
       `${req.protocol}"//"${req.hostname}:5000'/uploads/'${uploadedFile.name}`
     );
@@ -193,12 +201,12 @@ const EditVisa = catchAsyncErrors(async (req, res, next) => {
         country: country,
         description: description,
         name: name,
-        mainImage: imageroute,
+        mainImage: imageroute
       },
       {
         new: true,
         runValidators: true,
-        useFindAndModify: false,
+        useFindAndModify: false
       }
     );
 
@@ -245,7 +253,7 @@ const getAllVisas = catchAsyncErrors(async (req, res, next) => {
     status: true,
     visas,
     visaCount,
-    resultPerPage,
+    resultPerPage
   });
 });
 const SingleVisaSlug = catchAsyncErrors(async (req, res, next) => {
@@ -253,12 +261,12 @@ const SingleVisaSlug = catchAsyncErrors(async (req, res, next) => {
   if (!data) {
     res.status(404).json({
       success: false,
-      message: "Visa Category Not Found!",
+      message: "Visa Category Not Found!"
     });
   }
   res.status(200).json({
     success: true,
-    data,
+    data
   });
 });
 
@@ -275,5 +283,5 @@ module.exports = {
   SingleVisa,
   EditVisa,
   getAllVisas,
-  SingleVisaSlug,
+  SingleVisaSlug
 };

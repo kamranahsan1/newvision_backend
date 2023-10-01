@@ -1,31 +1,68 @@
 import { useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 // @mui
 import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // components
-import Iconify from '../../../components/iconify';
 
+import { ToastContainer, toast } from 'react-toastify';
+
+import axios from 'axios';
+
+import Iconify from '../../../components/iconify';
 // ----------------------------------------------------------------------
 
 export default function LoginForm() {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
-
-  const handleClick = () => {
-    navigate('/dashboard', { replace: true });
+  const [formValues, setFormValues] = useState({
+    email: '',
+    pass: '',
+  });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
+  };
+  const handleClick = async () => {
+    try {
+      const res = await axios.post(`http://localhost:5000/api/loginUser`, {
+        email: formValues.email,
+        password: formValues.password,
+      });
+      console.log(res);
+      toast.success(res.data.message);
+      navigate('/dashboard', { replace: true });
+    } catch (error) {
+      console.log(error);
+      if (error.message === 'Request failed with status code 401') {
+        toast.error('Invalid Credentials');
+      }
+      toast.error(error || 'error occured');
+      console.log(error);
+    }
   };
 
   return (
     <>
       <Stack spacing={3}>
-        <TextField name="email" label="Email address" />
+        <TextField name="email" label="Email address" value={formValues.email} onChange={handleChange} />
+        {/* <Form.Group controlId="validationCustom03">
+          <Form.Label>Name</Form.Label>
+          <Form.Control name="name" type="text" placeholder="Name" value={name} onChange={handleChange} required />
+          <Form.Control.Feedback type="invalid">'Please provide Name.'</Form.Control.Feedback>
+        </Form.Group> */}
 
         <TextField
           name="password"
           label="Password"
           type={showPassword ? 'text' : 'password'}
+          value={formValues.password}
+          onChange={handleChange}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">

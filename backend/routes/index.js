@@ -7,8 +7,10 @@ const Contact = require("./Contact");
 const tour = require("./Tour");
 const packageRoute = require("./packagesRoute");
 const SubscriberRoutes = require("./Subscriber");
+const userroutes=require("./userroutes")
 
 router.use(SubscriberRoutes);
+router.use(userroutes);
 router.use(packageRoute);
 router.use(countryRoute);
 router.use(visacategoryRoute);

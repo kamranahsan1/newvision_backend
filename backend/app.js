@@ -3,13 +3,14 @@ const api = require(`./routes`);
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
+const errorMiddleware = require("./middleware/catchAsyncErrors");
 const router = require("./routes/index");
 const cookieParser = require("cookie-parser");
 
 const app = express();
 var option = {
   origin: "*",
-  optionsSuccessStatus: 200,
+  optionsSuccessStatus: 200
 };
 app.use(express.json());
 app.use(cors());
@@ -20,7 +21,7 @@ app.use(fileUpload());
 
 router.get("/uploads/:image", (req, res) => {
   var image = req.params.image;
-  res.sendFile(__dirname + "/upload/" + image, (err) => {
+  res.sendFile(__dirname + "/uploads/" + image, (err) => {
     if (err) {
       res.status(500).send("Internal Server Error " + err);
     }
@@ -32,4 +33,5 @@ router.get("/", (req, res) => {
 });
 
 app.use(router);
+app.use(errorMiddleware);
 module.exports = app;

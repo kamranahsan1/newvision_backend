@@ -11,8 +11,14 @@ const upload = async (uploadedFile) => {
   });
 };
 */
-const upload = async (uploadedFile) => {
-  const uploadPath = __dirname + `\\uploads\\` + uploadedFile.name;
+const { generateFileName } = require("./utils/FileNameGeneration");
+const upload = async (uploadedFile, ImageName) => {
+  const uploadPath =
+    __dirname +
+    `\\uploads\\` +
+    ImageName +
+    "." +
+    uploadedFile.mimetype.split("/")[1];
   console.log(uploadPath);
 
   try {
@@ -34,5 +40,5 @@ const upload = async (uploadedFile) => {
   }
 };
 module.exports = {
-  upload,
+  upload
 };

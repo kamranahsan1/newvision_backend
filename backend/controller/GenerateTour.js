@@ -12,7 +12,8 @@ const EditTour = catchAsyncErrors(async (req, res, next) => {
   if (req.files?.mainImage) {
     const uploadedFile = req.files.mainImage;
     imageroute = `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`;
-    await upload(uploadedFile);
+  const ImageName = generateFileName();
+  await upload(uploadedFile, ImageName);
   }
   try {
     //   console.log(name);
@@ -64,7 +65,8 @@ const DeleteTours = catchAsyncErrors(async (req, res, next) => {
 const CreateTour = catchAsyncErrors(async (req, res, next) => {
   const { time, Day, type, country, description, name } = req.body;
   const uploadedFile = req.files.mainImage;
-  await upload(uploadedFile);
+const ImageName = generateFileName();
+  await upload(uploadedFile, ImageName);
   const data = await Tours.create({
     time: time,
     Day: Day,
@@ -72,7 +74,9 @@ const CreateTour = catchAsyncErrors(async (req, res, next) => {
     country: country,
     description: description,
     name: name,
-    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`,
+   mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${ImageName}.${
+      uploadedFile.mimetype.split("/")[1]
+    }`,
   });
   res.status(200).json({
     success: true,
