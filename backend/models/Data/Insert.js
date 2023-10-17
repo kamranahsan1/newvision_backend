@@ -465,6 +465,7 @@ const VisaData = [
 
 const insertData = async () => {
   try {
+    /*
     const UaeCount = await Packages.countDocuments({});
 
     if (UaeCount === 0) {
@@ -495,6 +496,8 @@ const insertData = async () => {
     // Insert visa data
     await Visa.insertMany(VisaData);
     console.log("Visas data inserted successfully");
+    */
+    //const Package = require("../Packages");
   } catch (error) {
     console.log("Error inserting demo data:", error);
   }

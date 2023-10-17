@@ -12,11 +12,13 @@ dotenv.config({ path: "backend/config/config.env" });
 connectDatabase();
 //insertCountry();
 //insertData();
+//insertData();
 /*
 TourInsert();
 TourInsert2();
 TourInsert3();
 */
+
 const server = app.listen(port, () => {
   console.log(
     `Server is working on http://${server.address().address}:${

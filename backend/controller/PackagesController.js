@@ -4,7 +4,7 @@ const Packages = require("../models/Packages");
 const Category = require("../models/Category");
 const { upload } = require("../upload");
 const { generateUniqueSlug } = require("../utils/Functions");
-
+const { generateFileName } = require("../utils/FileNameGeneration");
 const getPackages = catchAsyncErrors(async (req, res, next) => {
   let { category } = req.query;
   category = category || "Uae Packages";
@@ -69,7 +69,8 @@ const CreatePackage = catchAsyncErrors(async (req, res, next) => {
   const attractionsArray = attractions.split("\n").map((item) => item.trim());
 
   uploadedFile = req.files.mainImage;
-const ImageName = generateFileName();
+  const ImageName = generateFileName();
+
   await upload(uploadedFile, ImageName);
 
   let slug = generateUniqueSlug(name);
@@ -91,7 +92,7 @@ const ImageName = generateFileName();
     countryCode: countryCode,
     status: status,
     slug: slug,
-   mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${ImageName}.${
+    mainImage: `${req.protocol}://${req.hostname}:5000/uploads/${ImageName}.${
       uploadedFile.mimetype.split("/")[1]
     }`,
   });
@@ -123,8 +124,8 @@ const editPackage = catchAsyncErrors(async (req, res, next) => {
   if (req.files?.mainImage) {
     const uploadedFile = req.files.mainImage;
     imageroute = `${req.protocol}://${req.hostname}:5000/uploads/${uploadedFile.name}`;
-  const ImageName = generateFileName();
-  await upload(uploadedFile, ImageName);
+    const ImageName = generateFileName();
+    await upload(uploadedFile, ImageName);
   }
 
   let slug = generateUniqueSlug(name);

@@ -14,12 +14,35 @@ const saveContact = catchAsyncErrors(async (req, res, next) => {
       return res.status(400).json({ message: "Invalid email format" });
     }
 
+    const attachments = [];
+    if (req.files && req.files.attachments) {
+      const attachmentFiles = req.files.attachments;
+      attachmentFiles.forEach((file) => {
+        const attachment = {
+          filename: `${Date.now()}_${file.name}`,
+        };
+        attachments.push(attachment);
+        file.mv(
+          `${process.cwd()}/backend/attachments/${attachment.filename}`,
+          (err) => {
+            if (err) {
+              console.error("Error saving attachment:", err);
+              return res
+                .status(500)
+                .json({ message: "Failed to save attachment" });
+            }
+          }
+        );
+      });
+    }
+
     await ContactModel.create({
       name,
       email,
       phone,
       reason,
       message,
+      attachments,
     });
 
     res.status(200).json({ message: "Form data saved successfully" });
@@ -62,6 +85,7 @@ const saveSubscriber = catchAsyncErrors(async (req, res, next) => {
     res.status(500).json({ message: "Internal server error: " + error });
   }
 });
+
 const getContacts = catchAsyncErrors(async (req, res, next) => {
   const data = await ContactModel.find();
   res.status(200).json({

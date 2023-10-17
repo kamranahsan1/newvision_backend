@@ -1,4 +1,5 @@
 const Country = require("../Country");
+const City = require("../City");
 
 const CountryData = [
   {
@@ -281,10 +282,147 @@ const CountryData = [
   },
 ];
 
+const CitiesData = [
+  {
+    name: "Cape Town",
+    country: "650ee03d37f8a07bef51b83d",
+    status: 1,
+  },
+  {
+    name: "Muscat",
+    country: "650ee03d37f8a07bef51b850",
+    status: 1,
+  },
+  {
+    name: "Salalah",
+    country: "650ee03d37f8a07bef51b850",
+    status: 1,
+  },
+  {
+    name: "Mexico City",
+    country: "650ee03d37f8a07bef51b837",
+    status: 1,
+  },
+  {
+    name: "Karachi",
+    country: "650ee03d37f8a07bef51b85c",
+    status: 1,
+  },
+  {
+    name: "Lahore",
+    country: "650ee03d37f8a07bef51b85c",
+    status: 1,
+  },
+  {
+    name: "Jakarta",
+    country: "650ee03d37f8a07bef51b854",
+    status: 1,
+  },
+  {
+    name: "Kuala Lumpur's",
+    country: "650ee03d37f8a07bef51b858",
+    status: 1,
+  },
+  {
+    name: "Tokyo",
+    country: "650ee03d37f8a07bef51b859",
+    status: 1,
+  },
+  {
+    name: "Bankok",
+    country: "650ee03d37f8a07bef51b85a",
+    status: 1,
+  },
+  {
+    name: "Pattaya",
+    country: "650ee03d37f8a07bef51b85a",
+    status: 1,
+  },
+  {
+    name: "Istanbul",
+    country: "650ee03d37f8a07bef51b835",
+    status: 1,
+  },
+  {
+    name: "Lima",
+    country: "650ee03d37f8a07bef51b848",
+    status: 1,
+  },
+  {
+    name: "New York",
+    country: "650ee03d37f8a07bef51b82f",
+    status: 1,
+  },
+  {
+    name: "Washington",
+    country: "650ee03d37f8a07bef51b82f",
+    status: 1,
+  },
+  {
+    name: "Los Angeles",
+    country: "650ee03d37f8a07bef51b82f",
+    status: 1,
+  },
+  {
+    name: "Florida",
+    country: "650ee03d37f8a07bef51b82f",
+    status: 1,
+  },
+  {
+    name: "Santo Domingo",
+    country: "650ee03d37f8a07bef51b847",
+    status: 1,
+  },
+  {
+    name: "Colombia",
+    country: "650ee03d37f8a07bef51b84a",
+    status: 1,
+  },
+  {
+    name: "Madrid",
+    country: "650ee03d37f8a07bef51b834",
+    status: 1,
+  },
+  {
+    name: "Barcelona",
+    country: "650ee03d37f8a07bef51b834",
+    status: 1,
+  },
+  {
+    name: "Seoul",
+    country: "650ee03d37f8a07bef51b853",
+    status: 1,
+  },
+  {
+    name: "Rome",
+    country: "650ee03d37f8a07bef51b836",
+    status: 1,
+  },
+  {
+    name: "Milan",
+    country: "650ee03d37f8a07bef51b836",
+    status: 1,
+  },
+  {
+    name: "Paris",
+    country: "650ee03d37f8a07bef51b833",
+    status: 1,
+  },
+  {
+    name: "Lyon",
+    country: "650ee03d37f8a07bef51b833",
+    status: 1,
+  },
+];
+
 const insertCountry = async () => {
   try {
+    /*
     await Country.insertMany(CountryData);
     console.log("Country data inserted successfully");
+    */
+    await City.insertMany(CitiesData);
+    console.log("City data inserted successfully");
   } catch (error) {
     console.log("Error inserting demo data:", error);
   }
