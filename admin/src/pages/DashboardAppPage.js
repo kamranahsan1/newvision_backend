@@ -56,7 +56,7 @@ export default function DashboardAppPage() {
   return (
     <>
       <Helmet>
-        <title> Dashboard |New Vision </title>
+        <title> Dashboard | New Vision </title>
       </Helmet>
 
       <Container maxWidth="xl">

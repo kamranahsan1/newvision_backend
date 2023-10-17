@@ -118,7 +118,7 @@ const CreatePackage = () => {
         console.log(formData);
         const res = await axios.post(`${API_URL}/CreatePackage`, formData);
         toast.success('form submitted');
-        navigate('/dashboard/package');
+        navigate('/admin/dashboard/package');
       } catch (error) {
         toast.error(error.response.data.message.message || 'error occured');
         console.log(error);
@@ -202,8 +202,9 @@ const CreatePackage = () => {
                     <Form.Label>Featured</Form.Label>
                     <Form.Select value={featured} name="featured" onChange={handleChange} required>
                       <option value="">Select an option</option>
-                      <option value="1">Yes</option>
                       <option value="0">No</option>
+                      <option value="1">Yes</option>
+                      <option value="2">Hot Deals</option>
                     </Form.Select>
                     <Form.Control.Feedback type="invalid">Please select an option.</Form.Control.Feedback>
                   </Form.Group>

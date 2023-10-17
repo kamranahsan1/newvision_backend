@@ -17,7 +17,7 @@ import {
   TableRow,
   MenuItem,
   TableBody,
-TableCell,
+  TableCell,
   Container,
   Typography,
   IconButton,
@@ -161,13 +161,13 @@ export default function SubscriberPage() {
 
   const isNotFound = !Data.length && !!filterName;
   const NavigateToSubscriber = () => {
-    navigate('/dashboard/createsubscriber');
+    navigate('/admin/dashboard/createsubscriber');
   };
 
   return (
     <>
       <Helmet>
-        <title> User | New Vision </title>
+        <title> Subscriber | New Vision </title>
       </Helmet>
 
       <Container>

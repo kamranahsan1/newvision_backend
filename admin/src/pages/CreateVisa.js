@@ -93,7 +93,7 @@ const CreateVisa = () => {
         }
         const res = await axios.post(`${API_URL}/PostVisa`, formData);
         toast.success(res.data.message);
-        navigate('/dashboard/visas');
+        navigate('/admin/dashboard/visas');
       } catch (error) {
         toast.error(error.response.data.message.message || 'error occured');
         console.log(error);
@@ -106,8 +106,6 @@ const CreateVisa = () => {
         <div className="col-sm-6">
           <div className="registration">
             <Form noValidate validated={validated} onSubmit={handleSubmit}>
-              {/* <img src="/assets/logo.png" alt="" /> */}
-
               <div className="row">
                 <div className="col-sm-6">
                   <Form.Group controlId="validationCustom03">

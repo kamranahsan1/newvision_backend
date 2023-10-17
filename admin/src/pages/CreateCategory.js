@@ -65,10 +65,9 @@ const CreateCategory = () => {
         formData.append('slug', slug);
         formData.append('description', description);
         formData.append('viewType', viewType);
-        console.log(formData);
         const res = await axios.post(`${API_URL}/postcategory`, formData);
         toast.success(res.data.message);
-        navigate('/dashboard/categories');
+        navigate('/admin/dashboard/categories');
       } catch (error) {
         toast.error(error.response.data.message.message || 'error occured');
         console.log(error);
@@ -81,8 +80,6 @@ const CreateCategory = () => {
         <div className="col-sm-6">
           <div className="registration">
             <Form noValidate validated={validated} onSubmit={handleSubmit}>
-              {/* <img src="/assets/logo.png" alt="" /> */}
-
               <div className="row">
                 <div className="col-sm-6">
                   <Form.Group controlId="validationCustom03">

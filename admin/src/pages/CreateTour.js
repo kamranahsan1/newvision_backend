@@ -47,11 +47,7 @@ const CreateTour = () => {
   const handlePassportNumberChange = (e) => {
     const newValue = e.target.value;
     setPassportNumber(newValue);
-
-    // Define your passport number regular expression pattern
     const passportNumberPattern = /^[A-Z0-9]{6,15}$/;
-
-    // Test if the input matches the pattern
     const isValid = passportNumberPattern.test(newValue);
     setIsValidPassport(isValid);
   };
@@ -85,7 +81,7 @@ const CreateTour = () => {
         console.log(formData);
         const res = await axios.post(`${API_URL}/CreateTour`, formData);
         toast.success(res.data.message);
-        navigate('/dashboard/tours');
+        navigate('/admin/dashboard/tours');
       } catch (error) {
         toast.error(error.response.data.message.message || 'error occured');
         console.log(error);
@@ -98,8 +94,6 @@ const CreateTour = () => {
         <div className="col-sm-6">
           <div className="registration">
             <Form noValidate validated={validated} onSubmit={handleSubmit}>
-              {/* <img src="/assets/logo.png" alt="" /> */}
-
               <div className="row">
                 <div className="col-sm-6">
                   <Form.Group controlId="validationCustom03">
@@ -172,7 +166,6 @@ const CreateTour = () => {
                         <></>
                       )}
                     </Form.Select>
-
                     <Form.Control.Feedback type="invalid">Please provide a valid country.</Form.Control.Feedback>
                   </Form.Group>
                 </div>
@@ -190,77 +183,6 @@ const CreateTour = () => {
                     <Form.Control.Feedback type="invalid"> Please provide a description</Form.Control.Feedback>
                   </Form.Group>
                 </div>
-                {/* <div className="col-sm-6">
-                <Form.Group controlId="validationCustom05">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control
-                    value={state.Password}
-                    onChange={handlePasswordChange}
-                    name="password"
-                    type="text"
-                    placeholder="Password"
-                    required
-                  />
-                  <Form.Control.Feedback type="invalid">Please provide a valid Password.</Form.Control.Feedback>
-                  {passwordError && (
-                    <div className="error-message1" style={{ color: '#fff' }}>
-                      {passwordError}
-                    </div>
-                  )}
-                </Form.Group>
-              </div>
-
-              <div className="col-sm-6">
-                <Form.Group controlId="validationCustom05">
-                  <Form.Label>Confirm Password</Form.Label>
-                  <Form.Control
-                    value={state.ConfirmPassword}
-                    onChange={handleConfirmPasswordChange}
-                    name="password"
-                    type="text"
-                    placeholder="Confirm Password"
-                    required
-                  />
-                  <Form.Control.Feedback type="invalid">Please provide a valid Password.</Form.Control.Feedback>
-                  {confirmPasswordError && (
-                    <div className="error-message1" style={{ color: '#fff' }}>
-                      {confirmPasswordError}
-                    </div>
-                  )}
-                </Form.Group>
-              </div>
-
-              <div className="col-sm-6">
-                <Form.Group controlId="validationCustom05">
-                  <Form.Label>Profile Picture</Form.Label>
-                  <Form.Control onChange={onSelectFileProfile} type="file" required />
-                  <Form.Control.Feedback type="invalid">
-                    Please provide a valid Profile Picture.
-                  </Form.Control.Feedback>
-                </Form.Group>
-                {PassportPicture && (
-                    <>
-                      <img src={preview} className="PreviewImage" alt="" />
-                    </>
-                  )}
-              </div> */}
-
-                {/* <div className="col-sm-6">
-                <Form.Group controlId="validationCustom05">
-                  <Form.Label>Passport Picture</Form.Label>
-                  <Form.Control onChange={onSelectFilePassport} type="file" />
-                  <Form.Control.Feedback type="invalid">
-                    Please provide a valid Passport Picture.
-                  </Form.Control.Feedback>
-                </Form.Group>
-                {PassportPicture && (
-                  <div>
-                    <img src={preview1} className="PreviewImage" alt="" />
-                    <i className="fa fa-times" onClick={removeImagePreview}></i>
-                  </div>
-                )}
-              </div> */}
-
                 <div className="submitbtn1 col-sm-12">
                   <Form.Group controlId="validationCustom05">
                     <Button type="submit">Create Tour</Button>
@@ -270,10 +192,6 @@ const CreateTour = () => {
             </Form>
           </div>
         </div>
-
-        {/* <div className="col-sm-6 registrationimg">
-          <img src={images} alt="asd" />
-        </div> */}
       </div>
     </div>
   );

@@ -130,7 +130,7 @@ export default function ToursPage() {
     setSelected([]);
   };
   const NavigateToCategory = () => {
-    navigate('/dashboard/createtour');
+    navigate('/admin/dashboard/createtour');
   };
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
@@ -162,7 +162,7 @@ export default function ToursPage() {
     SetData(applySortFilter(AllData, getComparator(order, orderBy), event.target.value));
   };
   const HandleEdit = async (id) => {
-    navigate('/dashboard/EditTour', { state: id });
+    navigate('/admin/dashboard/EditTour', { state: id });
     // await axios.delete(`${API_URL}/DeleteCategory/${id}`);
     // LoadCategories();
   };
@@ -176,7 +176,7 @@ export default function ToursPage() {
   return (
     <>
       <Helmet>
-        <title> User | New Vision </title>
+        <title> Tours | New Vision </title>
       </Helmet>
 
       <Container>

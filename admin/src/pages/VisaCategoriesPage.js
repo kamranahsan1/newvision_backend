@@ -130,7 +130,7 @@ export default function VisaPage() {
     setSelected([]);
   };
   const NavigateToparent = () => {
-    navigate('/dashboard/createvisacategory');
+    navigate('/admin/dashboard/createvisacategory');
   };
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
@@ -167,7 +167,7 @@ export default function VisaPage() {
   };
   // const filteredUsers = applySortFilter(USERLIST, getComparator(order, orderBy), filterName);
   const HandleEdit = async (id) => {
-    navigate('/dashboard/EditVisaCategory', { state: id });
+    navigate('/admin/dashboard/EditVisaCategory', { state: id });
     // await axios.delete(`${API_URL}/DeleteCategory/${id}`);
     // LoadCategories();
   };

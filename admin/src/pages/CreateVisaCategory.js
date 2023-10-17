@@ -71,7 +71,7 @@ const CreateVisaCategory = () => {
         formData.append('mainImage', mainImage);
         const res = await axios.post(`${API_URL}/PostVisaCategory`, formData);
         toast.success(res.data.message);
-        navigate('/dashboard/visacategories');
+        navigate('/admin/dashboard/visacategories');
       } catch (error) {
         toast.error(error.response.data.message.message || 'error occured');
       }
@@ -97,7 +97,6 @@ const CreateVisaCategory = () => {
                     />
                   </Form.Group>
                 </div>
-
                 <div className="col-sm-6">
                   <Form.Group controlId="validationCustom03">
                     <Form.Label>Slug</Form.Label>
@@ -116,7 +115,6 @@ const CreateVisaCategory = () => {
                     <Form.Control.Feedback type="invalid">Please provide slug</Form.Control.Feedback>
                   </Form.Group>
                 </div>
-
                 <div className="col-sm-6">
                   <Form.Group controlId="validationCustom05">
                     <Form.Label>Status</Form.Label>

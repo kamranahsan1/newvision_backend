@@ -21,7 +21,7 @@ const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
   const logo = (
     <Box
       component="img"
-      src="/assets/logo.png"
+      src="https://newvision.travel/admin/assets/logo.png"
       sx={{ width: 40, background: '#0d6efd', height: 40, cursor: 'pointer', ...sx }}
     />
   );
@@ -79,7 +79,7 @@ const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
   }
 
   return (
-    <Link to="/" component={RouterLink} sx={{ display: 'contents' }}>
+    <Link to="/admin/dashboard/app" component={RouterLink} sx={{ display: 'contents' }}>
       {logo}
     </Link>
   );

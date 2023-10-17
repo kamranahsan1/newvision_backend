@@ -34,56 +34,53 @@ import EditCountry from './pages/EditCountry';
 // ----------------------------------------------------------------------
 
 export default function Router() {
+  const token = localStorage.getItem('token');
+  const isAuthenticated = !!token;
+
+  const commonRoutes = [
+    { path: '404', element: <Page404 /> },
+    { path: '*', element: <Navigate to="/404" /> },
+  ];
+
+  const authenticatedRoutes = [
+    { element: <Navigate to="/admin/dashboard/app" />, index: true },
+    { path: 'app', element: <DashboardAppPage /> },
+    { path: 'user', element: <UserPage /> },
+    { path: 'products', element: <ProductsPage /> },
+    { path: 'blog', element: <BlogPage /> },
+    { path: 'countries', element: <CountriesPage /> },
+    { path: 'categories', element: <CategoriesPage /> },
+    { path: 'contact', element: <ContactPage /> },
+    { path: 'package', element: <PackagePage /> },
+    { path: 'subscriber', element: <SubscriberPage /> },
+    { path: 'tours', element: <ToursPage /> },
+    { path: 'visacategories', element: <VisaCategoriesPage /> },
+    { path: 'visas', element: <VisaPage /> },
+    { path: 'createpackage', element: <CreatePackage /> },
+    { path: 'createcategory', element: <CreateCategory /> },
+    { path: 'createcountry', element: <CreateCountry /> },
+    { path: 'createsubscriber', element: <CreateSubscriber /> },
+    { path: 'createvisa', element: <CreateVisa /> },
+    { path: 'createvisacategory', element: <CreateVisaCategory /> },
+    { path: 'createtour', element: <CreateTour /> },
+    { path: 'EditCategory', element: <EditCategory /> },
+    { path: 'EditVisaCategory', element: <EditVisaCategory /> },
+    { path: 'EditVisa', element: <EditVisa /> },
+    { path: 'EditTour', element: <EditTour /> },
+    { path: 'EditPackage', element: <EditPackage /> },
+    { path: 'EditCountry', element: <EditCountry /> },
+  ];
+
+  const unauthenticatedRoutes = [{ path: 'admin/', element: <LoginPage /> }];
+
   const routes = useRoutes([
     {
-      path: '/dashboard',
-      element: <DashboardLayout />,
-      children: [
-        { element: <Navigate to="/dashboard/app" />, index: true },
-        { path: 'app', element: <DashboardAppPage /> },
-        { path: 'user', element: <UserPage /> },
-        { path: 'products', element: <ProductsPage /> },
-        { path: 'blog', element: <BlogPage /> },
-        { path: 'countries', element: <CountriesPage /> },
-        { path: 'categories', element: <CategoriesPage /> },
-        { path: 'contact', element: <ContactPage /> },
-        { path: 'package', element: <PackagePage /> },
-        { path: 'subscriber', element: <SubscriberPage /> },
-        { path: 'tours', element: <ToursPage /> },
-        { path: 'visacategories', element: <VisaCategoriesPage /> },
-        { path: 'visas', element: <VisaPage /> },
-        { path: 'createpackage', element: <CreatePackage /> },
-        { path: 'createcategory', element: <CreateCategory /> },
-        { path: 'createcountry', element: <CreateCountry /> },
-        { path: 'createsubscriber', element: <CreateSubscriber /> },
-        { path: 'createvisa', element: <CreateVisa /> },
-        { path: 'createvisacategory', element: <CreateVisaCategory /> },
-        { path: 'createtour', element: <CreateTour /> },
-        { path: 'EditCategory', element: <EditCategory /> },
-        { path: 'EditVisaCategory', element: <EditVisaCategory /> },
-        { path: 'EditVisa', element: <EditVisa /> },
-        { path: 'EditTour', element: <EditTour /> },
-        { path: 'EditPackage', element: <EditPackage /> },
-        { path: 'EditCountry', element: <EditCountry /> },
-      ],
+      path: '/admin/dashboard',
+      element: isAuthenticated ? <DashboardLayout /> : <Navigate to="/admin" />,
+      children: isAuthenticated ? authenticatedRoutes : unauthenticatedRoutes,
     },
-    {
-      path: '/',
-      element: <LoginPage />,
-      children: [{ element: <Navigate to="/" />, index: true }],
-    },
-    {
-      element: <Page404 />,
-      children: [
-        { path: '404', element: <Page404 /> },
-        { path: '*', element: <Navigate to="/404" /> },
-      ],
-    },
-    {
-      path: '*',
-      element: <Navigate to="/404" replace />,
-    },
+    { path: '/admin/', element: isAuthenticated ? <Navigate to="/admin/dashboard" /> : <LoginPage /> },
+    ...commonRoutes,
   ]);
-
   return routes;
 }

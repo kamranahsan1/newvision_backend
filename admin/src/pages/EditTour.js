@@ -24,7 +24,7 @@ const CreateTour = () => {
   const [mainImage, setmainImage] = useState();
   const { state } = useLocation();
   if (!state) {
-    navigate('/dashboard/app');
+    navigate('/admin/dashboard/app');
   }
   const [preview, setPreview] = useState();
   const onSelectFileProfile = (e) => {
@@ -108,7 +108,7 @@ const CreateTour = () => {
         formData.append('time', time);
         const res = await axios.put(`${API_URL}/EditTour/${state}`, formData);
         toast.success(res.data.message);
-        navigate('/dashboard/tours');
+        navigate('/admin/dashboard/tours');
       } catch (error) {
         toast.error(error.response.data.message.message || 'error occured');
       }
@@ -219,10 +219,6 @@ const CreateTour = () => {
             </Form>
           </div>
         </div>
-
-        {/* <div className="col-sm-6 registrationimg">
-          <img src={images} alt="asd" />
-        </div> */}
       </div>
     </div>
   );

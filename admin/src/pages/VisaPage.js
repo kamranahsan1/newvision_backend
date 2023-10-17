@@ -117,7 +117,7 @@ export default function VisaPage() {
     LoadCategories();
   };
   const HandleEdit = async (id) => {
-    navigate('/dashboard/EditVisa', { state: id });
+    navigate('/admin/dashboard/EditVisa', { state: id });
     // await axios.delete(`${API_URL}/DeleteCategory/${id}`);
     // LoadCategories();
   };
@@ -137,7 +137,7 @@ export default function VisaPage() {
     setSelected([]);
   };
   const NavigateToCategory = () => {
-    navigate('/dashboard/createvisa');
+    navigate('/admin/dashboard/createvisa');
   };
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
@@ -176,7 +176,7 @@ export default function VisaPage() {
   return (
     <>
       <Helmet>
-        <title> User | New Vision </title>
+        <title> Visa | New Vision </title>
       </Helmet>
 
       <Container>

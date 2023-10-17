@@ -8,7 +8,7 @@ const icon = (name) => <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ 
 const navConfig = [
   {
     title: 'dashboard',
-    path: '/dashboard/app',
+    path: '/admin/dashboard/app',
     icon: icon('ic_analytics'),
   },
   // {
@@ -18,59 +18,44 @@ const navConfig = [
   // },
   {
     title: 'Countries',
-    path: '/dashboard/countries',
+    path: '/admin/dashboard/countries',
     icon: icon('ic_world'),
   },
   {
     title: 'Categories',
-    path: '/dashboard/categories',
+    path: '/admin/dashboard/categories',
     icon: icon('ic_category'),
   },
   {
     title: 'Contact',
-    path: '/dashboard/contact',
+    path: '/admin/dashboard/contact',
     icon: icon('ic_user'),
   },
   {
     title: 'Packages',
-    path: '/dashboard/package',
+    path: '/admin/dashboard/package',
     icon: icon('ic_packages'),
   },
   {
     title: 'Subscriber',
-    path: '/dashboard/subscriber',
+    path: '/admin/dashboard/subscriber',
     icon: icon('ic_bell'),
   },
   {
     title: 'Tours',
-    path: '/dashboard/tours',
+    path: '/admin/dashboard/tours',
     icon: icon('ic_tour'),
   },
   {
     title: 'Visa Categories',
-    path: '/dashboard/visacategories',
+    path: '/admin/dashboard/visacategories',
     icon: icon('ic_cart'),
   },
   {
     title: 'Visas',
-    path: '/dashboard/visas',
+    path: '/admin/dashboard/visas',
     icon: icon('ic_visa'),
   },
-  // {
-  //   title: 'blog',
-  //   path: '/dashboard/blog',
-  //   icon: icon('ic_blog'),
-  // },
-  // {
-  //   title: 'login',
-  //   path: '/',
-  //   icon: icon('ic_lock'),
-  // },
-  // {
-  //   title: 'Not found',
-  //   path: '/404',
-  //   icon: icon('ic_disabled'),
-  // },
 ];
 
 export default navConfig;

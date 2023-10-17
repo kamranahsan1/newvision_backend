@@ -21,7 +21,7 @@ const EditPackage = () => {
   const navigate = useNavigate();
   const [mainImage, setmainImage] = useState();
   if (!state) {
-    navigate('/dashboard/app');
+    navigate('/admin/dashboard/app');
   }
   console.log('state', state);
   const onSelectFileProfile = (e) => {
@@ -136,7 +136,7 @@ const EditPackage = () => {
         console.log(formData);
         const res = await axios.post(`${API_URL}/editPackage/${state}`, formData);
         toast.success(res.data.message);
-        navigate('/dashboard/package');
+        navigate('/admin/dashboard/package');
       } catch (error) {
         toast.error(error.response.data.message.message || 'error occured');
         console.log(error);
@@ -220,8 +220,9 @@ const EditPackage = () => {
                     <Form.Label>Featured</Form.Label>
                     <Form.Select value={featured} name="featured" onChange={handleChange} required>
                       <option value="">Select an option</option>
-                      <option value="1">Yes</option>
                       <option value="0">No</option>
+                      <option value="1">Yes</option>
+                      <option value="2">Hot Deals</option>
                     </Form.Select>
                     <Form.Control.Feedback type="invalid">Please select an option.</Form.Control.Feedback>
                   </Form.Group>

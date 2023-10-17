@@ -82,7 +82,7 @@ const CreateCountry = () => {
 
         const res = await axios.post(`${API_URL}/createCountry`, formData);
         toast.success(res.data.message);
-        navigate('/dashboard/countries');
+        navigate('/admin/dashboard/countries');
       } catch (error) {
         toast.error(error.response.data.message || 'error occured');
       }

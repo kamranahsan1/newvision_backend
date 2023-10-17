@@ -21,7 +21,7 @@ const EditCountry = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   if (!state) {
-    navigate('/dashboard/app');
+    navigate('/admin/dashboard/app');
   }
   const LoadData = async () => {
     const response = await axios.get(`${API_URL}/SingleCountry/${state}`);
@@ -102,7 +102,7 @@ const EditCountry = () => {
 
         const res = await axios.put(`${API_URL}/EditCountry/${state}`, formData);
         toast.success(res.data.message);
-        navigate('/dashboard/countries');
+        navigate('/admin/dashboard/countries');
       } catch (error) {
         toast.error(error.response.data.message || 'error occured');
       }
@@ -161,7 +161,6 @@ const EditCountry = () => {
                   <Form.Group controlId="validationCustom05">
                     <Form.Label>Main Image</Form.Label>
                     <Form.Control onChange={onSelectFileProfile} type="file" />
-                    {/* <Form.Control.Feedback type="invalid">'Please provide a valid Main Image'</Form.Control.Feedback> */}
                   </Form.Group>
                 </div>
                 <div className="submitbtn1 col-sm-12">
@@ -169,26 +168,10 @@ const EditCountry = () => {
                     <Button type="submit">Edit Country</Button>
                   </Form.Group>
                 </div>
-                {/* {mainImage && (
-                  <div className="col-sm-6">
-                    <img
-                      style={{
-                        width: 'auto',
-                      }}
-                      src={URL.createObjectURL(mainImage)}
-                      className="PreviewImage"
-                      alt=""
-                    />
-                  </div>
-                )} */}
               </div>
             </Form>
           </div>
         </div>
-
-        {/* <div className="col-sm-6 registrationimg">
-          <img src={images} alt="asd" />
-        </div> */}
       </div>
     </div>
   );

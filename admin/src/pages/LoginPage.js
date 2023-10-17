@@ -45,7 +45,7 @@ export default function LoginPage() {
   return (
     <>
       <Helmet>
-        <title> Login |New Vision </title>
+        <title> Login | New Vision </title>
       </Helmet>
 
       <StyledRoot>
@@ -62,7 +62,7 @@ export default function LoginPage() {
             <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
               Hi, Welcome Back
             </Typography>
-            <img src="/assets/illustrations/illustration_login.png" alt="login" />
+            <img src="https://newvision.travel/admin/assets/illustrations/illustration_login.png" alt="login" />
           </StyledSection>
         )}
 

@@ -21,7 +21,7 @@ const CreateVisa = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   if (!state) {
-    navigate('/dashboard/app');
+    navigate('/admin/dashboard/app');
   }
   const LoadData = async () => {
     const response = await axios.get(`${API_URL}/SingleVisa/${state}`);
@@ -121,7 +121,7 @@ const CreateVisa = () => {
         console.log('formData', formData);
         const res = await axios.put(`${API_URL}/EditVisa/${state}`, formData);
         toast.success(res.data.message);
-        navigate('/dashboard/visas');
+        navigate('/admin/dashboard/visas');
       } catch (error) {
         toast.error(error.response.data.message.message || 'error occured');
         console.log(error);

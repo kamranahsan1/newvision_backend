@@ -20,7 +20,7 @@ const CreateVisaCategory = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
   if (!state) {
-    navigate('/dashboard/app');
+    navigate('/admin/dashboard/app');
   }
   const [Data, SetData] = useState([]);
   const LoadData = async () => {
@@ -94,11 +94,9 @@ const CreateVisaCategory = () => {
         formData.append('previousimage', Data.mainImage);
         formData.append('isNavigation', isNavigation);
         formData.append('mainImage', mainImage);
-
-        console.log(formData);
         const res = await axios.put(`${API_URL}/EditVisaCategory/${state}`, formData);
         toast.success(res.data.message);
-        navigate('/dashboard/visacategories');
+        navigate('/admin/dashboard/visacategories');
       } catch (error) {
         toast.error(error.response.data.message.message || 'error occured');
       }

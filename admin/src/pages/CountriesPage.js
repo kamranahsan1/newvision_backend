@@ -128,7 +128,7 @@ export default function CountriesPage() {
     setSelected([]);
   };
   const NavigateToCountry = () => {
-    navigate('/dashboard/createcountry');
+    navigate('/admin/dashboard/createcountry');
   };
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
@@ -164,7 +164,7 @@ export default function CountriesPage() {
     LoadCategories();
   };
   const HandleEdit = async (id) => {
-    navigate('/dashboard/EditCountry', { state: id });
+    navigate('/admin/dashboard/EditCountry', { state: id });
     // await axios.delete(`${API_URL}/DeleteCategory/${id}`);
     // LoadCategories();
   };
@@ -175,7 +175,7 @@ export default function CountriesPage() {
   return (
     <>
       <Helmet>
-        <title> User | New Vision </title>
+        <title> Countries | New Vision </title>
       </Helmet>
 
       <Container>

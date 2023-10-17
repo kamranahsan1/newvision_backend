@@ -131,7 +131,7 @@ export default function CategoriesPage() {
     setSelected([]);
   };
   const NavigateToCategory = () => {
-    navigate('/dashboard/createcategory');
+    navigate('/admin/dashboard/createcategory');
   };
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
@@ -169,7 +169,7 @@ export default function CategoriesPage() {
     LoadCategories();
   };
   const HandleEdit = async (id) => {
-    navigate('/dashboard/EditCategory', { state: id });
+    navigate('/admin/dashboard/EditCategory', { state: id });
     // await axios.delete(`${API_URL}/DeleteCategory/${id}`);
     // LoadCategories();
   };
@@ -179,7 +179,7 @@ export default function CategoriesPage() {
   return (
     <>
       <Helmet>
-        <title> User | New Vision </title>
+        <title> Categories | New Vision </title>
       </Helmet>
 
       <Container>

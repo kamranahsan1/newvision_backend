@@ -47,8 +47,6 @@ const TABLE_HEAD = [
   // { id: '' },
 ];
 
-// ----------------------------------------------------------------------
-
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -109,7 +107,7 @@ export default function PackagePage() {
   }, []);
 
   const HandleEdit = async (id) => {
-    navigate('/dashboard/EditPackage', { state: id });
+    navigate('/admin/dashboard/EditPackage', { state: id });
   };
 
   const handleOpenMenu = (event) => {
@@ -173,12 +171,12 @@ export default function PackagePage() {
   };
   const isNotFound = !Data.length && !!filterName;
   const NavigateToPackage = () => {
-    navigate('/dashboard/createpackage');
+    navigate('/admin/dashboard/createpackage');
   };
   return (
     <>
       <Helmet>
-        <title> User | New Vision </title>
+        <title> Packages | New Vision </title>
       </Helmet>
 
       <Container>
