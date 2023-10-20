@@ -14,7 +14,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 
 import { useNavigate, useLocation } from 'react-router-dom';
-import { API_URL } from '../constants/General';
+import { API_URL, setBaseUrlImage } from '../constants/General';
 
 const CreateVisaCategory = () => {
   const { state } = useLocation();
@@ -103,7 +103,7 @@ const CreateVisaCategory = () => {
     }
   };
   return (
-    <div className="contain er-fluid register">
+    <div className="container-fluid">
       <div className="row">
         <div className="col-sm-6">
           <div className="registration">
@@ -191,6 +191,18 @@ const CreateVisaCategory = () => {
                   </Form.Group>
                 </div>
               </div>
+              {mainImage && mainImage !== '' && typeof mainImage === 'string' && (
+                <div className="col-sm-12" style={{ textAlign: 'center' }}>
+                  <img
+                    src={setBaseUrlImage(mainImage)}
+                    alt="asd"
+                    style={{ width: '400px', margin: 'auto', marginTop: '20px' }}
+                    onError={() => {
+                      console.log('error image not found!');
+                    }}
+                  />
+                </div>
+              )}
             </Form>
           </div>
         </div>

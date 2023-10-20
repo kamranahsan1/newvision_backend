@@ -1,20 +1,12 @@
 import { useEffect, useState } from 'react';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import 'bootstrap/dist/js/bootstrap.js'
-
 import './createpackage.css';
-
 import Form from 'react-bootstrap/Form';
-
 import Button from 'react-bootstrap/Button';
-
 import axios from 'axios';
-
 import { ToastContainer, toast } from 'react-toastify';
-
 import { useNavigate, useLocation } from 'react-router-dom';
-import { API_URL } from '../constants/General';
+import { API_URL, setBaseUrlImage } from '../constants/General';
 
 const EditCountry = () => {
   const [Data, SetData] = useState();
@@ -25,14 +17,12 @@ const EditCountry = () => {
   }
   const LoadData = async () => {
     const response = await axios.get(`${API_URL}/SingleCountry/${state}`);
-    console.log(response.data.data);
     setFormValues({
       name: response.data.data.name,
       description: response.data.data.description,
       featured: response.data.data.featured,
     });
     setmainImage(response.data.data.mainImage);
-    console.log(formValues);
     SetData(response.data.data);
   };
   useEffect(() => {
@@ -41,7 +31,7 @@ const EditCountry = () => {
   const [passportNumber, setPassportNumber] = useState('');
   const [isValidPassport, setIsValidPassport] = useState(true);
   const [mainImage, setmainImage] = useState();
-
+  console.log('mainImage', mainImage);
   const onSelectFileProfile = (e) => {
     setmainImage(e.target.files[0]);
   };
@@ -99,7 +89,6 @@ const EditCountry = () => {
         formData.append('featured', Number(featured));
         formData.append('previousimage', Data.mainImage);
         formData.append('mainImage', mainImage);
-
         const res = await axios.put(`${API_URL}/EditCountry/${state}`, formData);
         toast.success(res.data.message);
         navigate('/admin/dashboard/countries');
@@ -157,7 +146,7 @@ const EditCountry = () => {
                     <Form.Control.Feedback type="invalid">Please select an option</Form.Control.Feedback>
                   </Form.Group>
                 </div>
-                <div className="col-sm-12">
+                <div className="col-sm-6">
                   <Form.Group controlId="validationCustom05">
                     <Form.Label>Main Image</Form.Label>
                     <Form.Control onChange={onSelectFileProfile} type="file" />
@@ -168,10 +157,23 @@ const EditCountry = () => {
                     <Button type="submit">Edit Country</Button>
                   </Form.Group>
                 </div>
+                {mainImage && mainImage !== '' && typeof mainImage === 'string' && (
+                  <div className="col-sm-12" style={{ textAlign: 'center' }}>
+                    <img
+                      src={setBaseUrlImage(mainImage)}
+                      alt="asd"
+                      style={{ width: '400px', margin: 'auto', marginTop: '20px' }}
+                      onError={() => {
+                        console.log('error image not found!');
+                      }}
+                    />
+                  </div>
+                )}
               </div>
             </Form>
           </div>
         </div>
+        <div className="col-sm-2" />
       </div>
     </div>
   );

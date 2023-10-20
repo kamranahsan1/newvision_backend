@@ -14,7 +14,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 
 import { useNavigate, useLocation } from 'react-router-dom';
-import { API_URL } from '../constants/General';
+import { API_URL, setBaseUrlImage } from '../constants/General';
 
 const CreateVisa = () => {
   const [Data, SetData] = useState();
@@ -76,6 +76,7 @@ const CreateVisa = () => {
   const onSelectFileProfile = (e) => {
     setmainImage(e.target.files[0]);
   };
+
   const handlePassportNumberChange = (e) => {
     const newValue = e.target.value;
     setPassportNumber(newValue);
@@ -87,6 +88,7 @@ const CreateVisa = () => {
     const isValid = passportNumberPattern.test(newValue);
     setIsValidPassport(isValid);
   };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({
@@ -118,7 +120,6 @@ const CreateVisa = () => {
         formData.append('country', country);
         formData.append('previousimage', Data.mainImage);
         formData.append('mainImage', mainImage);
-        console.log('formData', formData);
         const res = await axios.put(`${API_URL}/EditVisa/${state}`, formData);
         toast.success(res.data.message);
         navigate('/admin/dashboard/visas');
@@ -129,7 +130,7 @@ const CreateVisa = () => {
     }
   };
   return (
-    <div className="contain er-fluid register">
+    <div className="container-fluid">
       <div className="row">
         <div className="col-sm-6">
           <div className="registration">
@@ -149,7 +150,6 @@ const CreateVisa = () => {
                     <Form.Control.Feedback type="invalid">'Please provide Name.'</Form.Control.Feedback>
                   </Form.Group>
                 </div>
-
                 <div className="col-sm-6">
                   <Form.Group controlId="validationCustom03">
                     <Form.Label>Number Of Stay Name</Form.Label>
@@ -162,7 +162,6 @@ const CreateVisa = () => {
                     />
                   </Form.Group>
                 </div>
-
                 <div className="col-sm-6">
                   <Form.Group controlId="validationCustom04">
                     <Form.Label>Number Of Stay</Form.Label>
@@ -239,6 +238,18 @@ const CreateVisa = () => {
                     <Button type="submit">Edit Visa</Button>
                   </Form.Group>
                 </div>
+                {mainImage && mainImage !== '' && typeof mainImage === 'string' && (
+                  <div className="col-sm-12" style={{ textAlign: 'center' }}>
+                    <img
+                      src={setBaseUrlImage(mainImage)}
+                      alt="asd"
+                      style={{ width: '400px', margin: 'auto', marginTop: '20px' }}
+                      onError={() => {
+                        console.log('error image not found!');
+                      }}
+                    />
+                  </div>
+                )}
               </div>
             </Form>
           </div>

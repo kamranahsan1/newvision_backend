@@ -14,22 +14,23 @@ import axios from 'axios';
 
 import { ToastContainer, toast } from 'react-toastify';
 
-import { API_URL, setImage } from '../constants/General';
+import { API_URL, setBaseUrlImage } from '../constants/General';
 
 const EditPackage = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
   const [mainImage, setmainImage] = useState();
+  console.log('mainImage', mainImage);
   if (!state) {
     navigate('/admin/dashboard/app');
   }
-  console.log('state', state);
   const onSelectFileProfile = (e) => {
     setmainImage(e.target.files[0]);
   };
   const [Data, SetData] = useState([]);
   const LoadData = async () => {
     const response = await axios.get(`${API_URL}/SinglePackage/${state}`);
+    setmainImage(response.data.data.mainImage);
     setFormValues(response.data.data);
   };
   useEffect(() => {
@@ -66,6 +67,8 @@ const EditPackage = () => {
     countryCode,
     status,
   } = formValues;
+
+  console.log(formValues);
 
   const LoadCategories = async () => {
     const CategoryData = await axios.get(`${API_URL}/categories`);
@@ -133,7 +136,6 @@ const EditPackage = () => {
         formData.append('countryCode', countryCode);
         formData.append('status', status);
         formData.append('mainImage', mainImage);
-        console.log(formData);
         const res = await axios.post(`${API_URL}/editPackage/${state}`, formData);
         toast.success(res.data.message);
         navigate('/admin/dashboard/package');
@@ -144,7 +146,7 @@ const EditPackage = () => {
     }
   };
   return (
-    <div className="contain er-fluid register">
+    <div className="container-fluid">
       <div className="row">
         <div className="col-sm-6">
           <div className="registration">
@@ -240,7 +242,7 @@ const EditPackage = () => {
                       as="textarea"
                       row={8}
                       placeholder="attractions"
-                      value={attractions}
+                      value={attractions ? attractions.join('\n') : attractions}
                       name="attractions"
                       onChange={handleChange}
                       required
@@ -254,7 +256,7 @@ const EditPackage = () => {
                     <Form.Control
                       as="textarea"
                       row={8}
-                      value={inclusionsList}
+                      value={inclusionsList ? inclusionsList.join('\n') : inclusionsList}
                       name="inclusionsList"
                       placeholder="inclusionsList"
                       onChange={handleChange}
@@ -268,6 +270,18 @@ const EditPackage = () => {
                     <Button type="submit">Edit Package</Button>
                   </Form.Group>
                 </div>
+                {mainImage && mainImage !== '' && typeof mainImage === 'string' && (
+                  <div className="col-sm-12" style={{ textAlign: 'center' }}>
+                    <img
+                      src={setBaseUrlImage(mainImage)}
+                      alt="asd"
+                      style={{ width: '300px', margin: 'auto', marginTop: '20px' }}
+                      onError={() => {
+                        console.log('error image not found!');
+                      }}
+                    />
+                  </div>
+                )}
               </div>
             </Form>
           </div>

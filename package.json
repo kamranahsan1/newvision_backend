@@ -1,5 +1,6 @@
 {
   "name": "newversion",
+  "homepage": "https://newvision.travel",
   "version": "1.0.0",
   "description": "",
   "main": "backend/server.js",
@@ -9,7 +10,7 @@
     "client": "npm start --prefix client",
     "watch": "npm run server & npm run client",
     "start": "node ./backend/server.js"
-  },
+  },  
   "author": "",
   "license": "ISC",
   "dependencies": {

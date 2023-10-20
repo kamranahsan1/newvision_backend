@@ -73,7 +73,7 @@ const CreateSubscriber = () => {
     }
   };
   return (
-    <div className="contain er-fluid register">
+    <div className="container-fluid ">
       <div className="row">
         <div className="col-sm-10">
           <div className="registration">

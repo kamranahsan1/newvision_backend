@@ -78,7 +78,7 @@ const CreateVisaCategory = () => {
     }
   };
   return (
-    <div className="contain er-fluid register">
+    <div className="container-fluid">
       <div className="row">
         <div className="col-sm-6">
           <div className="registration">

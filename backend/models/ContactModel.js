@@ -11,6 +11,7 @@ const contactSchema = new mongoose.Schema({
   reason: String,
   message: String,
   attachments: [attachmentSchema],
+  createdAt: { type: Date, default: Date.now },
 });
 
 const ContactModel = mongoose.model("Contact", contactSchema);

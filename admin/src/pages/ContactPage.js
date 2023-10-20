@@ -31,7 +31,7 @@ import Scrollbar from '../components/scrollbar';
 import { UserListHead, UserListToolbar } from '../sections/@dashboard/user';
 // mock
 import USERLIST from '../_mock/user';
-import { API_URL } from '../constants/General';
+import { API_URL, setBaseUrlAttachment } from '../constants/General';
 
 // ----------------------------------------------------------------------
 
@@ -40,7 +40,7 @@ const TABLE_HEAD = [
   { id: 'email', label: 'Email', alignRight: false },
   { id: 'message', label: 'Message', alignRight: false },
   { id: 'reason', label: 'Reason', alignRight: false },
-  // { id: 'status', label: 'Status', alignRight: false },
+  { id: 'attachments', label: 'Attachments', alignRight: false },
   // { id: '' },
 ];
 
@@ -82,7 +82,7 @@ export default function ContactPage() {
   const [AllData, SetAllData] = useState([]);
   const [page, setPage] = useState(0);
 
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(50);
   const [order, setOrder] = useState('asc');
   // const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - Data.length) : 0;
   const [emptyRows, setemptyRows] = useState(page > 0 ? Math.max(0, (1 + page) * rowsPerPage - Data.length) : 0);
@@ -157,8 +157,6 @@ export default function ContactPage() {
     SetData(applySortFilter(AllData, getComparator(order, orderBy), event.target.value));
   };
 
-  // const filteredUsers = applySortFilter(USERLIST, getComparator(order, orderBy), filterName);
-
   const isNotFound = !Data.length && !!filterName;
 
   return (
@@ -192,7 +190,7 @@ export default function ContactPage() {
                 {Data.length > 0 ? (
                   <TableBody>
                     {Data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                      const { name, email, message, _id, reason } = row;
+                      const { name, email, message, _id, reason, attachments } = row;
                       const selectedUser = selected.indexOf(name) !== -1;
 
                       return (
@@ -214,6 +212,34 @@ export default function ContactPage() {
 
                           <TableCell align="left">{reason}</TableCell>
                           <TableCell align="left">{message}</TableCell>
+                          <TableCell align="left">
+                            {attachments.slice(-5).map((attachment) => {
+                              const filenameParts = attachment.filename.split('.');
+                              const extension = filenameParts.length > 1 ? filenameParts.pop() : '';
+                              return (
+                                <div key={attachment._id}>
+                                  <a
+                                    href={setBaseUrlAttachment(attachment.filename)}
+                                    download={setBaseUrlAttachment(attachment.filename)}
+                                    style={{
+                                      cursor: 'pointer',
+                                      background: 'none',
+                                      border: 'none',
+                                      textDecoration: 'underline',
+                                      color: 'blue',
+                                    }}
+                                    title={attachment.filename}
+                                  >
+                                    {`${
+                                      attachment.filename.length > 15
+                                        ? `${attachment.filename.substring(0, 15)}...${extension}`
+                                        : attachment.filename
+                                    }`}
+                                  </a>
+                                </div>
+                              );
+                            })}
+                          </TableCell>
                         </TableRow>
                       );
                     })}

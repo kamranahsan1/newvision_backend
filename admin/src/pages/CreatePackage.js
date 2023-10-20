@@ -115,7 +115,6 @@ const CreatePackage = () => {
         formData.append('countryCode', countryCode);
         formData.append('status', status);
         formData.append('mainImage', mainImage);
-        console.log(formData);
         const res = await axios.post(`${API_URL}/CreatePackage`, formData);
         toast.success('form submitted');
         navigate('/admin/dashboard/package');
@@ -126,7 +125,7 @@ const CreatePackage = () => {
     }
   };
   return (
-    <div className="container-fluid register">
+    <div className="container-fluid">
       <div className="row">
         <div className="col-sm-6">
           <div className="registration">

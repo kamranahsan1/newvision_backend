@@ -24,7 +24,7 @@ import {
   TableContainer,
   TablePagination,
 } from '@mui/material';
-import { API_URL } from '../constants/General';
+import { API_URL, setBaseUrlImage } from '../constants/General';
 // components
 import Label from '../components/label';
 import Iconify from '../components/iconify';
@@ -83,7 +83,7 @@ export default function VisaPage() {
   const [AllData, SetAllData] = useState([]);
   const [page, setPage] = useState(0);
 
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(50);
   const [order, setOrder] = useState('asc');
   // const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - Data.length) : 0;
   const [emptyRows, setemptyRows] = useState(page > 0 ? Math.max(0, (1 + page) * rowsPerPage - Data.length) : 0);
@@ -218,7 +218,7 @@ export default function VisaPage() {
 
                           <TableCell component="th" scope="row" padding="none">
                             <Stack direction="row" alignItems="center" spacing={2}>
-                              <Avatar alt={name} src={mainImage} />
+                              <Avatar alt={name} src={setBaseUrlImage(mainImage)} />
                               <Typography variant="subtitle2" noWrap>
                                 {name}
                               </Typography>
@@ -238,7 +238,6 @@ export default function VisaPage() {
                           </TableCell>
 
                           <TableCell align="left">
-                            {/* <Label color={(status === 'banned' && 'error') || 'success'}>{sentenceCase(status)}</Label> */}
                             <Button
                               onClick={() => {
                                 HandleEdit(_id);
@@ -247,11 +246,6 @@ export default function VisaPage() {
                               Edit
                             </Button>
                           </TableCell>
-                          {/* <TableCell align="right">
-                            <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
-                              <Iconify icon={'eva:more-vertical-fill'} />
-                            </IconButton>
-                          </TableCell> */}
                         </TableRow>
                       );
                     })}
