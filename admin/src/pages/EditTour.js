@@ -12,17 +12,23 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
 import { ToastContainer, toast } from 'react-toastify';
-
+import Select from 'react-select';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { API_URL, setBaseUrlImage } from '../constants/General';
 
 const CreateTour = () => {
   const [Data, SetData] = useState();
+  const [SelectedCountry, SetSelectedCountry] = useState('');
+  const [DefaultCountry, SetDefaultCountry] = useState('');
   const [passportNumber, setPassportNumber] = useState('');
   const [isValidPassport, setIsValidPassport] = useState(true);
   const navigate = useNavigate();
   const [mainImage, setmainImage] = useState();
   const { state } = useLocation();
+  const Selection = (value) => {
+    SetSelectedCountry(value);
+    console.log('chala');
+  };
   if (!state) {
     navigate('/admin/dashboard/app');
   }
@@ -41,6 +47,7 @@ const CreateTour = () => {
       description: response.data.data.description,
       time: response.data.data.time,
     });
+    SetSelectedCountry(response.data.data.country);
     setmainImage(response.data.data.mainImage);
     console.log(formValues);
     SetData(response.data.data);
@@ -60,9 +67,20 @@ const CreateTour = () => {
   });
   const { name, type, Day, category, description, country, time } = formValues;
   const [Countries, setCountries] = useState([]);
+  const [Countries1, setCountries1] = useState([]);
   const LoadCountries = async () => {
     const Data = await axios.get(`${API_URL}/countries`);
-    console.log(Data.data);
+    const xyz = [];
+    Data.data.map((singledata) => {
+      xyz.push({
+        value: singledata._id,
+        label: singledata.name,
+      });
+
+      return true;
+    });
+
+    setCountries1(xyz);
     setCountries(Data.data);
   };
   useEffect(() => {
@@ -103,7 +121,7 @@ const CreateTour = () => {
         formData.append('type', type);
         formData.append('Day', Day);
         formData.append('description', description);
-        formData.append('country', country);
+        formData.append('country', SelectedCountry);
         formData.append('mainImage', mainImage);
         formData.append('time', time);
         const res = await axios.put(`${API_URL}/EditTour/${state}`, formData);
@@ -180,23 +198,24 @@ const CreateTour = () => {
                   </Form.Group>
                 </div>
                 <div className="col-sm-6">
-                  <Form.Group controlId="validationCustom05">
-                    <Form.Label>Country</Form.Label>
-                    <Form.Select name="country" value={country} onChange={handleChange} required>
-                      <option value="">Select country</option>
-                      {Countries.length > 0 ? (
-                        Countries.map((data) => {
-                          return <option value={data._id}>{data.name}</option>;
-                        })
-                      ) : (
-                        <></>
-                      )}
+                  {Countries.length > 0 ? (
+                    <Select options={Countries1} defaultValue={Countries1[0]} onChange={(e) => Selection(e.value)} />
+                  ) : (
+                    <></>
+                  )}
+                  {/* <Select options={aquaticCreatures} /> */}
+                  {/* <Form.Group controlId="validationCustom03">
+                    <Form.Label>Time</Form.Label>
+                    <Form.Select value={time} name="time" onChange={handleChange} required>
+                      <option value="">Select time</option>
+                      <option value="Morning">Morning</option>
+                      <option value="Afternoon">Afternoon</option>
+                      <option value="Evening">Evening</option>
                     </Form.Select>
-
-                    <Form.Control.Feedback type="invalid">Please provide a valid country.</Form.Control.Feedback>
-                  </Form.Group>
+                    <Form.Control.Feedback type="invalid">Please select a time</Form.Control.Feedback>
+                  </Form.Group> */}
                 </div>
-                <div className="col-sm-12">
+                <div className="col-sm-6">
                   <Form.Group controlId="validationCustom04">
                     <Form.Label>Description</Form.Label>
                     <Form.Control

@@ -4,12 +4,17 @@ import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox } from '@m
 import { LoadingButton } from '@mui/lab';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
+import Cookies from 'universal-cookie';
+
 import { API_URL } from '../../../constants/General';
 import Iconify from '../../../components/iconify';
+
+
 // ----------------------------------------------------------------------
 
 export default function LoginForm() {
   const navigate = useNavigate();
+  const cookies = new Cookies();
 
   const [showPassword, setShowPassword] = useState(false);
   const [formValues, setFormValues] = useState({
@@ -30,7 +35,8 @@ export default function LoginForm() {
         email: formValues.email,
         password: formValues.password,
       });
-      localStorage.setItem('token', res.data.token);
+      cookies.set('token', res.data.token, { path: '/' });
+      // localStorage.setItem('token', res.data.token);
       toast.success(res.data.message);
       navigate('/admin/dashboard', { replace: true });
     } catch (error) {

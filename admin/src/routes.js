@@ -1,4 +1,5 @@
 import { Navigate, useRoutes } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 // layouts
 import DashboardLayout from './layouts/dashboard';
 import SimpleLayout from './layouts/simple';
@@ -28,13 +29,16 @@ import EditCategory from './pages/EditCategory';
 import EditVisaCategory from './pages/EditVisaCategory';
 import EditVisa from './pages/EditVisa';
 import EditTour from './pages/EditTour';
+
 import EditPackage from './pages/EditPackage';
 import EditCountry from './pages/EditCountry';
 
 // ----------------------------------------------------------------------
 
 export default function Router() {
-  const token = localStorage.getItem('token');
+  const cookies = new Cookies();
+  // const token = localStorage.getItem('token');
+  const token = cookies.get('token');
   const isAuthenticated = !!token;
 
   const commonRoutes = [

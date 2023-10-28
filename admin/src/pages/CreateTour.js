@@ -12,18 +12,23 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
 import { ToastContainer, toast } from 'react-toastify';
-
+import Select from 'react-select';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../constants/General';
 
 const CreateTour = () => {
   const [passportNumber, setPassportNumber] = useState('');
   const [isValidPassport, setIsValidPassport] = useState(true);
+  const [SelectedCountry, SetSelectedCountry] = useState('');
   const navigate = useNavigate();
   const [mainImage, setmainImage] = useState();
   const [preview, setPreview] = useState();
   const onSelectFileProfile = (e) => {
     setmainImage(e.target.files[0]);
+  };
+  const Selection = (value) => {
+    SetSelectedCountry(value);
+    console.log('chala');
   };
   const [formValues, setFormValues] = useState({
     name: '',
@@ -35,10 +40,29 @@ const CreateTour = () => {
 
     errors: {},
   });
+  const aquaticCreatures = [
+    { label: 'Shark', value: 'Shark' },
+    { label: 'Dolphin', value: 'Dolphin' },
+    { label: 'Whale', value: 'Whale' },
+    { label: 'Octopus', value: 'Octopus' },
+    { label: 'Crab', value: 'Crab' },
+    { label: 'Lobster', value: 'Lobster' },
+  ];
   const { name, type, Day, category, description, country, time } = formValues;
   const [Countries, setCountries] = useState([]);
+  const [Countries1, setCountries1] = useState([]);
   const LoadCountries = async () => {
     const Data = await axios.get(`${API_URL}/countries`);
+    const xyz = [];
+    Data.data.map((singledata) => {
+      xyz.push({
+        value: singledata._id,
+        label: singledata.name,
+      });
+      return true;
+    });
+    SetSelectedCountry(xyz[0].value);
+    setCountries1(xyz);
     setCountries(Data.data);
   };
   useEffect(() => {
@@ -75,7 +99,7 @@ const CreateTour = () => {
         formData.append('type', type);
         formData.append('Day', Day);
         formData.append('description', description);
-        formData.append('country', country);
+        formData.append('country', SelectedCountry);
         formData.append('mainImage', mainImage);
         formData.append('time', time);
         console.log(formData);
@@ -123,18 +147,7 @@ const CreateTour = () => {
                     <Form.Control.Feedback type="invalid">Please provide Day</Form.Control.Feedback>
                   </Form.Group>
                 </div>
-                <div className="col-sm-6">
-                  <Form.Group controlId="validationCustom03">
-                    <Form.Label>Time</Form.Label>
-                    <Form.Select value={time} name="time" onChange={handleChange} required>
-                      <option value="">Select time</option>
-                      <option value="Morning">Morning</option>
-                      <option value="Afternoon">Afternoon</option>
-                      <option value="Evening">Evening</option>
-                    </Form.Select>
-                    <Form.Control.Feedback type="invalid">Please select a time</Form.Control.Feedback>
-                  </Form.Group>
-                </div>
+
                 <div className="col-sm-6">
                   <Form.Group controlId="validationCustom05">
                     <Form.Label>Type</Form.Label>
@@ -154,22 +167,24 @@ const CreateTour = () => {
                   </Form.Group>
                 </div>
                 <div className="col-sm-6">
-                  <Form.Group controlId="validationCustom05">
-                    <Form.Label>Country</Form.Label>
-                    <Form.Select name="country" value={country} onChange={handleChange} required>
-                      <option value="">Select country</option>
-                      {Countries.length > 0 ? (
-                        Countries.map((data) => {
-                          return <option value={data._id}>{data.name}</option>;
-                        })
-                      ) : (
-                        <></>
-                      )}
+                  {Countries.length > 0 ? (
+                    <Select options={Countries1} defaultValue={Countries1[0]} onChange={(e) => Selection(e.value)} />
+                  ) : (
+                    <></>
+                  )}
+                  {/* <Select options={aquaticCreatures} /> */}
+                  {/* <Form.Group controlId="validationCustom03">
+                    <Form.Label>Time</Form.Label>
+                    <Form.Select value={time} name="time" onChange={handleChange} required>
+                      <option value="">Select time</option>
+                      <option value="Morning">Morning</option>
+                      <option value="Afternoon">Afternoon</option>
+                      <option value="Evening">Evening</option>
                     </Form.Select>
-                    <Form.Control.Feedback type="invalid">Please provide a valid country.</Form.Control.Feedback>
-                  </Form.Group>
+                    <Form.Control.Feedback type="invalid">Please select a time</Form.Control.Feedback>
+                  </Form.Group> */}
                 </div>
-                <div className="col-sm-12">
+                <div className="col-sm-6">
                   <Form.Group controlId="validationCustom04">
                     <Form.Label>Description</Form.Label>
                     <Form.Control

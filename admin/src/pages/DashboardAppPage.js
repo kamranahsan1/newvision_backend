@@ -33,21 +33,21 @@ export default function DashboardAppPage() {
   const [Subscriber, SetSubscriber] = useState(0);
   const LoadNumbers = async () => {
     const PackageData = await axios.get(`${API_URL}/packages`);
-    SetPackage(PackageData.data.packages.length);
-
+    
     const ContactData = await axios.get(`${API_URL}/getContacts`);
-    SetContact(ContactData.data.data.length);
-
+    
     const SubscriberData = await axios.get(`${API_URL}/getSubscriber`);
-    SetSubscriber(SubscriberData.data.length);
-
+    
     const VisasData = await axios.get(`${API_URL}/getVisas`);
-    SetVisas(VisasData.data.data.length);
-
+    
     const generate = await axios.get(`${API_URL}/getGtour`);
-    SetGtour(generate.data.data.length);
-
+    
     const country = await axios.get(`${API_URL}/getCountries`);
+    SetContact(ContactData.data.data.length);
+    SetSubscriber(SubscriberData.data.length);
+    SetVisas(VisasData.data.data.length);
+    SetGtour(generate.data.data.length);
+    SetPackage(PackageData.data.packages.length);
     SetCountry(country.data.data.length);
   };
   useEffect(() => {
